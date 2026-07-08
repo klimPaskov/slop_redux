@@ -2,7 +2,7 @@
 
 ## Decision
 
-The user has ruled that hidden paths are not optional and must be planned. Part 10 accepts and plans hidden paths instead of leaving them queued.
+The user has ruled that hidden paths are required and must be planned. Part 10 accepts and plans hidden paths instead of leaving them queued.
 
 ## Superseded notes
 

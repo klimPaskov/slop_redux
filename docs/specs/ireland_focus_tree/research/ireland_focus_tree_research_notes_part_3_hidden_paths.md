@@ -46,7 +46,7 @@ Research still needed before implementation:
 
 - period small state neutrality language
 - Irish wartime neutrality scholarship
-- any conference language if final event text is written
+- conference language for final event text
 - audio only if the compact receives a major reveal
 
 ## Emergency directorate source caution

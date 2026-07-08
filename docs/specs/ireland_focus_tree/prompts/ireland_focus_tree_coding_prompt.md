@@ -12,15 +12,15 @@ Read all files under `docs/specs/ireland_focus_tree/`:
 
 - `README.md`
 - `ireland_focus_tree_planning_state.md`
-- all files under `specs/`, especially `specs/ireland_focus_tree_spec_part_10_hidden_paths.md`
+- all files under `specs/`, especially parts 10, 12, and 13
 - all matrices in `matrices/`
-- all prompts in `prompts/`
+- all prompts in `prompts/`, including the event prompt
 - research notes and bibliography in `research/`
 - readiness and blocker reports in `reports/` and `plans/`
 
-Also follow `AGENTS.md`, `hoi4-feature-planning`, `hoi4-focus-trees`, `hoi4-decisions-missions`, `hoi4-feature-assets`, `hoi4-frame-animation`, `hoi4-text-audio-research`, `hoi4-improvement-loop`, and `hoi4-subagents`.
+Also follow `AGENTS.md`, `hoi4-feature-planning`, `hoi4-focus-trees`, `hoi4-decisions-missions`, `hoi4-events`, `hoi4-feature-assets`, `hoi4-frame-animation`, `hoi4-text-audio-research`, `hoi4-improvement-loop`, and `hoi4-subagents`.
 
-Before editing focus trees, read the offline Paradox wiki national focus, trigger, effect, localisation, AI, decision, and relevant GUI pages. Inspect vanilla focus, decision, idea, AI, and country files. Inspect existing Slop Redux patterns. Do not rely on memory for syntax.
+Before editing focus trees and events, read the offline Paradox wiki national focus, event, on action, trigger, effect, localisation, AI, decision, and relevant GUI pages. Inspect vanilla focus, decision, idea, AI, and country files. Inspect existing Slop Redux patterns. Do not rely on memory for syntax.
 
 ## Tree requirements
 
@@ -38,6 +38,8 @@ Create a bespoke Ireland national focus tree with a broad non linear structure. 
 - Northern settlement branch with peaceful, legal, Labour, coercive, and underground variants
 - required hidden path architecture from part 10
 - late game ambition branch with unified Ireland and route specific postwar outcomes
+- required BOP integration from part 12
+- required event suite from part 13
 
 The implementation may choose final focus count and coordinates, but it must preserve route locks, branch interaction, support branch compatibility, route payoffs, idea lifecycle, AI behavior, decision hooks, hidden reveal logic, and cleanup.
 
@@ -64,11 +66,20 @@ Civic cultural restoration stays peaceful, civic, educational, and constitutiona
 
 ## Mechanics and decisions
 
-Implement visible mechanics for Constitutional Authority, Emergency Preparedness, Partition Pressure, and Foreign Access Pressure. Use national spirit tooltips, decision headers, scripted localisation, and the planned Emergency scripted GUI board if feasible. Centralize thresholds, gains, durations, and AI weights in script constants or documented tuning helpers.
+Implement visible mechanics for Constitutional Authority, Emergency Preparedness, Partition Pressure, Foreign Access Pressure, and the Ireland BOP layer. Use national spirit tooltips, decision headers, scripted localisation, BOP UI, and the planned Emergency scripted GUI board where feasible. Centralize thresholds, gains, durations, BOP range values, and AI weights in script constants or documented tuning helpers.
 
 Implement all mapped decision families and mission families from parts 5, 6, 7, and 10. Use concrete costs and objectives. Do not default to political power or command power purchases. Use equipment, manpower, trains, trucks, convoys, fuel, XP, civilian factory burden, local support, legitimacy, state control, supplied divisions, foreign access, and timers where the spec calls for them.
 
 Northern settlement must not become a claim ladder. Formation decisions must verify state control or settlement conditions before changing identity.
+
+
+## Required event suite
+
+Events are mandatory planned content. Implement the event suite from part 13 and `prompts/ireland_focus_tree_event_prompt.md`. Create country events, news events, report events, hidden runtime events, foreign reaction events, BOP threshold events, Northern settlement events, formable events, hidden path events, and cleanup events.
+
+Events must connect focuses, decisions, missions, BOP bands, mechanic values, foreign actors, AI route behavior, leader or advisor changes, idea lifecycle, assets, achievements, and cleanup. Events are required implementation surfaces across all major routes and must never be reduced to passive presentation. Do not leave major routes silent.
+
+Do not write final event localisation from working labels. Write final in world text from direction. Keep source dependent quotes, slogans, Gaelic wording, cultural remarks, movement phrases, lyrics, prayers, and audio blocked until researched.
 
 ## Country package, assets, and text research
 
@@ -86,4 +97,9 @@ Implement the achievement set from the achievement prompt with tracking flags, v
 
 Before claiming near completion, spawn `hoi4_improvement_loop_planner` with `fork_context=false` using the improvement loop prompt. Resolve the returned addendum by implementing it, folding it into specs, queueing it with reason, rejecting it with reason, or recording closure. If the tool is unavailable, record the blocker clearly.
 
-Before final completion, run focus, decision, country package, localisation, asset, and completion audits as appropriate. Provide a route coverage table and a concrete completion report. Report every simplification, omission, missing asset, missing localisation, missing AI behavior, fallback, or blocker.
+Before final completion, run focus, event, decision, country package, localisation, asset, and completion audits as appropriate. Provide a route coverage table and a concrete completion report. Report every simplification, omission, missing asset, missing localisation, missing AI behavior, fallback, or blocker.
+
+
+Additional canonical requirement, flavour event layer
+
+Implement the comprehensive flavour event layer from parts 19, 20, and 21. The flavour layer is not filler. Every row in `matrices/ireland_focus_tree_flavour_event_catalogue_matrix.md` needs a final event, a dynamic variant, or a documented disposition. Flavour events must have concrete effects, historical anchors, AI behavior, and cleanup. They must interact with Constitutional Authority, Emergency Preparedness, Partition Pressure, Foreign Access Pressure, BOP, local support, integration, compact cohesion, route pressure, decisions, missions, ideas, or state targets.

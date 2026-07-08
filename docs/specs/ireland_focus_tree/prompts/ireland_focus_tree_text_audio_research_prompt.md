@@ -13,19 +13,19 @@ Prefer official archives, primary sources, Dictionary of Irish Biography, Docume
 
 ## Surfaces that may need research
 
-Research is only justified for major presentation moments. Ordinary focus and decision localisation should be written by the implementation agent from the spec direction and does not need quotes or audio.
+Research is only justified for major presentation moments. Ordinary focus, decision, and event localisation should be written by the implementation agent from the spec direction and does not need quotes or audio.
 
 | Package working label | Trigger or use | Needed research | Tone direction | Notes |
 | --- | --- | --- | --- | --- |
 | `constitution_sovereignty_package` | 1937 constitution milestone or president office reveal | source check for constitutional wording references and possible short public source excerpt if legally safe | sober state building and legal sovereignty | Use Irish Statute Book and official constitutional sources. Do not quote long legal text. |
 | `ports_return_package` | Treaty Ports return event or report image | source review for official transfer records and period phrasing | strategic relief and sovereignty regained through negotiation | Documents on Irish Foreign Policy should be primary. |
 | `emergency_watch_package` | coast watching or Emergency board reveal | source review for Coastwatching Service and Look Out Post terminology | watchful, practical, coastal defence | Military Archives and scholarly source review. |
-| `neutrality_crisis_package` | strict neutrality under pressure, major incident | quote or remark research only if implementation uses event | restrained and tense, not celebratory | Avoid modern debates unless directly relevant to historical note. |
+| `neutrality_crisis_package` | strict neutrality under pressure, major event incident | quote or remark research only for a major sourced presentation moment | restrained and tense, not celebratory | Avoid modern debates unless directly relevant to historical note. |
 | `labour_social_republic_package` | Labour capstone, worker congress, anti fascist branch | Labour, trade union, Connolly memory, Frank Ryan, International Brigades source checks | democratic socialist or anti fascist, depending route | Do not invent slogans. Avoid lyrics unless tiny and source checked. |
 | `blueshirt_corporatist_package` | Blueshirt route reveal or corporate state capstone | O'Duffy, Blueshirts, Catholic corporatism, Spain and Italy source checks | authoritarian, self justifying, and uneasy | Research must avoid glorifying fascist imagery or copy. |
 | `ira_underground_package` | IRA takeover, foreign courier, Plan Kathleen exposure | IRA S-Plan and Plan Kathleen source checks | dangerous, exposed, clandestine, unstable | Treat German contact as risk. Do not frame as clean victory. |
 | `all_island_settlement_package` | peaceful unified Ireland formation | source check for all island settlement references and public legal language | constitutional, reconciliatory, high stakes | No final proclamation until researched. |
-| `violent_northern_crisis_package` | uprising, ultimatum, or war route if eventized | source checks for period language and caution notes | severe, coercive, unstable | Do not use cheap humour or triumphant slogans. |
+| `violent_northern_crisis_package` | uprising, ultimatum, or war route event chain | source checks for period language and caution notes | severe, coercive, unstable | Do not use cheap humour or triumphant slogans. |
 | `atlantic_compact_package` | rare neutral conference or compact | source review for Irish neutrality, small state diplomacy, postwar conference language | careful, legalistic, maritime | Audio only if implementation makes this a major reveal. |
 | `cultural_epilogue_package` | rare peaceful cultural restoration epilogue | Gaelic League, Douglas Hyde, language revival source checks | ceremonial, cultural, civic | No high kingship fantasy, no occult content. |
 | `achievement_reference_package` | achievement title and description direction | title like references only after source and copyright checks | route specific and clever but not flippant | Working achievement labels are not final titles. |
@@ -39,7 +39,7 @@ Potential audio roles:
 - Major all island settlement reveal.
 - Emergency board reveal if custom GUI needs a short cue.
 - Rare Atlantic compact conference reveal.
-- Route capstone for Labour, Blueshirt, or IRA only if implementation treats it as a major event.
+- Route capstone for Labour, Blueshirt, or IRA only when audio is treated as a major presentation cue.
 
 Audio requirements:
 
@@ -106,3 +106,25 @@ Required hidden path research questions:
 - What rights, autonomy, observer, and policing language can support common platform settlement and Northern emergency protectorate text direction?
 
 Any unclear attribution, symbol, slogan, movement phrase, song, poem, or audio license remains blocked.
+
+
+## Mandatory event suite research addendum
+
+Events are required content. This prompt does not require a sourced quote for every event. It does require research gates for major event moments where final text might use legal wording, Gaelic wording, movement phrases, slogans, cultural remarks, quotes, prayer like references, song or poem fragments, or audio.
+
+Additional research packages:
+
+| Package working label | Event use | Needed research | Notes |
+| --- | --- | --- | --- |
+| `event_ports_and_emergency_package` | ports return, Emergency powers, coastwatch, G2, and LDF report events | official port records, Emergency legal sources, Military Archives, Defence Forces notes | source dependent terms require verification |
+| `event_foreign_reaction_package` | Britain, Germany, Italy, Spain, United States, Soviet, and Vatican channel events | diplomatic source review and country specific caution notes | do not invent diplomatic quotes |
+| `event_northern_settlement_package` | British response, unionist alarm, observer mission, integration, and all island news events | settlement, rights, guarantee, and observer language | no triumphalist or sectarian wording |
+| `event_bop_crisis_package` | BOP high and extreme band events | legal, party, Emergency, labour, Blueshirt, and IRA source context | no final movement slogans without source checks |
+| `event_hidden_path_package` | civic cultural, directorate, compact, common platform, corrupted restoration, and compromised network events | Gaelic League, Article 8, Emergency institutions, neutrality, counter espionage, and extremist source caution | unclear attribution remains blocked |
+
+Audio remains reserved for major public event reveals, custom GUI reveals, or route capstones. Event presence does not make audio automatic.
+
+
+The flavour event layer needs research gates for culturally specific writing
+
+Research is required before using Irish language phrases, folklore titles, period slogans, Church language, song references, proverbs, diaspora press references, exact broadcast language, or any quoted public remark. Ordinary flavour events may use plain in world prose without source dependent wording, but final text must be concrete and historically grounded.

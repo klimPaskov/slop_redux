@@ -37,3 +37,8 @@ The temporary continuation prompt was removed. Earlier notes that treated hidden
 - `prompts/ireland_focus_tree_improvement_loop_prompt.md`
 - `plans/ireland_focus_tree_improvement_loop_blocker.md`
 - `reports/ireland_focus_tree_implementation_readiness_report.md`
+
+
+## BOP and event canonical update
+
+A later user correction required events to be treated as mandatory and the BOP package to be folded into the canonical implementation package. This update supersedes earlier event optionality wording and adds parts 12 and 13.

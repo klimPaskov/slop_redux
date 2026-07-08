@@ -38,7 +38,7 @@ This bibliography extends the Part 1 bibliography. It lists sources used for the
 
 - National Archives UK. Hermann Goertz and IRA related German plans.
 - Dictionary of Irish Biography. Seán Russell.
-- Additional archival research required later for exact wording and document references if any event or focus text uses Plan Kathleen style material.
+- Additional archival research is required for exact wording and document references in event or focus text using Plan Kathleen style material.
 
 ## Industry and supply
 

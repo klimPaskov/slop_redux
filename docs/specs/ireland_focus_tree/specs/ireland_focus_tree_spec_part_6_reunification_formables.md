@@ -82,7 +82,7 @@ Effects direction:
 - Unlock post settlement integration category.
 - Remove obsolete border agitation decisions.
 - Start integration missions for Belfast, Derry, border counties, and port states.
-- Fire formation event or news event direction if final implementation includes events.
+- Fire a formation event or news event for the public formation milestone.
 
 AI behavior:
 

@@ -13,7 +13,7 @@ Read the full Ireland spec package, especially:
 - `specs/ireland_focus_tree_spec_part_7_mechanics_presentation.md`
 - `matrices/ireland_focus_tree_decision_mission_matrix.md`
 
-Follow `AGENTS.md`, `hoi4-decisions-missions`, `hoi4-focus-trees`, and `hoi4-events` if events are used.
+Follow `AGENTS.md`, `hoi4-decisions-missions`, `hoi4-focus-trees`, and `hoi4-events`. Events are required for mission outcomes, crisis chains, BOP thresholds, and cleanup.
 
 ## Must implement
 
@@ -69,3 +69,17 @@ Use concrete costs and requirements. Avoid political power stores. Hide invalid 
 | `hidden_labour_independent_front` | worker guard, veteran integration, cooperative supply missions | equipment, union support, convoys, trains, authority | readiness and supply without client capture | militia capture, church backlash, employer pressure |
 | `hidden_corporate_chambers_without_oduffy` | Guard discipline, chamber production, sponsor audit missions | equipment, command, legitimacy, worker backlash risk | institutional route survives leader crisis | coup scare, movement fracture, sponsor capture |
 | `hidden_republican_reconciliation_backchannel` | amnesty, safehouse audit, arms surrender, border cell stand down missions | local support, authority, exposure risk, British reaction | underground pressure falls and civic route may reopen | martyr pressure, sabotage crisis, Army Council state |
+
+
+## BOP and event integration addendum
+
+The decision and mission implementation must support the Ireland BOP from part 12 and the event suite from part 13.
+
+Every major decision family should define which BOP mode or range it can move, which events can fire on success, failure, or partial success, and which hidden cleanup event clears stale missions. Northern settlement decisions must fire British, unionist, observer, integration, and backlash events as appropriate.
+
+Decision categories should not replace events. Events should report major mission outcomes, expose crises, create route choices, and call cleanup logic where needed.
+
+
+Flavour event integration is mandatory
+
+Many flavour rows create or modify small but meaningful decisions and timed missions, especially ration books, turf cutting, customs checks, coast posts, school inspections, radio monitoring, port throughput, LDF drill, Red Cross relief, and Northern local safeguards. Each linked decision or mission needs costs, requirements, success, failure, AI, and cleanup. Do not turn flavour outcomes into political power stores.

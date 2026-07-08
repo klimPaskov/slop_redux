@@ -16,4 +16,4 @@ This bibliography supports the hidden path addendum. It is not a final text sour
 - Any Gaelic wording, motto, slogan, prayer, poem, lyric fragment, or cultural allusion needs `hoi4-text-audio-research` before implementation.
 - Any sourced portrait for Douglas Hyde or other real figures needs `hoi4_asset_source_researcher`.
 - Any historical harp, presidential, party, movement, or state symbol needs source review before asset production.
-- The Atlantic compact needs source review if final event text, conference wording, or audio is used.
+- The Atlantic compact needs source review for final event text, conference wording, or audio cues.

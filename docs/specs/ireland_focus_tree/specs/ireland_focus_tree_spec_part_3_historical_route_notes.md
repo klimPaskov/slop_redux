@@ -128,7 +128,7 @@ The following earlier review ideas have been resolved in later files:
 - Do not make the IRA route a clean German alliance.
 - Do not make Labour only a Soviet branch.
 - Do not make de Valera's historical path a passive neutrality branch.
-- Do not make the ports settlement optional flavor only.
+- Make the ports settlement a real gameplay settlement with events, decisions, and defence work.
 - Do not make the Northern route a list of claims.
 - Do not make industry generic factories without Irish state building themes.
 - Do not add occult or mythical content unless a later planning pass proves that it adds playable value and can remain clearly rare.

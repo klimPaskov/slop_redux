@@ -14,8 +14,8 @@ Read these package files:
 
 - `README.md`
 - `ireland_focus_tree_planning_state.md`
-- all files under `specs/`, including `specs/ireland_focus_tree_spec_part_10_hidden_paths.md`
-- all files under `matrices/`, including the hidden path matrices
+- all files under `specs/`, including parts 10, 12, and 13
+- all files under `matrices/`, including hidden path, BOP, and event matrices
 - all files under `research/`
 - all files under `prompts/`
 - `plans/ireland_focus_tree_improvement_loop_blocker.md`
@@ -39,8 +39,8 @@ Determine whether the Ireland focus tree package needs an expansion addendum, an
 - Unified Ireland is the main formable or identity change.
 - The Atlantic compact remains a conference or limited faction concept, not a formable country.
 - Hidden paths are required planned content. You may trim, merge, or refine weak hidden routes only if the final package still contains planned hidden paths with comparable depth and a recorded disposition.
-- The four current internal mechanics are Constitutional Authority, Emergency Preparedness, Partition Pressure, and Foreign Access Pressure.
-- The current UI decision is decision category headers and spirit tooltips, with the Emergency Preparedness board as the only scripted GUI candidate.
+- The core internal mechanics are Constitutional Authority, Emergency Preparedness, Partition Pressure, Foreign Access Pressure, and the Ireland BOP layer.
+- The current UI direction is decision category headers, spirit tooltips, BOP UI, and the Emergency Preparedness board as the main scripted GUI candidate.
 
 ## Hidden path review requirement
 
@@ -57,3 +57,15 @@ Write one of these under `docs/plans/ireland_focus_tree/` or the equivalent plan
 3. Closure handoff if the design is deep, connected, and ready for implementation after normal cleanup.
 
 Your handoff must list design problem or closure reason, files inspected, additions, cuts, or closure tasks, research basis, affected specs, matrices, prompts, assets, decisions, focus routes, AI, country package surfaces, open questions, whether any prior addendum remains unresolved, and whether the result should be promoted into `docs/specs/ireland_focus_tree/`.
+
+
+## BOP and event review requirement
+
+Review part 12, the full BOP addendum, and BOP matrices. Check whether the BOP improves play without replacing existing mechanics, whether route modes are distinct, whether BOP bands trigger meaningful decisions, missions, events, or locks, and whether BOP extreme bands have recovery or failure logic.
+
+Review part 13 and the event matrices. Events are mandatory. Check whether the event suite covers every major route, support branch, hidden path, BOP mode, foreign actor, Northern settlement stage, formation, AI runtime, and cleanup. Recommend expansion where a route is too quiet. Recommend cuts only for repeated or low impact event roles, never to make route event coverage skippable.
+
+
+Also audit the flavour event layer
+
+Audit parts 19, 20, and 21. Check whether the events are historically grounded, mechanically meaningful, integrated with BOP and live mechanics, varied across routes, and free of passive filler. Recommend rejection, merging, or expansion only with concrete reasons.

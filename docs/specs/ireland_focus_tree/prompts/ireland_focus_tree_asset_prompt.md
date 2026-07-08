@@ -143,7 +143,7 @@ Every animated asset must follow `hoi4-frame-animation`. It needs source frames,
 
 ## Report or news image needs
 
-Only create report or news images if final implementation uses events for major public moments. Use direction only until implementation confirms event surfaces.
+Create report or news images for major public event moments. Use direction only until the implementation selects the exact event surfaces.
 
 Possible presentation moments:
 
@@ -207,3 +207,43 @@ The hidden paths in Part 10 are required asset surfaces. Add icon, idea, decisio
 Source mode rules remain strict. Real leaders, real flags, real unit symbols, real offices, real movement symbols, real cultural institutions, and attested emblems require sourced asset work. Generated assets are allowed for symbolic icons, fictional councils, alternate route emblems, compact seals, warning frames, and abstract UI states. Do not generate Douglas Hyde, O'Duffy, real IRA figures, real Aiséirghe figures, or historical symbols.
 
 Animation candidates are the Emergency warning seal, compact seal, civic cultural capstone seal, and repaired beacon aftershock recovery. Every animation requires real source frames, a static fallback, sheet DDS, manifest, and handoff under the frame animation rules.
+
+
+## BOP asset addendum
+
+Create or hand off BOP visual support for the integrated Ireland BOP layer.
+
+| Working asset | Surface | Type | Source mode | Direction |
+| --- | --- | --- | --- | --- |
+| `idea_ire_bop_state_authority` | BOP or national spirit tooltip | idea icon | generated | constitutional seal split with contested public order motif |
+| `decision_category_ireland_bop_authority` | decision category or mechanic summary | category icon | generated | Dáil chamber and public order pressure |
+| `ire_bop_warning_authority_static` | BOP warning | UI sprite | generated | static fallback for danger state |
+| `ire_bop_warning_authority_animated` | BOP high or extreme band | animated UI sprite | generated frames | follow frame animation rules, subtle warning pulse, static fallback required |
+
+Do not use real party or movement symbols in BOP assets without source review.
+
+## Mandatory event suite asset addendum
+
+Events are required content. Create event image assets for public and documentary milestones that implementation uses.
+
+Use news image target `397x153` in black and white. Use report image target `210x176` with the report card treatment. Use sourced assets for real people, real documents, real historical photographs, and historically attested symbols. Use generated period documentary art for alternate history scenes, fictional route moments, and symbolic report scenes.
+
+Required event asset families:
+
+- ports return and port defence news or report images
+- coastwatch, Look Out Posts, G2, and LDF Emergency report images
+- constitutional opposition and guarded liaison news image
+- Labour congress, cooperative industry, and cross border Labour mediation news or report images
+- corporate chamber, Blueshirt guard crisis, and anti communist route news or report images with symbol caution
+- safehouse network, courier exposure, Plan Kathleen style crisis, and compromised network report images
+- Northern offer, unionist alarm, observer mission, integration commission, backlash, and verified all island settlement images
+- BOP threshold and overreach event icons or report images for each major mode family
+- civic cultural restoration, Emergency Directorate, Atlantic compact, common platform, corrupted restoration, and protectorate hidden path images
+- unified Ireland, Atlantic compact, Labour all island, corporate state, revolutionary republic, and neutral postwar public news images
+
+The event asset matrix lists recommended working assets. Do not use generated readable text in event images.
+
+
+Add flavour event asset families
+
+Do not create one unique image per ordinary event. Create shared source backed or generated asset families for civic school and folklore, radio and press, rationing and turf, coasts and merchant marine, rural industry and sugar beet, Ardnacrusha and electrification, LDF and civil defence, border markets and safeguards, Red Cross and humanitarian relief, and postwar memory. Report images tied to real historical institutions, real places, real leaders, or historical photographs require sourced asset work. Symbolic icons and UI category art can be generated through the correct asset workflow.

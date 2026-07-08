@@ -1,6 +1,6 @@
 # Ireland focus tree spec part 10, hidden paths
 
-This file is the canonical hidden path specification. It supersedes earlier notes that treated hidden cultural restoration as queued or rejected by default. The user has ruled that hidden paths are not optional. The Ireland package includes planned hidden paths with discovery rules, route locks, gameplay loops, AI limits, assets, achievements, and failure states.
+This file is the canonical hidden path specification. It supersedes earlier notes that treated hidden cultural restoration as queued or rejected by default. The user has ruled that hidden paths are required. The Ireland package includes planned hidden paths with discovery rules, route locks, gameplay loops, AI limits, assets, achievements, and failure states.
 
 All focus labels in this file are working labels only. They are not final localisation.
 
@@ -457,7 +457,7 @@ Focus groups:
 - Corporate chambers without O'Duffy needs Guard crisis, chamber body, and right contact exposure icons. O'Duffy and real symbols require sourced work.
 - Republican reconciliation backchannel needs amnesty, arms surrender, civil authority, and border cell stand down icons. Real IRA symbols and actors require source review.
 
-These overlays should also receive achievement checks and AI blockers. They are hidden subpaths, not optional flavour.
+These overlays should also receive achievement checks and AI blockers. They are hidden subpaths with required gameplay content.
 
 ## Route specific hidden overlays added for full coverage
 

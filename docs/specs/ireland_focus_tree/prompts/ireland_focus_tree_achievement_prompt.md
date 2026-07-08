@@ -69,3 +69,24 @@ Tracking must include route flags, disqualifiers, hidden reveal completion, viol
 | `ireland_focus_tree_front_without_masters` | Labour independent front | Build Labour anti-fascist defence and cooperative supply while keeping Soviet pressure below client band. | Soviet client route, militia capture, failed worker discipline | worker shield and supply crate |
 | `ireland_focus_tree_chambers_after_the_chief` | corporate chambers without O'Duffy | Keep the corporatist route alive after leader crisis without becoming foreign owned. | Fine Gael route, movement fracture, sponsor capture | chamber hall and cracked baton motif |
 | `ireland_focus_tree_amnesty_before_uprising` | republican reconciliation backchannel | Stand down border cells and restore civil authority before an uprising or British ultimatum. | Army Council state, active courier dependency, sabotage crisis | broken rifle and civic seal motif |
+
+
+## BOP and event achievement addendum
+
+Achievements may use BOP and event state. Do not unlock route achievements from focus completion alone when the challenge includes event choices, BOP bands, mission outcomes, or settlement events.
+
+Additional tracking requirements:
+
+| Working id | Core challenge | Required event or BOP proof | Icon direction |
+| --- | --- | --- | --- |
+| `ireland_focus_tree_cabinet_over_emergency` | keep historical neutrality active while preventing permanent emergency rule | Emergency BOP never reaches security extreme, Emergency powers sunset event completed | cabinet table and coast light |
+| `ireland_focus_tree_no_one_commands_the_council` | complete IRA absorption without Army Council state capture | Army Council capture event never fires, absorption event completed, courier crisis contained | broken command seal and safehouse key |
+| `ireland_focus_tree_events_of_the_island` | complete a full campaign path with required route event chains and no fallback route | event coverage flags for opening, political route, industry, military, diplomacy, Northern, BOP, and late game | branching event cards around Ireland outline |
+| `ireland_focus_tree_balanced_authority` | finish a peaceful Northern settlement while BOP stays out of extreme bands | observer and integration events complete, no BOP extreme crisis event | scales, border bridge, and civic seal |
+
+Event achievements need hidden flags for event family completion, crisis avoidance, major event outcome, and cleanup completion.
+
+
+Add achievement hooks for flavour event mastery
+
+Add difficult achievement hooks where the flavour layer supports real play. Candidate working keys should reward completing a full coast watch flavour chain without foreign access scandal, completing school and folklore civic work without corrupted restoration, solving winter fuel pressure while keeping Emergency powers limited, completing Northern local safeguard events without coercion, and honoring merchant marine memory after maintaining strict neutrality. These are working labels only and require final title direction during implementation.
