@@ -1,0 +1,276 @@
+# Ireland state authority BOP helper triggers.
+# These triggers assume the parent BOP object defines the range ids documented here.
+
+ire_bop_has_state_authority_bop_trigger = {
+	has_power_balance = {
+		id = IRE_state_authority_bop
+	}
+}
+
+ire_bop_has_state_authority = {
+	ire_bop_has_state_authority_bop_trigger = yes
+}
+
+ire_bop_is_opening_mode_trigger = {
+	has_country_flag = ire_bop_mode_opening_state
+	ire_bop_has_state_authority_bop_trigger = yes
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_constitutional_government
+	}
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_armed_political_pressure
+	}
+}
+
+ire_bop_is_historical_emergency_mode_trigger = {
+	has_country_flag = ire_bop_mode_historical_emergency
+	ire_bop_has_state_authority_bop_trigger = yes
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_civilian_cabinet
+	}
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_emergency_apparatus
+	}
+}
+
+ire_bop_is_commonwealth_cooperation_mode_trigger = {
+	has_country_flag = ire_bop_mode_commonwealth_cooperation
+	ire_bop_has_state_authority_bop_trigger = yes
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_independent_parliamentary_review
+	}
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_defence_liaison_cabinet
+	}
+}
+
+ire_bop_is_labour_republic_mode_trigger = {
+	has_country_flag = ire_bop_mode_labour_republic
+	ire_bop_has_state_authority_bop_trigger = yes
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_dail_labour_cabinet
+	}
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_workers_congress
+	}
+}
+
+ire_bop_is_blueshirt_corporate_mode_trigger = {
+	has_country_flag = ire_bop_mode_blueshirt_corporate
+	ire_bop_has_state_authority_bop_trigger = yes
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_parliamentary_right_chambers
+	}
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_blueshirt_guard
+	}
+}
+
+ire_bop_is_republican_underground_mode_trigger = {
+	has_country_flag = ire_bop_mode_republican_underground
+	ire_bop_has_state_authority_bop_trigger = yes
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_civilian_republican_front
+	}
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_army_council
+	}
+}
+
+ire_bop_is_civic_cultural_mode_trigger = {
+	has_country_flag = ire_bop_mode_civic_cultural
+	ire_bop_has_state_authority_bop_trigger = yes
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_civic_institutions
+	}
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_cultural_mobilisation_networks
+	}
+}
+
+ire_bop_is_emergency_directorate_mode_trigger = {
+	has_country_flag = ire_bop_mode_emergency_directorate
+	ire_bop_has_state_authority_bop_trigger = yes
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_civilian_restoration
+	}
+	is_power_balance_side_active = {
+		id = IRE_state_authority_bop
+		side = ire_bop_side_security_directorate
+	}
+}
+
+ire_bop_has_active_mode_trigger = {
+	OR = {
+		ire_bop_is_opening_mode_trigger = yes
+		ire_bop_is_historical_emergency_mode_trigger = yes
+		ire_bop_is_commonwealth_cooperation_mode_trigger = yes
+		ire_bop_is_labour_republic_mode_trigger = yes
+		ire_bop_is_blueshirt_corporate_mode_trigger = yes
+		ire_bop_is_republican_underground_mode_trigger = yes
+		ire_bop_is_civic_cultural_mode_trigger = yes
+		ire_bop_is_emergency_directorate_mode_trigger = yes
+	}
+}
+
+ire_bop_is_left_moderate_range_trigger = {
+	is_power_balance_in_range = {
+		id = IRE_state_authority_bop
+		range = ire_bop_left_moderate_range
+	}
+}
+
+ire_bop_is_left_high_range_trigger = {
+	is_power_balance_in_range = {
+		id = IRE_state_authority_bop
+		range = ire_bop_left_high_range
+	}
+}
+
+ire_bop_is_left_extreme_range_trigger = {
+	is_power_balance_in_range = {
+		id = IRE_state_authority_bop
+		range = ire_bop_left_extreme_range
+	}
+}
+
+ire_bop_is_right_moderate_range_trigger = {
+	is_power_balance_in_range = {
+		id = IRE_state_authority_bop
+		range = ire_bop_right_moderate_range
+	}
+}
+
+ire_bop_is_right_high_range_trigger = {
+	is_power_balance_in_range = {
+		id = IRE_state_authority_bop
+		range = ire_bop_right_high_range
+	}
+}
+
+ire_bop_is_right_extreme_range_trigger = {
+	is_power_balance_in_range = {
+		id = IRE_state_authority_bop
+		range = ire_bop_right_extreme_range
+	}
+}
+
+ire_bop_is_contested_center_range_trigger = {
+	is_power_balance_in_range = {
+		id = IRE_state_authority_bop
+		range = ire_bop_contested_center_range
+	}
+}
+
+ire_bop_is_left_moderate_or_higher_trigger = {
+	OR = {
+		ire_bop_is_left_moderate_range_trigger = yes
+		ire_bop_is_left_high_range_trigger = yes
+		ire_bop_is_left_extreme_range_trigger = yes
+	}
+}
+
+ire_bop_is_left_high_or_extreme_trigger = {
+	OR = {
+		ire_bop_is_left_high_range_trigger = yes
+		ire_bop_is_left_extreme_range_trigger = yes
+	}
+}
+
+ire_bop_is_right_moderate_or_higher_trigger = {
+	OR = {
+		ire_bop_is_right_moderate_range_trigger = yes
+		ire_bop_is_right_high_range_trigger = yes
+		ire_bop_is_right_extreme_range_trigger = yes
+	}
+}
+
+ire_bop_is_right_high_or_extreme_trigger = {
+	OR = {
+		ire_bop_is_right_high_range_trigger = yes
+		ire_bop_is_right_extreme_range_trigger = yes
+	}
+}
+
+ire_bop_is_extreme_band_trigger = {
+	OR = {
+		ire_bop_is_left_extreme_range_trigger = yes
+		ire_bop_is_right_extreme_range_trigger = yes
+	}
+}
+
+ire_bop_can_switch_route_mode_trigger = {
+	original_tag = IRE
+	ire_bop_has_state_authority_bop_trigger = yes
+	NOT = { has_country_flag = ire_bop_mode_switch_locked }
+}
+
+ire_bop_is_mode_opening_state = {
+	ire_bop_is_opening_mode_trigger = yes
+}
+
+ire_bop_is_mode_historical_emergency = {
+	ire_bop_is_historical_emergency_mode_trigger = yes
+}
+
+ire_bop_is_mode_commonwealth_cooperation = {
+	ire_bop_is_commonwealth_cooperation_mode_trigger = yes
+}
+
+ire_bop_is_mode_labour_republic = {
+	ire_bop_is_labour_republic_mode_trigger = yes
+}
+
+ire_bop_is_mode_blueshirt_corporate = {
+	ire_bop_is_blueshirt_corporate_mode_trigger = yes
+}
+
+ire_bop_is_mode_republican_underground = {
+	ire_bop_is_republican_underground_mode_trigger = yes
+}
+
+ire_bop_is_mode_civic_cultural = {
+	ire_bop_is_civic_cultural_mode_trigger = yes
+}
+
+ire_bop_is_mode_emergency_directorate = {
+	ire_bop_is_emergency_directorate_mode_trigger = yes
+}
+
+ire_bop_is_left_high_or_extreme = {
+	ire_bop_is_left_high_or_extreme_trigger = yes
+}
+
+ire_bop_is_right_high_or_extreme = {
+	ire_bop_is_right_high_or_extreme_trigger = yes
+}
+
+ire_bop_is_center_contested = {
+	ire_bop_is_contested_center_range_trigger = yes
+}
+
+ire_bop_is_stable_institutional = {
+	OR = {
+		ire_bop_is_left_moderate_range_trigger = yes
+		ire_bop_is_left_high_range_trigger = yes
+	}
+}
+
+ire_bop_is_pressure_dominant = {
+	ire_bop_is_right_high_or_extreme_trigger = yes
+}
