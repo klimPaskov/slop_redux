@@ -1,0 +1,1916 @@
+@ireland_command_small = 15
+@ireland_command_medium = 25
+@ireland_command_large = 40
+@ireland_command_small_negative = -15
+@ireland_command_medium_negative = -25
+@ireland_command_large_negative = -40
+@ireland_army_xp_small = 10
+@ireland_army_xp_medium = 25
+@ireland_army_xp_small_negative = -10
+@ireland_army_xp_medium_negative = -25
+@ireland_navy_xp_small = 10
+@ireland_navy_xp_small_negative = -10
+@ireland_air_xp_small = 10
+@ireland_air_xp_small_negative = -10
+@ireland_rifles_small = 300
+@ireland_rifles_medium = 700
+@ireland_rifles_large = 1200
+@ireland_rifles_small_negative = -300
+@ireland_rifles_medium_negative = -700
+@ireland_rifles_large_negative = -1200
+@ireland_support_small = 40
+@ireland_support_medium = 100
+@ireland_support_small_negative = -40
+@ireland_support_medium_negative = -100
+@ireland_manpower_small = 500
+@ireland_manpower_medium = 1500
+@ireland_manpower_small_negative = -500
+@ireland_manpower_medium_negative = -1500
+@ireland_fuel_small = 500
+@ireland_fuel_medium = 1200
+@ireland_fuel_small_negative = -500
+@ireland_fuel_medium_negative = -1200
+@ireland_trains_small = 2
+@ireland_trains_small_negative = -2
+@ireland_project_level_small = 1
+@ireland_project_slots_small = 1
+@ireland_mission_short = 35
+@ireland_mission_medium = 60
+@ireland_mission_long = 90
+@ireland_mission_integration = 120
+@ireland_mission_crisis = 45
+
+ireland_constitutional_authority_category = {
+	icon = GFX_decision_category_ireland_authority
+	allowed = { original_tag = IRE }
+	visible = { has_country_flag = ireland_mechanics_initialized }
+	priority = 10
+
+	ireland_hold_dail_confidence_mission = {
+		icon = GFX_decision_ireland_dail_confidence
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_completed_focus = irl_dail_holds
+			NOT = { has_country_flag = ireland_hold_dail_confidence_complete }
+		}
+		available = {
+			command_power > @ireland_command_small
+			check_variable = { ireland_constitutional_authority < 80 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_short
+		complete_effect = {
+			add_command_power = @ireland_command_small_negative
+			set_country_flag = ireland_hold_dail_confidence_complete
+			slopx_ireland_gain_authority_small = yes
+			custom_effect_tooltip = ireland_hold_dail_confidence_mission_success_tt
+		}
+		timeout_effect = {
+			slopx_ireland_lose_authority_small = yes
+			custom_effect_tooltip = ireland_hold_dail_confidence_mission_timeout_tt
+		}
+		ai_will_do = {
+			base = 8
+			modifier = {
+				add = 8
+				check_variable = { ireland_constitutional_authority < 50 }
+			}
+		}
+	}
+
+	ireland_veterans_reconciliation_mission = {
+		icon = GFX_decision_ireland_veterans_board
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_completed_focus = irl_veterans_reconciliation_board
+			NOT = { has_country_flag = ireland_veterans_reconciliation_complete }
+		}
+		available = {
+			has_equipment = { infantry_equipment > @ireland_rifles_small }
+			check_variable = { ireland_partition_pressure > 19 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_medium
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = @ireland_rifles_small_negative
+				producer = IRE
+			}
+			set_country_flag = ireland_veterans_reconciliation_complete
+			slopx_ireland_gain_authority_small = yes
+			slopx_ireland_reduce_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_veterans_reconciliation_mission_success_tt
+		}
+		timeout_effect = {
+			slopx_ireland_raise_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_veterans_reconciliation_mission_timeout_tt
+		}
+		ai_will_do = { base = 6 }
+	}
+
+	ireland_arms_registration_searches = {
+		icon = GFX_decision_ireland_public_order
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_public_order_bill }
+		available = {
+			NOT = { has_country_flag = ireland_authority_mission_active }
+			command_power > @ireland_command_medium
+			has_equipment = { support_equipment > @ireland_support_small }
+		}
+		days_remove = @ireland_mission_short
+		complete_effect = {
+			set_country_flag = ireland_authority_mission_active
+			add_command_power = @ireland_command_medium_negative
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = @ireland_support_small_negative
+				producer = IRE
+			}
+		}
+		remove_effect = {
+			clr_country_flag = ireland_authority_mission_active
+			slopx_ireland_gain_authority_small = yes
+			if = {
+				limit = { has_country_flag = ireland_route_ira_republic }
+				slopx_ireland_raise_partition_pressure_small = yes
+			}
+			custom_effect_tooltip = ireland_arms_registration_searches_success_tt
+		}
+		ai_will_do = {
+			base = 4
+			modifier = {
+				add = 8
+				has_country_flag = ireland_route_historical_neutrality
+			}
+		}
+	}
+
+	ireland_route_authority_review = {
+		icon = GFX_decision_ireland_route_review
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { slopx_ireland_is_route_locked = yes }
+		available = {
+			command_power > @ireland_command_small
+			NOT = { has_country_flag = ireland_route_review_active }
+		}
+		days_remove = @ireland_mission_short
+		complete_effect = {
+			set_country_flag = ireland_route_review_active
+			add_command_power = @ireland_command_small_negative
+		}
+		remove_effect = {
+			clr_country_flag = ireland_route_review_active
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = ireland_route_historical_neutrality
+						has_country_flag = ireland_route_constitutional_opposition
+						has_country_flag = ireland_route_labour_social_republic
+					}
+				}
+				slopx_ireland_gain_authority_small = yes
+			}
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = ireland_route_blueshirt_corporatist
+						has_country_flag = ireland_route_ira_republic
+					}
+				}
+				slopx_ireland_gain_preparedness_small = yes
+			}
+			custom_effect_tooltip = ireland_route_authority_review_success_tt
+		}
+		ai_will_do = { base = 5 }
+	}
+}
+
+ireland_emergency_preparedness_category = {
+	icon = GFX_decision_category_ireland_emergency
+	allowed = { original_tag = IRE }
+	visible = { has_completed_focus = irl_emergency_skeleton }
+	priority = 9
+
+	ireland_emergency_stockpile_mission = {
+		icon = GFX_decision_ireland_emergency_stockpile
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_completed_focus = irl_emergency_stores_board
+			NOT = { has_country_flag = ireland_emergency_stockpile_complete }
+		}
+		available = {
+			has_equipment = { infantry_equipment > @ireland_rifles_medium }
+			has_equipment = { support_equipment > @ireland_support_small }
+			has_equipment = { train_equipment > @ireland_trains_small }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_medium
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = @ireland_rifles_medium_negative
+				producer = IRE
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = @ireland_support_small_negative
+				producer = IRE
+			}
+			add_equipment_to_stockpile = {
+				type = train_equipment
+				amount = @ireland_trains_small_negative
+				producer = IRE
+			}
+			set_country_flag = ireland_emergency_stockpile_complete
+			add_to_variable = { ireland_store_readiness = 2 }
+			slopx_ireland_gain_preparedness_medium = yes
+			custom_effect_tooltip = ireland_emergency_stockpile_mission_success_tt
+		}
+		timeout_effect = {
+			slopx_ireland_raise_foreign_access_small = yes
+			custom_effect_tooltip = ireland_emergency_stockpile_mission_timeout_tt
+		}
+		ai_will_do = {
+			base = 8
+			modifier = {
+				add = 8
+				has_war = yes
+			}
+		}
+	}
+
+	ireland_ldf_training_cycle = {
+		icon = GFX_decision_ireland_ldf_training
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_local_defence_force }
+		available = {
+			NOT = { has_country_flag = ireland_emergency_mission_active }
+			has_manpower > @ireland_manpower_small
+			has_equipment = { infantry_equipment > @ireland_rifles_small }
+			command_power > @ireland_command_medium
+		}
+		days_remove = @ireland_mission_medium
+		complete_effect = {
+			set_country_flag = ireland_emergency_mission_active
+			add_manpower = @ireland_manpower_small_negative
+			add_command_power = @ireland_command_medium_negative
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = @ireland_rifles_small_negative
+				producer = IRE
+			}
+		}
+		remove_effect = {
+			clr_country_flag = ireland_emergency_mission_active
+			slopx_ireland_gain_preparedness_medium = yes
+			custom_effect_tooltip = ireland_ldf_training_cycle_success_tt
+		}
+		ai_will_do = { base = 7 }
+	}
+
+	ireland_coastwatch_posts_mission = {
+		icon = GFX_decision_ireland_coastwatch
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_completed_focus = irl_coastwatching_network
+			NOT = { has_country_flag = ireland_coastwatch_posts_complete }
+		}
+		available = {
+			has_equipment = { support_equipment > @ireland_support_small }
+			command_power > @ireland_command_small
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_short
+		complete_effect = {
+			add_command_power = @ireland_command_small_negative
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = @ireland_support_small_negative
+				producer = IRE
+			}
+			set_country_flag = ireland_coastwatch_posts_complete
+			add_to_variable = { ireland_coastwatch_readiness = 2 }
+			slopx_ireland_gain_preparedness_small = yes
+			custom_effect_tooltip = ireland_coastwatch_posts_mission_success_tt
+		}
+		timeout_effect = {
+			slopx_ireland_raise_foreign_access_small = yes
+			custom_effect_tooltip = ireland_coastwatch_posts_mission_timeout_tt
+		}
+		ai_will_do = { base = 8 }
+	}
+
+	ireland_g2_counterespionage_review = {
+		icon = GFX_decision_ireland_g2_review
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_g2_counterespionage }
+		available = {
+			NOT = { has_country_flag = ireland_emergency_mission_active }
+			command_power > @ireland_command_large
+		}
+		days_remove = @ireland_mission_crisis
+		complete_effect = {
+			set_country_flag = ireland_emergency_mission_active
+			add_command_power = @ireland_command_large_negative
+		}
+		remove_effect = {
+			clr_country_flag = ireland_emergency_mission_active
+			slopx_ireland_gain_preparedness_small = yes
+			slopx_ireland_reduce_foreign_access_small = yes
+			custom_effect_tooltip = ireland_g2_counterespionage_review_success_tt
+		}
+		ai_will_do = {
+			base = 5
+			modifier = {
+				add = 10
+				slopx_ireland_has_foreign_access_crisis = yes
+			}
+		}
+	}
+}
+
+ireland_ports_and_coast_category = {
+	icon = GFX_decision_category_ireland_ports
+	allowed = { original_tag = IRE }
+	visible = { has_completed_focus = irl_treaty_ports_question }
+	priority = 8
+
+	ireland_secure_cobh_approaches = {
+		icon = GFX_decision_ireland_cobh
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_return_cobh }
+		available = {
+			has_fuel > @ireland_fuel_small
+			has_equipment = { support_equipment > @ireland_support_small }
+		}
+		days_remove = @ireland_mission_medium
+		complete_effect = {
+			add_fuel = @ireland_fuel_small_negative
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = @ireland_support_small_negative
+				producer = IRE
+			}
+		}
+		remove_effect = {
+			135 = {
+				add_building_construction = { type = coastal_bunker level = 1 instant_build = yes }
+				add_building_construction = { type = anti_air_building level = 1 instant_build = yes }
+			}
+			add_to_variable = { ireland_port_readiness = 1 }
+			slopx_ireland_gain_preparedness_small = yes
+			custom_effect_tooltip = ireland_secure_cobh_approaches_success_tt
+		}
+		ai_will_do = { base = 7 }
+	}
+
+	ireland_secure_berehaven_gate = {
+		icon = GFX_decision_ireland_berehaven
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_return_berehaven }
+		available = {
+			has_fuel > @ireland_fuel_small
+			has_equipment = { infantry_equipment > @ireland_rifles_small }
+		}
+		days_remove = @ireland_mission_medium
+		complete_effect = {
+			add_fuel = @ireland_fuel_small_negative
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = @ireland_rifles_small_negative
+				producer = IRE
+			}
+		}
+		remove_effect = {
+			135 = { add_building_construction = { type = coastal_bunker level = 1 instant_build = yes } }
+			add_to_variable = { ireland_port_readiness = 1 }
+			slopx_ireland_gain_preparedness_small = yes
+			custom_effect_tooltip = ireland_secure_berehaven_gate_success_tt
+		}
+		ai_will_do = { base = 7 }
+	}
+
+	ireland_lough_swilly_watch_rotation = {
+		icon = GFX_decision_ireland_lough_swilly
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_lough_swilly_watch }
+		available = {
+			has_equipment = { infantry_equipment > @ireland_rifles_small }
+			command_power > @ireland_command_small
+		}
+		days_remove = @ireland_mission_short
+		complete_effect = {
+			add_command_power = @ireland_command_small_negative
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = @ireland_rifles_small_negative
+				producer = IRE
+			}
+		}
+		remove_effect = {
+			add_to_variable = { ireland_coastwatch_readiness = 1 }
+			add_to_variable = { ireland_border_preparation = 1 }
+			slopx_ireland_gain_preparedness_small = yes
+			custom_effect_tooltip = ireland_lough_swilly_watch_rotation_success_tt
+		}
+		ai_will_do = { base = 6 }
+	}
+}
+
+ireland_economic_recovery_category = {
+	icon = GFX_decision_category_ireland_economy
+	allowed = { original_tag = IRE }
+	visible = { has_completed_focus = irl_first_industry_survey }
+	priority = 7
+
+	ireland_agricultural_export_contracts = {
+		icon = GFX_decision_ireland_exports
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_agricultural_export_repair }
+		available = {
+			NOT = { has_country_flag = ireland_industry_mission_active }
+			has_equipment = { train_equipment > @ireland_trains_small }
+		}
+		days_remove = @ireland_mission_medium
+		complete_effect = {
+			set_country_flag = ireland_industry_mission_active
+			add_equipment_to_stockpile = {
+				type = train_equipment
+				amount = @ireland_trains_small_negative
+				producer = IRE
+			}
+		}
+		remove_effect = {
+			clr_country_flag = ireland_industry_mission_active
+			slopx_ireland_industry_rural_project = yes
+			if = {
+				limit = { has_country_flag = ireland_trade_balanced_capstone_ready }
+				set_country_flag = ireland_achievement_ports_without_patrons_ready
+			}
+		}
+		ai_will_do = { base = 7 }
+	}
+
+	ireland_shannon_grid_crew = {
+		icon = GFX_decision_ireland_shannon_grid
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_shannon_power_extension }
+		available = {
+			NOT = { has_country_flag = ireland_industry_mission_active }
+			has_equipment = { train_equipment > @ireland_trains_small }
+		}
+		days_remove = @ireland_mission_long
+		complete_effect = {
+			set_country_flag = ireland_industry_mission_active
+			add_equipment_to_stockpile = {
+				type = train_equipment
+				amount = @ireland_trains_small_negative
+				producer = IRE
+			}
+		}
+		remove_effect = {
+			clr_country_flag = ireland_industry_mission_active
+			slopx_ireland_industry_power_project = yes
+		}
+		ai_will_do = { base = 6 }
+	}
+
+	ireland_turf_transport_priority = {
+		icon = GFX_decision_ireland_turf
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_turf_development_board }
+		available = {
+			NOT = { has_country_flag = ireland_industry_mission_active }
+			has_equipment = { train_equipment > @ireland_trains_small }
+			command_power > @ireland_command_small
+		}
+		days_remove = @ireland_mission_short
+		complete_effect = {
+			set_country_flag = ireland_industry_mission_active
+			add_command_power = @ireland_command_small_negative
+			add_equipment_to_stockpile = {
+				type = train_equipment
+				amount = @ireland_trains_small_negative
+				producer = IRE
+			}
+		}
+		remove_effect = {
+			clr_country_flag = ireland_industry_mission_active
+			slopx_ireland_gain_preparedness_small = yes
+			add_to_variable = { ireland_store_readiness = 1 }
+			custom_effect_tooltip = ireland_turf_transport_priority_success_tt
+		}
+		ai_will_do = {
+			base = 6
+			modifier = {
+				add = 8
+				has_war = yes
+			}
+		}
+	}
+
+	ireland_rail_and_road_repair_contract = {
+		icon = GFX_decision_ireland_rail_repair
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_rail_and_road_repair }
+		available = {
+			NOT = { has_country_flag = ireland_industry_mission_active }
+			has_equipment = { train_equipment > @ireland_trains_small }
+		}
+		days_remove = @ireland_mission_long
+		complete_effect = {
+			set_country_flag = ireland_industry_mission_active
+			add_equipment_to_stockpile = {
+				type = train_equipment
+				amount = @ireland_trains_small_negative
+				producer = IRE
+			}
+		}
+		remove_effect = {
+			clr_country_flag = ireland_industry_mission_active
+			113 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			134 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			135 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			custom_effect_tooltip = ireland_rail_and_road_repair_contract_success_tt
+		}
+		ai_will_do = { base = 8 }
+	}
+}
+
+ireland_foreign_access_category = {
+	icon = GFX_decision_category_ireland_foreign_access
+	allowed = { original_tag = IRE }
+	visible = { has_completed_focus = irl_foreign_access_audit }
+	priority = 6
+
+	ireland_london_channel_board = {
+		icon = GFX_decision_ireland_london_channel
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_london_channel }
+		available = {
+			NOT = { has_country_flag = ireland_foreign_mission_active }
+			country_exists = ENG
+			command_power > @ireland_command_small
+		}
+		days_remove = @ireland_mission_medium
+		complete_effect = {
+			set_country_flag = ireland_foreign_mission_active
+			add_command_power = @ireland_command_small_negative
+		}
+		remove_effect = {
+			clr_country_flag = ireland_foreign_mission_active
+			slopx_ireland_diplomacy_sponsor_effect = yes
+			custom_effect_tooltip = ireland_london_channel_board_success_tt
+		}
+		ai_will_do = {
+			base = 5
+			modifier = {
+				add = 6
+				has_country_flag = ireland_route_constitutional_opposition
+			}
+		}
+	}
+
+	ireland_enforce_no_basing_principle = {
+		icon = GFX_decision_ireland_no_basing
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_neutral_basing_principle }
+		available = {
+			NOT = { has_country_flag = ireland_foreign_mission_active }
+			command_power > @ireland_command_medium
+		}
+		days_remove = @ireland_mission_short
+		complete_effect = {
+			set_country_flag = ireland_foreign_mission_active
+			add_command_power = @ireland_command_medium_negative
+		}
+		remove_effect = {
+			clr_country_flag = ireland_foreign_mission_active
+			slopx_ireland_reduce_foreign_access_small = yes
+			if = { limit = { country_exists = ENG } ENG = { add_opinion_modifier = { target = IRE modifier = ireland_no_basing_principle_opinion } } }
+			custom_effect_tooltip = ireland_enforce_no_basing_principle_success_tt
+		}
+		ai_will_do = { base = 7 }
+	}
+
+	ireland_expose_german_courier_network = {
+		icon = GFX_decision_ireland_german_courier
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = {
+			OR = {
+				has_completed_focus = irl_german_courier
+				has_country_flag = ireland_compromised_republican_network
+			}
+		}
+		available = {
+			NOT = { has_country_flag = ireland_foreign_mission_active }
+			command_power > @ireland_command_large
+		}
+		days_remove = @ireland_mission_crisis
+		complete_effect = {
+			set_country_flag = ireland_foreign_mission_active
+			add_command_power = @ireland_command_large_negative
+		}
+		remove_effect = {
+			clr_country_flag = ireland_foreign_mission_active
+			clr_country_flag = ireland_compromised_republican_network
+			set_country_flag = ireland_achievement_plan_kathleen_exposed_ready
+			slopx_ireland_reduce_foreign_access_small = yes
+			slopx_ireland_gain_authority_small = yes
+			custom_effect_tooltip = ireland_expose_german_courier_network_success_tt
+		}
+		ai_will_do = {
+			base = 6
+			modifier = {
+				add = 12
+				slopx_ireland_has_foreign_access_crisis = yes
+			}
+		}
+	}
+
+	ireland_call_atlantic_neutral_conference = {
+		icon = GFX_decision_ireland_atlantic_conference
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_hidden_neutral_conference_gate }
+		available = {
+			NOT = { has_country_flag = ireland_foreign_mission_active }
+			NOT = { is_in_faction = yes }
+			command_power > @ireland_command_medium
+			slopx_ireland_has_low_foreign_access_pressure = yes
+			slopx_ireland_has_emergency_readiness = yes
+		}
+		days_remove = @ireland_mission_long
+		complete_effect = {
+			set_country_flag = ireland_foreign_mission_active
+			add_command_power = @ireland_command_medium_negative
+		}
+		remove_effect = {
+			clr_country_flag = ireland_foreign_mission_active
+			slopx_ireland_reveal_atlantic_hidden_path = yes
+			set_country_flag = ireland_achievement_compact_of_small_nations_ready
+			custom_effect_tooltip = ireland_call_atlantic_neutral_conference_success_tt
+		}
+		ai_will_do = {
+			base = 4
+			modifier = {
+				add = 8
+				has_country_flag = ireland_route_historical_neutrality
+			}
+		}
+	}
+
+	ireland_constitutional_backchannel_document_review = {
+		icon = GFX_decision_ireland_backchannel_documents
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_country_flag = ireland_constitutional_backchannel_open }
+		available = {
+			has_country_flag = ireland_route_constitutional_opposition
+			NOT = { has_country_flag = ireland_foreign_mission_active }
+			command_power > @ireland_command_small
+		}
+		days_remove = @ireland_mission_medium
+		complete_effect = {
+			set_country_flag = ireland_foreign_mission_active
+			add_command_power = @ireland_command_small_negative
+		}
+		remove_effect = {
+			clr_country_flag = ireland_foreign_mission_active
+			set_country_flag = ireland_constitutional_backchannel_documents_reviewed
+			slopx_ireland_gain_authority_small = yes
+			slopx_ireland_reduce_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_constitutional_backchannel_document_review_success_tt
+		}
+		ai_will_do = {
+			base = 6
+			modifier = {
+				add = 8
+				has_country_flag = ireland_route_constitutional_opposition
+			}
+		}
+	}
+
+	ireland_constitutional_liaison_safeguards = {
+		icon = GFX_decision_ireland_liaison_safeguards
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_country_flag = ireland_constitutional_backchannel_documents_reviewed }
+		available = {
+			NOT = { has_country_flag = ireland_foreign_mission_active }
+			command_power > @ireland_command_medium
+			check_variable = { ireland_foreign_access_pressure < 65 }
+		}
+		days_remove = @ireland_mission_short
+		complete_effect = {
+			set_country_flag = ireland_foreign_mission_active
+			add_command_power = @ireland_command_medium_negative
+		}
+		remove_effect = {
+			clr_country_flag = ireland_foreign_mission_active
+			set_country_flag = ireland_constitutional_liaison_caps_enforced
+			slopx_ireland_reduce_foreign_access_small = yes
+			custom_effect_tooltip = ireland_constitutional_liaison_safeguards_success_tt
+		}
+		ai_will_do = { base = 6 }
+	}
+
+	ireland_constitutional_concession_test_mission = {
+		icon = GFX_decision_ireland_concession_test
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_constitutional_liaison_caps_enforced
+			NOT = { has_country_flag = ireland_constitutional_concession_test_complete }
+			NOT = { has_country_flag = ireland_constitutional_concession_test_failed }
+		}
+		available = {
+			check_variable = { ireland_partition_pressure < 75 }
+			check_variable = { ireland_foreign_access_pressure < 55 }
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_long
+		complete_effect = {
+			set_country_flag = ireland_constitutional_concession_test_complete
+			set_country_flag = ireland_achievement_backchannel_without_bases_ready
+			slopx_ireland_prepare_all_island_settlement = yes
+			custom_effect_tooltip = ireland_constitutional_concession_test_mission_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_constitutional_concession_test_failed
+			slopx_ireland_raise_partition_pressure_small = yes
+			slopx_ireland_raise_foreign_access_small = yes
+			custom_effect_tooltip = ireland_constitutional_concession_test_mission_timeout_tt
+		}
+		ai_will_do = {
+			base = 4
+			modifier = {
+				add = 6
+				has_country_flag = ireland_route_constitutional_opposition
+			}
+		}
+	}
+
+	ireland_neutral_aftershock_recovery_mission = {
+		icon = GFX_decision_ireland_aftershock_recovery
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			OR = {
+				has_completed_focus = irl_emergency_lessons
+				has_completed_focus = irl_postwar_neutrality_conference
+			}
+			NOT = { has_country_flag = ireland_neutral_aftershock_recovery_complete }
+			NOT = { has_country_flag = ireland_neutral_aftershock_recovery_failed }
+		}
+		available = {
+			check_variable = { ireland_foreign_access_pressure < 65 }
+			command_power > @ireland_command_medium
+			NOT = { has_country_flag = ireland_compromised_republican_network }
+			NOT = { has_country_flag = ireland_route_ira_republic }
+			NOT = { has_country_flag = ireland_route_blueshirt_corporatist }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_long
+		complete_effect = {
+			add_command_power = @ireland_command_medium_negative
+			set_country_flag = ireland_neutral_aftershock_recovery_complete
+			slopx_ireland_reduce_foreign_access_small = yes
+			slopx_ireland_gain_authority_small = yes
+			custom_effect_tooltip = ireland_neutral_aftershock_recovery_mission_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_neutral_aftershock_recovery_failed
+			slopx_ireland_raise_foreign_access_small = yes
+			custom_effect_tooltip = ireland_neutral_aftershock_recovery_mission_timeout_tt
+		}
+		ai_will_do = {
+			base = 5
+			modifier = {
+				add = 8
+				has_country_flag = ireland_route_historical_neutrality
+			}
+		}
+	}
+}
+
+ireland_partition_settlement_category = {
+	icon = GFX_decision_category_ireland_partition
+	allowed = { original_tag = IRE }
+	visible = { has_completed_focus = irl_border_file_reopened }
+	priority = 5
+
+	ireland_border_survey_mission = {
+		icon = GFX_decision_ireland_border_survey
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_completed_focus = irl_border_survey
+			NOT = { has_country_flag = ireland_border_survey_complete }
+		}
+		available = {
+			command_power > @ireland_command_small
+			check_variable = { ireland_partition_pressure < 80 }
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_long
+		complete_effect = {
+			add_command_power = @ireland_command_small_negative
+			slopx_ireland_northern_preparation_effect = yes
+			custom_effect_tooltip = ireland_border_survey_mission_success_tt
+		}
+		timeout_effect = {
+			slopx_ireland_raise_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_border_survey_mission_timeout_tt
+		}
+		ai_will_do = { base = 8 }
+	}
+
+	ireland_international_observer_preparation = {
+		icon = GFX_decision_ireland_observers
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_completed_focus = irl_international_observers
+			NOT = { has_country_flag = ireland_international_observers_prepared }
+		}
+		available = {
+			command_power > @ireland_command_small
+			check_variable = { ireland_settlement_legitimacy > 1 }
+			check_variable = { ireland_partition_pressure < 75 }
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_medium
+		complete_effect = {
+			add_command_power = @ireland_command_small_negative
+			set_country_flag = ireland_international_observers_prepared
+			add_to_variable = { ireland_settlement_legitimacy = 1 }
+			slopx_ireland_prepare_all_island_settlement = yes
+			slopx_ireland_reveal_common_platform_hidden_path = yes
+			custom_effect_tooltip = ireland_international_observer_preparation_success_tt
+		}
+		timeout_effect = {
+			slopx_ireland_raise_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_international_observer_preparation_timeout_tt
+		}
+		ai_will_do = { base = 6 }
+	}
+
+	ireland_common_platform_table_mission = {
+		icon = GFX_decision_ireland_common_platform
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_hidden_common_platform_revealed
+			NOT = { has_country_flag = ireland_common_platform_charter_ready }
+			NOT = { has_country_flag = ireland_common_platform_table_failed }
+		}
+		available = {
+			command_power > @ireland_command_small
+			slopx_ireland_has_observer_legitimacy = yes
+			check_variable = { ireland_partition_pressure < 65 }
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_long
+		complete_effect = {
+			add_command_power = @ireland_command_small_negative
+			set_country_flag = ireland_common_platform_charter_ready
+			slopx_ireland_hidden_common_platform_focus_effect = yes
+			custom_effect_tooltip = ireland_common_platform_table_mission_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_common_platform_table_failed
+			slopx_ireland_raise_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_common_platform_table_mission_timeout_tt
+		}
+		ai_will_do = {
+			base = 5
+			modifier = {
+				add = 8
+				has_country_flag = ireland_route_labour_social_republic
+			}
+		}
+	}
+
+	ireland_common_platform_local_support_drive = {
+		icon = GFX_decision_ireland_common_platform_support
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_country_flag = ireland_hidden_common_platform_revealed }
+		available = {
+			NOT = { has_country_flag = ireland_northern_mission_active }
+			command_power > @ireland_command_small
+			check_variable = { ireland_partition_pressure < 75 }
+		}
+		days_remove = @ireland_mission_medium
+		complete_effect = {
+			set_country_flag = ireland_northern_mission_active
+			add_command_power = @ireland_command_small_negative
+		}
+		remove_effect = {
+			clr_country_flag = ireland_northern_mission_active
+			set_country_flag = ireland_common_platform_local_support_ready
+			add_to_variable = { ireland_settlement_legitimacy = 1 }
+			slopx_ireland_reduce_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_common_platform_local_support_drive_success_tt
+		}
+		ai_will_do = { base = 6 }
+	}
+
+	ireland_common_platform_unionist_alarm_containment = {
+		icon = GFX_decision_ireland_unionist_alarm
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_common_platform_local_support_ready
+			NOT = { has_country_flag = ireland_common_platform_unionist_alarm_contained }
+		}
+		available = {
+			command_power > @ireland_command_medium
+			has_equipment = { support_equipment > @ireland_support_small }
+			check_variable = { ireland_partition_pressure < 80 }
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_crisis
+		complete_effect = {
+			add_command_power = @ireland_command_medium_negative
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = @ireland_support_small_negative
+				producer = IRE
+			}
+			set_country_flag = ireland_common_platform_unionist_alarm_contained
+			slopx_ireland_reduce_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_common_platform_unionist_alarm_containment_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_common_platform_unionist_alarm_uncontained
+			slopx_ireland_raise_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_common_platform_unionist_alarm_containment_timeout_tt
+		}
+		ai_will_do = {
+			base = 7
+			modifier = {
+				add = 5
+				slopx_ireland_has_partition_crisis = yes
+			}
+		}
+	}
+
+	ireland_common_platform_minority_guarantee_charter = {
+		icon = GFX_decision_ireland_minority_guarantee
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_common_platform_unionist_alarm_contained
+			NOT = { has_country_flag = ireland_common_platform_minority_charter_signed }
+		}
+		available = {
+			check_variable = { ireland_constitutional_authority > 39 }
+			check_variable = { ireland_partition_pressure < 65 }
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_long
+		complete_effect = {
+			set_country_flag = ireland_common_platform_minority_charter_signed
+			set_country_flag = ireland_achievement_common_platform_ready
+			slopx_ireland_prepare_all_island_settlement = yes
+			custom_effect_tooltip = ireland_common_platform_minority_guarantee_charter_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_partition_settlement_failed
+			slopx_ireland_raise_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_common_platform_minority_guarantee_charter_timeout_tt
+		}
+		ai_will_do = { base = 7 }
+	}
+
+	proclaim_all_island_settlement_decision = {
+		icon = GFX_decision_ireland_all_island_settlement
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = {
+			OR = {
+				has_completed_focus = irl_state_control_reunification_decision
+				has_country_flag = ireland_common_platform_charter_ready
+			}
+		}
+		available = { slopx_ireland_can_proclaim_all_island_settlement = yes }
+		complete_effect = { slopx_ireland_complete_all_island_settlement = yes }
+		ai_will_do = {
+			base = 9
+			modifier = {
+				add = -7
+				slopx_ireland_has_partition_crisis = yes
+			}
+		}
+	}
+}
+
+ireland_route_crisis_category = {
+	icon = GFX_decision_category_ireland_crisis
+	allowed = { original_tag = IRE }
+	visible = { slopx_ireland_is_route_locked = yes }
+	priority = 4
+
+	ireland_blueshirt_march_containment = {
+		icon = GFX_decision_ireland_blueshirt_march
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_march_memory }
+		available = {
+			NOT = { has_country_flag = ireland_route_crisis_active }
+			command_power > @ireland_command_medium
+			has_equipment = { infantry_equipment > @ireland_rifles_small }
+		}
+		days_remove = @ireland_mission_crisis
+		complete_effect = {
+			set_country_flag = ireland_route_crisis_active
+			set_country_flag = ireland_blueshirt_march_crisis
+			add_command_power = @ireland_command_medium_negative
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = @ireland_rifles_small_negative
+				producer = IRE
+			}
+		}
+		remove_effect = {
+			slopx_ireland_cleanup_crisis_flags = yes
+			slopx_ireland_gain_authority_small = yes
+			custom_effect_tooltip = ireland_blueshirt_march_containment_success_tt
+		}
+		ai_will_do = { base = 6 }
+	}
+
+	ireland_republican_reconciliation_backchannel = {
+		icon = GFX_decision_ireland_republican_backchannel
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			OR = {
+				has_completed_focus = irl_republican_border_columns
+				has_completed_focus = irl_absorb_the_underground
+			}
+			NOT = { has_country_flag = ireland_republican_reconciliation_backchannel_complete }
+			NOT = { has_country_flag = ireland_republican_reconciliation_backchannel_failed }
+		}
+		available = {
+			NOT = { has_country_flag = ireland_route_crisis_active }
+			command_power > @ireland_command_medium
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_medium
+		complete_effect = {
+			add_command_power = @ireland_command_medium_negative
+			set_country_flag = ireland_republican_reconciliation_backchannel_complete
+			slopx_ireland_gain_authority_small = yes
+			slopx_ireland_reduce_foreign_access_small = yes
+			set_country_flag = ireland_achievement_amnesty_before_uprising_ready
+			custom_effect_tooltip = ireland_republican_reconciliation_backchannel_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_republican_reconciliation_backchannel_failed
+			slopx_ireland_raise_partition_pressure_small = yes
+			slopx_ireland_raise_foreign_access_small = yes
+			custom_effect_tooltip = ireland_republican_reconciliation_backchannel_timeout_tt
+		}
+		ai_will_do = {
+			base = 5
+			modifier = {
+				add = 8
+				has_country_flag = ireland_route_historical_neutrality
+			}
+		}
+	}
+
+	ireland_labour_cross_border_council = {
+		icon = GFX_decision_ireland_labour_council
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			OR = {
+				has_completed_focus = irl_northern_labour_networks
+				has_completed_focus = irl_labour_northern_networks
+			}
+			NOT = { has_country_flag = ireland_labour_cross_border_council_complete }
+			NOT = { has_country_flag = ireland_labour_cross_border_council_failed }
+		}
+		available = {
+			has_country_flag = ireland_route_labour_social_republic
+			NOT = { has_country_flag = ireland_route_crisis_active }
+			NOT = { has_country_flag = ireland_compromised_republican_network }
+			slopx_ireland_has_low_foreign_access_pressure = yes
+			check_variable = { ireland_partition_pressure < 65 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_medium
+		complete_effect = {
+			set_country_flag = ireland_labour_cross_border_council_complete
+			slopx_ireland_reduce_partition_pressure_small = yes
+			set_country_flag = ireland_achievement_workers_cross_the_border_ready
+			custom_effect_tooltip = ireland_labour_cross_border_council_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_labour_cross_border_council_failed
+			slopx_ireland_raise_partition_pressure_small = yes
+			slopx_ireland_raise_foreign_access_small = yes
+			custom_effect_tooltip = ireland_labour_cross_border_council_timeout_tt
+		}
+		ai_will_do = { base = 6 }
+	}
+
+	ireland_emergency_directorate_warning_mission = {
+		icon = GFX_decision_ireland_directorate_warning
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_completed_focus = irl_emergency_directorate_warning }
+		available = {
+			NOT = { has_country_flag = ireland_route_crisis_active }
+			slopx_ireland_has_emergency_readiness = yes
+		}
+		days_mission_timeout = @ireland_mission_crisis
+		timeout_effect = {
+			set_country_flag = ireland_directorate_crisis
+			slopx_ireland_reveal_directorate_hidden_path = yes
+			custom_effect_tooltip = ireland_emergency_directorate_warning_timeout_tt
+		}
+		cancel_trigger = { has_country_flag = ireland_restored_civilian_rule }
+		ai_will_do = { base = 4 }
+	}
+
+	ireland_corrupted_restoration_recovery_board = {
+		icon = GFX_decision_ireland_corrupted_restoration
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_hidden_corrupted_restoration_failure
+			NOT = { has_country_flag = ireland_civic_restoration_recovered_from_failure }
+			NOT = { has_country_flag = ireland_civic_restoration_recovery_failed }
+		}
+		available = {
+			NOT = { has_country_flag = ireland_route_crisis_active }
+			command_power > @ireland_command_medium
+			check_variable = { ireland_constitutional_authority > 39 }
+			check_variable = { ireland_foreign_access_pressure < 75 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_long
+		complete_effect = {
+			add_command_power = @ireland_command_medium_negative
+			clr_country_flag = ireland_hidden_corrupted_restoration_failure
+			set_country_flag = ireland_civic_restoration_recovered_from_failure
+			slopx_ireland_gain_authority_small = yes
+			slopx_ireland_reduce_foreign_access_small = yes
+			custom_effect_tooltip = ireland_corrupted_restoration_recovery_board_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_civic_restoration_recovery_failed
+			slopx_ireland_lose_authority_small = yes
+			slopx_ireland_raise_foreign_access_small = yes
+			custom_effect_tooltip = ireland_corrupted_restoration_recovery_board_timeout_tt
+		}
+		ai_will_do = { base = 4 }
+	}
+
+	ireland_restore_civilian_rule_mission = {
+		icon = GFX_decision_ireland_restore_civilian_rule
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_hidden_directorate_revealed
+			NOT = { has_country_flag = ireland_restored_civilian_rule }
+			NOT = { has_country_flag = ireland_permanent_security_state }
+		}
+		available = {
+			NOT = { has_country_flag = ireland_route_crisis_active }
+			NOT = { has_country_flag = ireland_permanent_security_state }
+			command_power > @ireland_command_large
+			check_variable = { ireland_constitutional_authority > 39 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_medium
+		complete_effect = {
+			add_command_power = @ireland_command_large_negative
+			set_country_flag = ireland_restored_civilian_rule
+			set_country_flag = ireland_achievement_watchmen_of_the_west_ready
+			slopx_ireland_gain_authority_medium = yes
+			custom_effect_tooltip = ireland_restore_civilian_rule_mission_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_permanent_security_state
+			slopx_ireland_lose_authority_small = yes
+			custom_effect_tooltip = ireland_restore_civilian_rule_mission_timeout_tt
+		}
+		ai_will_do = { base = 5 }
+	}
+
+	ireland_legal_worker_defence_mandate = {
+		icon = GFX_decision_ireland_worker_defence_law
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_route_labour_social_republic
+			NOT = { has_country_flag = ireland_labour_worker_defence_legalised }
+			NOT = { has_country_flag = ireland_labour_worker_defence_failed }
+		}
+		available = {
+			NOT = { has_country_flag = ireland_route_crisis_active }
+			slopx_ireland_has_low_foreign_access_pressure = yes
+			command_power > @ireland_command_small
+			has_equipment = { infantry_equipment > @ireland_rifles_small }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_medium
+		complete_effect = {
+			add_command_power = @ireland_command_small_negative
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = @ireland_rifles_small_negative
+				producer = IRE
+			}
+			set_country_flag = ireland_labour_worker_defence_legalised
+			slopx_ireland_gain_authority_small = yes
+			slopx_ireland_gain_preparedness_small = yes
+			custom_effect_tooltip = ireland_legal_worker_defence_mandate_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_labour_worker_defence_failed
+			slopx_ireland_raise_foreign_access_small = yes
+			custom_effect_tooltip = ireland_legal_worker_defence_mandate_timeout_tt
+		}
+		ai_will_do = { base = 6 }
+	}
+
+	ireland_anti_fascist_service_board = {
+		icon = GFX_decision_ireland_anti_fascist_service
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_country_flag = ireland_labour_worker_defence_legalised }
+		available = {
+			NOT = { has_country_flag = ireland_route_crisis_active }
+			command_power > @ireland_command_small
+		}
+		days_remove = @ireland_mission_medium
+		complete_effect = {
+			set_country_flag = ireland_route_crisis_active
+			add_command_power = @ireland_command_small_negative
+		}
+		remove_effect = {
+			slopx_ireland_cleanup_crisis_flags = yes
+			set_country_flag = ireland_labour_anti_fascist_service_board_active
+			slopx_ireland_gain_preparedness_small = yes
+			slopx_ireland_reduce_foreign_access_small = yes
+			custom_effect_tooltip = ireland_anti_fascist_service_board_success_tt
+		}
+		ai_will_do = { base = 5 }
+	}
+
+	ireland_cooperative_supply_front = {
+		icon = GFX_decision_ireland_cooperative_supply
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_country_flag = ireland_labour_anti_fascist_service_board_active }
+		available = {
+			NOT = { has_country_flag = ireland_route_crisis_active }
+			slopx_ireland_has_low_foreign_access_pressure = yes
+		}
+		days_remove = @ireland_mission_long
+		complete_effect = { set_country_flag = ireland_route_crisis_active }
+		remove_effect = {
+			slopx_ireland_cleanup_crisis_flags = yes
+			set_country_flag = ireland_labour_cooperative_supply_front_ready
+			slopx_ireland_industry_stores_project = yes
+			custom_effect_tooltip = ireland_cooperative_supply_front_success_tt
+		}
+		ai_will_do = { base = 5 }
+	}
+
+	ireland_labour_democratic_return_check = {
+		icon = GFX_decision_ireland_labour_return_check
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_country_flag = ireland_labour_cooperative_supply_front_ready }
+		available = {
+			NOT = { has_country_flag = ireland_route_crisis_active }
+			check_variable = { ireland_foreign_access_pressure < 55 }
+			check_variable = { ireland_constitutional_authority > 39 }
+		}
+		days_remove = @ireland_mission_crisis
+		complete_effect = { set_country_flag = ireland_route_crisis_active }
+		remove_effect = {
+			slopx_ireland_cleanup_crisis_flags = yes
+			set_country_flag = ireland_labour_democratic_return_verified
+			set_country_flag = ireland_achievement_front_without_masters_ready
+			slopx_ireland_gain_authority_small = yes
+			custom_effect_tooltip = ireland_labour_democratic_return_check_success_tt
+		}
+		ai_will_do = { base = 6 }
+	}
+
+	ireland_guard_leader_crisis = {
+		icon = GFX_decision_ireland_guard_leader_crisis
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_country_flag = ireland_route_blueshirt_corporatist }
+		available = {
+			NOT = { has_country_flag = ireland_route_crisis_active }
+			command_power > @ireland_command_medium
+		}
+		days_remove = @ireland_mission_crisis
+		complete_effect = {
+			set_country_flag = ireland_route_crisis_active
+			add_command_power = @ireland_command_medium_negative
+		}
+		remove_effect = {
+			slopx_ireland_cleanup_crisis_flags = yes
+			set_country_flag = ireland_guard_leader_crisis_resolved
+			if = {
+				limit = { NOT = { has_country_flag = ireland_oduffy_returned } }
+				set_country_flag = ireland_achievement_chambers_after_the_chief_ready
+			}
+			slopx_ireland_gain_authority_small = yes
+			custom_effect_tooltip = ireland_guard_leader_crisis_success_tt
+		}
+		ai_will_do = { base = 4 }
+	}
+
+	ireland_chamber_state_consolidation = {
+		icon = GFX_decision_ireland_chamber_consolidation
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_country_flag = ireland_corporate_chambers_created }
+		available = {
+			NOT = { has_country_flag = ireland_route_crisis_active }
+			has_country_flag = ireland_guard_leader_crisis_resolved
+		}
+		days_remove = @ireland_mission_long
+		complete_effect = { set_country_flag = ireland_route_crisis_active }
+		remove_effect = {
+			slopx_ireland_cleanup_crisis_flags = yes
+			set_country_flag = ireland_chamber_state_consolidated
+			slopx_ireland_blueshirt_focus_effect = yes
+			custom_effect_tooltip = ireland_chamber_state_consolidation_success_tt
+		}
+		ai_will_do = { base = 4 }
+	}
+
+	ireland_corporate_sponsor_containment = {
+		icon = GFX_decision_ireland_sponsor_containment
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = { has_country_flag = ireland_chamber_state_consolidated }
+		available = {
+			NOT = { has_country_flag = ireland_route_crisis_active }
+			command_power > @ireland_command_medium
+			check_variable = { ireland_foreign_access_pressure < 75 }
+		}
+		days_remove = @ireland_mission_medium
+		complete_effect = {
+			set_country_flag = ireland_route_crisis_active
+			add_command_power = @ireland_command_medium_negative
+		}
+		remove_effect = {
+			slopx_ireland_cleanup_crisis_flags = yes
+			set_country_flag = ireland_corporate_sponsor_contained
+			slopx_ireland_reduce_foreign_access_small = yes
+			custom_effect_tooltip = ireland_corporate_sponsor_containment_success_tt
+		}
+		ai_will_do = { base = 5 }
+	}
+
+	ireland_safehouse_audit = {
+		icon = GFX_decision_ireland_safehouse_audit
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_route_ira_republic
+			NOT = { has_country_flag = ireland_safehouse_audit_complete }
+			NOT = { has_country_flag = ireland_safehouse_audit_failed }
+		}
+		available = {
+			command_power > @ireland_command_small
+			check_variable = { ireland_foreign_access_pressure < 75 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_short
+		complete_effect = {
+			add_command_power = @ireland_command_small_negative
+			slopx_ireland_cleanup_crisis_flags = yes
+			set_country_flag = ireland_safehouse_audit_complete
+			slopx_ireland_reduce_foreign_access_small = yes
+			custom_effect_tooltip = ireland_safehouse_audit_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_safehouse_audit_failed
+			slopx_ireland_raise_foreign_access_small = yes
+			custom_effect_tooltip = ireland_safehouse_audit_timeout_tt
+		}
+		ai_will_do = { base = 5 }
+	}
+
+	ireland_courier_exposure_stage = {
+		icon = GFX_decision_ireland_courier_exposure
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_compromised_republican_network
+			NOT = { has_country_flag = ireland_courier_exposure_documented }
+			NOT = { has_country_flag = ireland_courier_exposure_failed }
+		}
+		available = {
+			command_power > @ireland_command_medium
+			check_variable = { ireland_foreign_access_pressure < 85 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_crisis
+		complete_effect = {
+			add_command_power = @ireland_command_medium_negative
+			slopx_ireland_cleanup_crisis_flags = yes
+			set_country_flag = ireland_courier_exposure_documented
+			set_country_flag = ireland_achievement_plan_kathleen_exposed_ready
+			slopx_ireland_reduce_foreign_access_small = yes
+			custom_effect_tooltip = ireland_courier_exposure_stage_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_courier_exposure_failed
+			slopx_ireland_raise_foreign_access_small = yes
+			custom_effect_tooltip = ireland_courier_exposure_stage_timeout_tt
+		}
+		ai_will_do = {
+			base = 7
+			modifier = {
+				add = 8
+				slopx_ireland_has_foreign_access_crisis = yes
+			}
+		}
+	}
+
+	ireland_arms_surrender_channel = {
+		icon = GFX_decision_ireland_arms_surrender
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			OR = {
+				has_country_flag = ireland_safehouse_audit_complete
+				has_country_flag = ireland_courier_exposure_documented
+			}
+			NOT = { has_country_flag = ireland_arms_surrender_channel_open }
+			NOT = { has_country_flag = ireland_arms_surrender_channel_failed }
+		}
+		available = {
+			has_equipment = { infantry_equipment > @ireland_rifles_small }
+			check_variable = { ireland_constitutional_authority > 29 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_medium
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = @ireland_rifles_small_negative
+				producer = IRE
+			}
+			slopx_ireland_cleanup_crisis_flags = yes
+			set_country_flag = ireland_arms_surrender_channel_open
+			slopx_ireland_gain_authority_small = yes
+			custom_effect_tooltip = ireland_arms_surrender_channel_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_arms_surrender_channel_failed
+			slopx_ireland_raise_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_arms_surrender_channel_timeout_tt
+		}
+		ai_will_do = { base = 5 }
+	}
+
+	ireland_border_cells_stand_down = {
+		icon = GFX_decision_ireland_border_cells_stand_down
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_arms_surrender_channel_open
+			NOT = { has_country_flag = ireland_border_cells_stood_down }
+			NOT = { has_country_flag = ireland_border_cells_stand_down_failed }
+		}
+		available = {
+			command_power > @ireland_command_medium
+			check_variable = { ireland_partition_pressure < 85 }
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_medium
+		complete_effect = {
+			add_command_power = @ireland_command_medium_negative
+			slopx_ireland_cleanup_crisis_flags = yes
+			set_country_flag = ireland_border_cells_stood_down
+			set_country_flag = ireland_achievement_amnesty_before_uprising_ready
+			slopx_ireland_reduce_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_border_cells_stand_down_success_tt
+		}
+		timeout_effect = {
+			set_country_flag = ireland_border_cells_stand_down_failed
+			set_country_flag = ireland_army_council_reconciliation_failed
+			slopx_ireland_raise_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_border_cells_stand_down_timeout_tt
+		}
+		ai_will_do = { base = 6 }
+	}
+
+	ireland_army_council_reconciliation_crisis = {
+		icon = GFX_decision_ireland_army_council_crisis
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = {
+			has_country_flag = ireland_route_ira_republic
+			NOT = { has_country_flag = ireland_border_cells_stood_down }
+			check_variable = { ireland_constitutional_authority > 49 }
+		}
+		available = { NOT = { has_country_flag = ireland_route_crisis_active } }
+		days_mission_timeout = @ireland_mission_crisis
+		timeout_effect = {
+			set_country_flag = ireland_army_council_reconciliation_failed
+			slopx_ireland_raise_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_army_council_reconciliation_crisis_timeout_tt
+		}
+		cancel_trigger = { has_country_flag = ireland_border_cells_stood_down }
+		ai_will_do = { base = 2 }
+	}
+}
+
+ireland_post_settlement_integration_category = {
+	icon = GFX_decision_category_ireland_integration
+	allowed = { original_tag = IRE }
+	visible = {
+		OR = {
+			has_country_flag = ireland_all_island_settlement_proclaimed
+			slopx_ireland_can_start_northern_protectorate = yes
+			has_country_flag = ireland_northern_emergency_protectorate_active
+		}
+	}
+	priority = 3
+
+	ireland_policing_transition_stage = {
+		icon = GFX_decision_ireland_policing_transition
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			slopx_ireland_can_integrate_north = yes
+			NOT = { has_country_flag = ireland_policing_transition_complete }
+		}
+		available = {
+			slopx_ireland_can_integrate_north = yes
+			command_power > @ireland_command_medium
+			has_equipment = { support_equipment > @ireland_support_medium }
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_integration
+		complete_effect = {
+			add_command_power = @ireland_command_medium_negative
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = @ireland_support_medium_negative
+				producer = IRE
+			}
+			set_country_flag = ireland_policing_transition_complete
+			slopx_ireland_advance_northern_integration = yes
+			custom_effect_tooltip = ireland_policing_transition_stage_success_tt
+		}
+		timeout_effect = { slopx_ireland_fail_northern_integration_stage = yes }
+		ai_will_do = { base = 8 }
+	}
+
+	ireland_service_continuity_stage = {
+		icon = GFX_decision_ireland_service_continuity
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			slopx_ireland_can_integrate_north = yes
+			has_country_flag = ireland_policing_transition_complete
+			NOT = { has_country_flag = ireland_service_continuity_complete }
+		}
+		available = {
+			slopx_ireland_can_integrate_north = yes
+			has_equipment = { train_equipment > @ireland_trains_small }
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_integration
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = train_equipment
+				amount = @ireland_trains_small_negative
+				producer = IRE
+			}
+			set_country_flag = ireland_service_continuity_complete
+			slopx_ireland_advance_northern_integration = yes
+			119 = { add_building_construction = { type = infrastructure level = @ireland_project_level_small instant_build = yes } }
+			custom_effect_tooltip = ireland_service_continuity_stage_success_tt
+		}
+		timeout_effect = { slopx_ireland_fail_northern_integration_stage = yes }
+		ai_will_do = { base = 7 }
+	}
+
+	ireland_belfast_industry_stage = {
+		icon = GFX_decision_ireland_belfast_industry
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			slopx_ireland_can_integrate_north = yes
+			has_country_flag = ireland_service_continuity_complete
+			NOT = { has_country_flag = ireland_belfast_industry_complete }
+		}
+		available = {
+			slopx_ireland_can_integrate_north = yes
+			slopx_ireland_controls_belfast_area = yes
+			command_power > @ireland_command_small
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_integration
+		complete_effect = {
+			add_command_power = @ireland_command_small_negative
+			set_country_flag = ireland_belfast_industry_complete
+			slopx_ireland_advance_northern_integration = yes
+			119 = {
+				add_extra_state_shared_building_slots = @ireland_project_slots_small
+				add_building_construction = { type = industrial_complex level = @ireland_project_level_small instant_build = yes }
+			}
+			custom_effect_tooltip = ireland_belfast_industry_stage_success_tt
+		}
+		timeout_effect = { slopx_ireland_fail_northern_integration_stage = yes }
+		ai_will_do = { base = 7 }
+	}
+
+	ireland_unionist_safeguards_stage = {
+		icon = GFX_decision_ireland_unionist_safeguards
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			slopx_ireland_can_integrate_north = yes
+			has_country_flag = ireland_belfast_industry_complete
+			NOT = { has_country_flag = ireland_unionist_safeguards_signed }
+		}
+		available = {
+			slopx_ireland_can_integrate_north = yes
+			command_power > @ireland_command_small
+			check_variable = { ireland_constitutional_authority > 39 }
+			check_variable = { ireland_partition_pressure < 80 }
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_integration
+		complete_effect = {
+			add_command_power = @ireland_command_small_negative
+			set_country_flag = ireland_unionist_safeguards_signed
+			slopx_ireland_advance_northern_integration = yes
+			custom_effect_tooltip = ireland_unionist_safeguards_stage_success_tt
+		}
+		timeout_effect = { slopx_ireland_fail_northern_integration_stage = yes }
+		ai_will_do = { base = 8 }
+	}
+
+	ireland_northern_integration_failure_review = {
+		icon = GFX_decision_ireland_integration_failure
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		visible = {
+			has_country_flag = ireland_all_island_settlement_proclaimed
+			slopx_ireland_has_partition_crisis = yes
+		}
+		available = {
+			NOT = { has_country_flag = ireland_integration_mission_active }
+			command_power > @ireland_command_large
+			has_equipment = { infantry_equipment > @ireland_rifles_medium }
+		}
+		days_remove = @ireland_mission_crisis
+		complete_effect = {
+			set_country_flag = ireland_integration_mission_active
+			add_command_power = @ireland_command_large_negative
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = @ireland_rifles_medium_negative
+				producer = IRE
+			}
+		}
+		remove_effect = {
+			clr_country_flag = ireland_integration_mission_active
+			slopx_ireland_reduce_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_northern_integration_failure_review_success_tt
+		}
+		ai_will_do = { base = 9 }
+	}
+
+	ireland_northern_emergency_protectorate = {
+		icon = GFX_decision_ireland_northern_protectorate
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = { slopx_ireland_can_start_northern_protectorate = yes }
+		available = {
+			slopx_ireland_can_start_northern_protectorate = yes
+			command_power > @ireland_command_large
+			has_equipment = { infantry_equipment > @ireland_rifles_large }
+			has_manpower > @ireland_manpower_medium
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_crisis
+		complete_effect = {
+			add_command_power = @ireland_command_large_negative
+			add_manpower = @ireland_manpower_medium_negative
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = @ireland_rifles_large_negative
+				producer = IRE
+			}
+			set_country_flag = ireland_northern_emergency_protectorate_active
+			slopx_ireland_gain_preparedness_medium = yes
+			slopx_ireland_reduce_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_northern_emergency_protectorate_success_tt
+		}
+		timeout_effect = {
+			slopx_ireland_raise_partition_pressure_small = yes
+			slopx_ireland_raise_foreign_access_small = yes
+			custom_effect_tooltip = ireland_northern_emergency_protectorate_timeout_tt
+		}
+		ai_will_do = {
+			base = 5
+			modifier = {
+				add = 8
+				has_war = yes
+			}
+		}
+	}
+
+	ireland_protectorate_temporary_administration = {
+		icon = GFX_decision_ireland_protectorate_admin
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_northern_emergency_protectorate_active
+			NOT = { has_country_flag = ireland_protectorate_temporary_admin_ready }
+		}
+		available = {
+			command_power > @ireland_command_medium
+			slopx_ireland_has_northern_regional_control = yes
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_medium
+		complete_effect = {
+			add_command_power = @ireland_command_medium_negative
+			set_country_flag = ireland_protectorate_temporary_admin_ready
+			slopx_ireland_reduce_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_protectorate_temporary_administration_success_tt
+		}
+		timeout_effect = { slopx_ireland_fail_northern_integration_stage = yes }
+		ai_will_do = { base = 6 }
+	}
+
+	ireland_protectorate_observer_corridor = {
+		icon = GFX_decision_ireland_observer_corridor
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_protectorate_temporary_admin_ready
+			NOT = { has_country_flag = ireland_protectorate_observer_corridor_open }
+		}
+		available = {
+			has_equipment = { train_equipment > @ireland_trains_small }
+			slopx_ireland_has_northern_regional_control = yes
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_medium
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = train_equipment
+				amount = @ireland_trains_small_negative
+				producer = IRE
+			}
+			set_country_flag = ireland_protectorate_observer_corridor_open
+			add_to_variable = { ireland_settlement_legitimacy = 1 }
+			slopx_ireland_reduce_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_protectorate_observer_corridor_success_tt
+		}
+		timeout_effect = { slopx_ireland_fail_northern_integration_stage = yes }
+		ai_will_do = { base = 6 }
+	}
+
+	ireland_protectorate_policing_board = {
+		icon = GFX_decision_ireland_protectorate_policing
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_protectorate_observer_corridor_open
+			NOT = { has_country_flag = ireland_protectorate_policing_board_ready }
+		}
+		available = {
+			has_equipment = { support_equipment > @ireland_support_medium }
+			command_power > @ireland_command_medium
+			slopx_ireland_has_northern_regional_control = yes
+			check_variable = { ireland_partition_pressure < 80 }
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_integration
+		complete_effect = {
+			add_command_power = @ireland_command_medium_negative
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = @ireland_support_medium_negative
+				producer = IRE
+			}
+			set_country_flag = ireland_protectorate_policing_board_ready
+			slopx_ireland_reduce_partition_pressure_small = yes
+			custom_effect_tooltip = ireland_protectorate_policing_board_success_tt
+		}
+		timeout_effect = { slopx_ireland_fail_northern_integration_stage = yes }
+		ai_will_do = { base = 6 }
+	}
+
+	ireland_exit_emergency_protectorate_settlement = {
+		icon = GFX_decision_ireland_exit_protectorate
+		fire_only_once = yes
+		allowed = { original_tag = IRE }
+		activation = {
+			has_country_flag = ireland_protectorate_policing_board_ready
+			NOT = { has_country_flag = ireland_northern_protectorate_exited }
+		}
+		available = {
+			command_power > @ireland_command_small
+			slopx_ireland_has_northern_regional_control = yes
+			check_variable = { ireland_partition_pressure < 65 }
+			check_variable = { ireland_constitutional_authority > 39 }
+			check_variable = { ireland_settlement_legitimacy > 4 }
+		}
+		highlight_states = {
+			highlight_state_targets = { state = 119 }
+		}
+		selectable_mission = yes
+		days_mission_timeout = @ireland_mission_integration
+		complete_effect = {
+			add_command_power = @ireland_command_small_negative
+			clr_country_flag = ireland_northern_emergency_protectorate_active
+			set_country_flag = ireland_northern_protectorate_exited
+			slopx_ireland_complete_all_island_settlement = yes
+			custom_effect_tooltip = ireland_exit_emergency_protectorate_settlement_success_tt
+		}
+		timeout_effect = { slopx_ireland_fail_northern_integration_stage = yes }
+		ai_will_do = { base = 8 }
+	}
+}

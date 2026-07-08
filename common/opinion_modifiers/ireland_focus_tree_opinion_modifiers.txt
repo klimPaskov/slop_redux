@@ -1,0 +1,25 @@
+opinion_modifiers = {
+	ireland_guarded_channel_opinion = {
+		value = 15
+		months = 24
+		decay = 1
+	}
+
+	ireland_sovereignty_alarm_opinion = {
+		value = -15
+		months = 18
+		decay = 1
+	}
+
+	ireland_no_basing_principle_opinion = {
+		value = -10
+		months = 18
+		decay = 1
+	}
+
+	ireland_atlantic_observer_opinion = {
+		value = 10
+		months = 24
+		decay = 1
+	}
+}

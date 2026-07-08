@@ -8,7 +8,7 @@ The package now includes a mandatory event suite spec, event matrices, event pro
 
 ## BOP integration
 
-The separate BOP addendum is now folded into the canonical package. The full addendum remains under `bop_addendum/`, and canonical BOP files are also present under `specs/`, `matrices/`, and `implementation/`.
+The BOP addendum is folded into the canonical package. The retained source-history copy remains under `bop_addendum/`, and canonical BOP files are also present under `specs/`, `matrices/`, and `implementation/`.
 
 ## Updated source files
 
@@ -25,4 +25,4 @@ Implementation is not complete without events. Every major route, hidden route, 
 
 ## Remaining process note
 
-The mandatory project improvement loop subagent still cannot be run in this chat environment because no callable project custom subagent tool is exposed. The package keeps the prompt and blocker note visible.
+Superseded: the Ireland focus tree closure `hoi4_improvement_loop_planner` pass was run with `fork_context=false` on 2026-07-08. The active closure note is `docs/plans/ireland_focus_tree/improvement_loop_closure_readiness_2026-07-08.md`.

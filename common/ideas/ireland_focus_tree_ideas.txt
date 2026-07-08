@@ -1,0 +1,84 @@
+ideas = {
+	country = {
+		ireland_shadow_of_civil_war = {
+			picture = ireland_shadow_of_civil_war
+			allowed = { original_tag = IRE }
+			modifier = {
+				stability_factor = -0.04
+				division_organization_factor = -0.03
+			}
+		}
+
+		ireland_economic_war_strain = {
+			picture = ireland_economic_war_strain
+			allowed = { original_tag = IRE }
+			modifier = {
+				consumer_goods_factor = 0.04
+				production_speed_industrial_complex_factor = -0.05
+			}
+		}
+
+		ireland_treaty_ports_in_foreign_hands = {
+			picture = ireland_treaty_ports
+			allowed = { original_tag = IRE }
+			modifier = {
+				navy_speed_factor = -0.05
+				convoy_defence_factor = -0.08
+				enemy_army_bonus_air_superiority_factor = 0.05
+			}
+		}
+
+		ireland_small_army_long_coast = {
+			picture = ireland_small_army_long_coast
+			allowed = { original_tag = IRE }
+			modifier = {
+				training_time_army_factor = 0.04
+				mobilization_speed = -0.08
+				invasion_preparation = -0.08
+			}
+		}
+
+		ireland_divided_island = {
+			picture = ireland_divided_island
+			allowed = { original_tag = IRE }
+			modifier = {
+				stability_factor = -0.02
+				drift_defence_factor = -0.05
+			}
+		}
+
+		ireland_trade_dependence = {
+			picture = ireland_trade_dependence
+			allowed = { original_tag = IRE }
+			modifier = {
+				trade_opinion_factor = 0.08
+				industrial_capacity_factory = -0.03
+			}
+		}
+
+		ireland_emergency_powers = {
+			picture = ireland_emergency_powers
+			allowed = { original_tag = IRE }
+			modifier = {
+				war_support_factor = 0.03
+				mobilization_speed = 0.05
+				stability_factor = -0.01
+			}
+		}
+
+		ireland_constitutional_authority_ledger = {
+			picture = ireland_authority
+			allowed = { original_tag = IRE }
+		}
+
+		ireland_partition_pressure_ledger = {
+			picture = ireland_partition_pressure
+			allowed = { original_tag = IRE }
+		}
+
+		ireland_foreign_access_ledger = {
+			picture = ireland_foreign_access
+			allowed = { original_tag = IRE }
+		}
+	}
+}

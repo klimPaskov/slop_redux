@@ -6,6 +6,8 @@ Working tree id: `slopx_ireland_focus_tree`
 
 This is the canonical implementation improvement package for Ireland after the focus tree package has already been implemented. It preserves the canonical focus tree, keeps the comprehensive BOP as required improvement content, makes the major event suite required, and adds a mandatory flavour event layer.
 
+The retained `bop_addendum/` subtree is canonical source history for the BOP material that has already been folded into this package. It is not a separate feature package, should not be spawned or implemented independently, and should be read only as supporting source material beside `specs/ireland_focus_tree_spec_part_12_balance_of_power.md`, the copied `ireland_focus_tree_bop_*` matrices, and the canonical implementation maps.
+
 ## What this package contains
 
 - Full Ireland focus tree design and hidden path design.
@@ -60,6 +62,6 @@ Each flavour event needs a historical or civic anchor and a concrete effect thro
 
 ## Improvement loop status
 
-The mandatory `hoi4_improvement_loop_planner` pass still cannot be run in this chat environment because there is no callable project custom subagent tool. The package includes the ready prompt at `prompts/ireland_focus_tree_improvement_loop_prompt.md` for an implementation environment that can run it with `fork_context=false`.
+The mandatory `hoi4_improvement_loop_planner` closure pass was run with `fork_context=false` on 2026-07-08. Its finite hardening handoff lives at `docs/plans/ireland_focus_tree/improvement_loop_closure_readiness_2026-07-08.md`; parent resolutions and static validation notes live under `docs/plans/ireland_focus_tree/`.
 
 No temporary continuation prompt is included.

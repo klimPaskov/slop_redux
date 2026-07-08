@@ -1,0 +1,917 @@
+# Ireland focus tree event suite.
+# First implementation tranche for opening, historical neutrality, and BOP threshold event handles.
+# Localisation, final Ireland-specific event art, focus hooks, and BOP scripted helpers are integrated by parent-owned files.
+
+add_namespace = slopx_ireland_focus
+country_event = {
+	id = slopx_ireland_focus.1
+	title = slopx_ireland_focus.opening_dail_mandate.t
+	desc = slopx_ireland_focus.opening_dail_mandate.desc
+	picture = GFX_flavour_report_civic_life
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.opening_dail_mandate.a
+		ai_chance = { base = 70 }
+		slopx_ireland_initialize_mechanics = yes
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_initialize_opening_effect = yes
+		set_country_flag = slopx_ireland_opening_dail_mandate_cabinet
+	}
+
+	option = {
+		name = slopx_ireland_focus.opening_dail_mandate.b
+		ai_chance = { base = 30 }
+		slopx_ireland_initialize_mechanics = yes
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_add_constitutional_shift_effect = yes
+		set_country_flag = slopx_ireland_opening_dail_mandate_consultation
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.2
+	title = slopx_ireland_focus.constitution_public_authority.t
+	desc = slopx_ireland_focus.constitution_public_authority.desc
+	picture = GFX_report_ireland_bop_warning_authority
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.constitution_public_authority.a
+		ai_chance = { base = 60 }
+		slopx_ireland_gain_authority_medium = yes
+		ire_bop_add_constitutional_shift_effect = yes
+		set_country_flag = slopx_ireland_constitution_authority_confirmed
+	}
+
+	option = {
+		name = slopx_ireland_focus.constitution_public_authority.b
+		ai_chance = { base = 40 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_shift_civic_compromise_small = yes
+		set_country_flag = slopx_ireland_constitution_public_hearings
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.3
+	title = slopx_ireland_focus.presidency_and_public_symbol.t
+	desc = slopx_ireland_focus.presidency_and_public_symbol.desc
+	picture = GFX_report_ireland_civic_cultural_route
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.presidency_and_public_symbol.a
+		ai_chance = { base = 65 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_reduce_foreign_access_small = yes
+		ire_bop_add_constitutional_shift_effect = yes
+		set_country_flag = slopx_ireland_presidency_public_continuity
+	}
+
+	option = {
+		name = slopx_ireland_focus.presidency_and_public_symbol.b
+		ai_chance = { base = 35 }
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_civic_institutions_small = yes
+		set_country_flag = slopx_ireland_presidency_civic_program
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.4
+	title = slopx_ireland_focus.civil_war_memory_returns.t
+	desc = slopx_ireland_focus.civil_war_memory_returns.desc
+	picture = GFX_flavour_report_civic_life
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.civil_war_memory_returns.a
+		ai_chance = { base = 55 }
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_shift_civic_compromise_small = yes
+		set_country_flag = slopx_ireland_civil_war_memory_reconciliation
+	}
+
+	option = {
+		name = slopx_ireland_focus.civil_war_memory_returns.b
+		ai_chance = { base = 45 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_add_armed_pressure_shift_effect = yes
+		set_country_flag = slopx_ireland_civil_war_memory_security
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.5
+	title = slopx_ireland_focus.first_public_order_test.t
+	desc = slopx_ireland_focus.first_public_order_test.desc
+	picture = GFX_report_ireland_bop_warning_authority
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.first_public_order_test.a
+		ai_chance = { base = 50 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_shift_civic_compromise_small = yes
+		set_country_flag = slopx_ireland_public_order_restraint
+	}
+
+	option = {
+		name = slopx_ireland_focus.first_public_order_test.b
+		ai_chance = { base = 50 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_raise_partition_pressure_small = yes
+		ire_bop_add_armed_pressure_shift_effect = yes
+		set_country_flag = slopx_ireland_public_order_security_line
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.6
+	title = slopx_ireland_focus.route_convention_opens.t
+	desc = slopx_ireland_focus.route_convention_opens.desc
+	picture = GFX_flavour_report_civic_life
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.route_convention_opens.a
+		ai_chance = { base = 35 }
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_route_convention_neutrality_ready
+	}
+
+	option = {
+		name = slopx_ireland_focus.route_convention_opens.b
+		ai_chance = { base = 25 }
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_shift_civic_institutions_small = yes
+		set_country_flag = slopx_ireland_route_convention_civic_ready
+	}
+
+	option = {
+		name = slopx_ireland_focus.route_convention_opens.c
+		ai_chance = { base = 25 }
+		slopx_ireland_gain_preparedness_small = yes
+		ire_bop_shift_dail_labour_cabinet_small = yes
+		set_country_flag = slopx_ireland_route_convention_labour_ready
+	}
+
+	option = {
+		name = slopx_ireland_focus.route_convention_opens.d
+		ai_chance = { base = 15 }
+		slopx_ireland_gain_preparedness_small = yes
+		ire_bop_shift_emergency_apparatus_small = yes
+		set_country_flag = slopx_ireland_route_convention_security_ready
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.7
+	title = slopx_ireland_focus.authority_bop_initialized.t
+	desc = slopx_ireland_focus.authority_bop_initialized.desc
+	picture = GFX_report_ireland_bop_warning_authority
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.authority_bop_initialized.a
+		ai_chance = { base = 100 }
+		slopx_ireland_initialize_mechanics = yes
+		ire_bop_initialize_opening_effect = yes
+		set_country_flag = slopx_ireland_authority_bop_initialized
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.8
+	title = slopx_ireland_focus.first_northern_question_hearing.t
+	desc = slopx_ireland_focus.first_northern_question_hearing.desc
+	picture = GFX_report_ireland_integration_commission
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.first_northern_question_hearing.a
+		ai_chance = { base = 50 }
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_northern_question_legal_hearing
+	}
+
+	option = {
+		name = slopx_ireland_focus.first_northern_question_hearing.b
+		ai_chance = { base = 30 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_shift_civic_compromise_small = yes
+		set_country_flag = slopx_ireland_northern_question_local_safeguards
+	}
+
+	option = {
+		name = slopx_ireland_focus.first_northern_question_hearing.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_raise_partition_pressure_small = yes
+		ire_bop_add_armed_pressure_shift_effect = yes
+		set_country_flag = slopx_ireland_northern_question_border_review
+	}
+}
+news_event = {
+	id = slopx_ireland_focus.9
+	title = slopx_ireland_focus.ports_handover_public_relief.t
+	desc = slopx_ireland_focus.ports_handover_public_relief.desc
+	picture = GFX_news_ireland_ports_return
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.ports_handover_public_relief.a
+		ai_chance = { base = 100 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_reduce_foreign_access_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_ports_handover_public_relief
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.10
+	title = slopx_ireland_focus.treaty_ports_military_assessment.t
+	desc = slopx_ireland_focus.treaty_ports_military_assessment.desc
+	picture = GFX_report_ireland_coastwatch
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.treaty_ports_military_assessment.a
+		ai_chance = { base = 45 }
+		slopx_ireland_gain_preparedness_medium = yes
+		ire_bop_shift_emergency_apparatus_small = yes
+		set_country_flag = slopx_ireland_ports_batteries_review
+	}
+
+	option = {
+		name = slopx_ireland_focus.treaty_ports_military_assessment.b
+		ai_chance = { base = 35 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_reduce_foreign_access_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_ports_patrol_plan
+	}
+
+	option = {
+		name = slopx_ireland_focus.treaty_ports_military_assessment.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_raise_foreign_access_small = yes
+		ire_bop_shift_defence_liaison_cabinet_small = yes
+		set_country_flag = slopx_ireland_ports_repair_liaison
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.11
+	title = slopx_ireland_focus.emergency_powers_debate.t
+	desc = slopx_ireland_focus.emergency_powers_debate.desc
+	picture = GFX_report_ireland_emergency_directorate
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.emergency_powers_debate.a
+		ai_chance = { base = 45 }
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_civilian_cabinet_small = yes
+		set_country_flag = slopx_ireland_emergency_powers_civilian_limits
+	}
+
+	option = {
+		name = slopx_ireland_focus.emergency_powers_debate.b
+		ai_chance = { base = 40 }
+		slopx_ireland_gain_preparedness_small = yes
+		ire_bop_switch_to_historical_emergency_effect = yes
+		ire_bop_shift_emergency_apparatus_small = yes
+		set_country_flag = slopx_ireland_emergency_powers_war_apparatus
+	}
+
+	option = {
+		name = slopx_ireland_focus.emergency_powers_debate.c
+		ai_chance = { base = 15 }
+		slopx_ireland_reduce_foreign_access_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_emergency_powers_sunset_clause
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.12
+	title = slopx_ireland_focus.coastwatch_service_expands.t
+	desc = slopx_ireland_focus.coastwatch_service_expands.desc
+	picture = GFX_report_ireland_coastwatch
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.coastwatch_service_expands.a
+		ai_chance = { base = 45 }
+		slopx_ireland_gain_preparedness_medium = yes
+		ire_bop_shift_emergency_apparatus_small = yes
+		set_country_flag = slopx_ireland_coastwatch_posts_expanded
+	}
+
+	option = {
+		name = slopx_ireland_focus.coastwatch_service_expands.b
+		ai_chance = { base = 35 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_civilian_cabinet_small = yes
+		set_country_flag = slopx_ireland_coastwatch_local_defence
+	}
+
+	option = {
+		name = slopx_ireland_focus.coastwatch_service_expands.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_raise_foreign_access_small = yes
+		ire_bop_shift_defence_liaison_cabinet_small = yes
+		set_country_flag = slopx_ireland_coastwatch_naval_channel
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.13
+	title = slopx_ireland_focus.neutral_ship_incident.t
+	desc = slopx_ireland_focus.neutral_ship_incident.desc
+	picture = GFX_report_ireland_coastwatch
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.neutral_ship_incident.a
+		ai_chance = { base = 50 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_reduce_foreign_access_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_neutral_ship_public_protest
+	}
+
+	option = {
+		name = slopx_ireland_focus.neutral_ship_incident.b
+		ai_chance = { base = 30 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_raise_foreign_access_small = yes
+		ire_bop_shift_defence_liaison_cabinet_small = yes
+		set_country_flag = slopx_ireland_neutral_ship_guarded_information
+	}
+
+	option = {
+		name = slopx_ireland_focus.neutral_ship_incident.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_civilian_cabinet_small = yes
+		set_country_flag = slopx_ireland_neutral_ship_restricted_sailings
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.14
+	title = slopx_ireland_focus.internment_policy_dispute.t
+	desc = slopx_ireland_focus.internment_policy_dispute.desc
+	picture = GFX_report_ireland_g2_intercept
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.internment_policy_dispute.a
+		ai_chance = { base = 45 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_shift_civilian_cabinet_small = yes
+		set_country_flag = slopx_ireland_internment_judicial_review
+	}
+
+	option = {
+		name = slopx_ireland_focus.internment_policy_dispute.b
+		ai_chance = { base = 35 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_lose_authority_small = yes
+		ire_bop_shift_emergency_apparatus_small = yes
+		set_country_flag = slopx_ireland_internment_security_detention
+	}
+
+	option = {
+		name = slopx_ireland_focus.internment_policy_dispute.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_gain_preparedness_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_internment_case_by_case
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.15
+	title = slopx_ireland_focus.g2_counter_espionage_report.t
+	desc = slopx_ireland_focus.g2_counter_espionage_report.desc
+	picture = GFX_report_ireland_coastwatch
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.g2_counter_espionage_report.a
+		ai_chance = { base = 45 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_reduce_foreign_access_small = yes
+		ire_bop_shift_emergency_apparatus_small = yes
+		set_country_flag = slopx_ireland_g2_network_broken
+	}
+
+	option = {
+		name = slopx_ireland_focus.g2_counter_espionage_report.b
+		ai_chance = { base = 35 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_raise_foreign_access_small = yes
+		ire_bop_shift_defence_liaison_cabinet_small = yes
+		set_country_flag = slopx_ireland_g2_network_watched
+	}
+
+	option = {
+		name = slopx_ireland_focus.g2_counter_espionage_report.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_raise_partition_pressure_small = yes
+		ire_bop_shift_civilian_cabinet_small = yes
+		set_country_flag = slopx_ireland_g2_public_prosecution
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.16
+	title = slopx_ireland_focus.ldf_public_mobilisation.t
+	desc = slopx_ireland_focus.ldf_public_mobilisation.desc
+	picture = GFX_flavour_report_civil_defence
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.ldf_public_mobilisation.a
+		ai_chance = { base = 45 }
+		slopx_ireland_gain_preparedness_medium = yes
+		ire_bop_shift_emergency_apparatus_small = yes
+		set_country_flag = slopx_ireland_ldf_equipment_priority
+	}
+
+	option = {
+		name = slopx_ireland_focus.ldf_public_mobilisation.b
+		ai_chance = { base = 35 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_civilian_cabinet_small = yes
+		set_country_flag = slopx_ireland_ldf_county_drill
+	}
+
+	option = {
+		name = slopx_ireland_focus.ldf_public_mobilisation.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_ldf_civilian_primacy
+	}
+}
+news_event = {
+	id = slopx_ireland_focus.17
+	title = slopx_ireland_focus.neutrality_survives_first_test.t
+	desc = slopx_ireland_focus.neutrality_survives_first_test.desc
+	picture = GFX_news_ireland_ports_return
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.neutrality_survives_first_test.a
+		ai_chance = { base = 65 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_reduce_foreign_access_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_neutrality_first_test_strict
+	}
+
+	option = {
+		name = slopx_ireland_focus.neutrality_survives_first_test.b
+		ai_chance = { base = 35 }
+		slopx_ireland_gain_preparedness_medium = yes
+		ire_bop_shift_emergency_apparatus_small = yes
+		set_country_flag = slopx_ireland_neutrality_first_test_readiness
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.18
+	title = slopx_ireland_focus.emergency_powers_sunset_review.t
+	desc = slopx_ireland_focus.emergency_powers_sunset_review.desc
+	picture = GFX_report_ireland_emergency_directorate
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.emergency_powers_sunset_review.a
+		ai_chance = { base = 45 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_reduce_foreign_access_small = yes
+		ire_bop_shift_civilian_cabinet_small = yes
+		set_country_flag = slopx_ireland_emergency_powers_sunset
+	}
+
+	option = {
+		name = slopx_ireland_focus.emergency_powers_sunset_review.b
+		ai_chance = { base = 35 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_gain_preparedness_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_emergency_powers_review_board
+	}
+
+	option = {
+		name = slopx_ireland_focus.emergency_powers_sunset_review.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_lose_authority_small = yes
+		ire_bop_shift_security_directorate_small = yes
+		set_country_flag = slopx_ireland_emergency_powers_directorate_retained
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.19
+	title = slopx_ireland_focus.opening_bop_center_contested.t
+	desc = slopx_ireland_focus.opening_bop_center_contested.desc
+	picture = GFX_report_ireland_bop_warning_authority
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.opening_bop_center_contested.a
+		ai_chance = { base = 45 }
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_bop_center_parliamentary_confidence
+	}
+
+	option = {
+		name = slopx_ireland_focus.opening_bop_center_contested.b
+		ai_chance = { base = 35 }
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_shift_civic_compromise_small = yes
+		set_country_flag = slopx_ireland_bop_center_public_order_compromise
+	}
+
+	option = {
+		name = slopx_ireland_focus.opening_bop_center_contested.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_preparedness_small = yes
+		ire_bop_add_armed_pressure_shift_effect = yes
+		set_country_flag = slopx_ireland_bop_center_armed_talks
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.20
+	title = slopx_ireland_focus.constitutional_overcentralisation.t
+	desc = slopx_ireland_focus.constitutional_overcentralisation.desc
+	picture = GFX_report_ireland_bop_warning_authority
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.constitutional_overcentralisation.a
+		ai_chance = { base = 45 }
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_overcentralisation_review
+	}
+
+	option = {
+		name = slopx_ireland_focus.constitutional_overcentralisation.b
+		ai_chance = { base = 35 }
+		slopx_ireland_gain_authority_medium = yes
+		ire_bop_add_constitutional_shift_effect = yes
+		set_country_flag = slopx_ireland_overcentralisation_cabinet_discipline
+	}
+
+	option = {
+		name = slopx_ireland_focus.constitutional_overcentralisation.c
+		ai_chance = { base = 20 }
+		slopx_ireland_reduce_partition_pressure_small = yes
+		slopx_ireland_lose_authority_small = yes
+		ire_bop_shift_civic_compromise_small = yes
+		set_country_flag = slopx_ireland_overcentralisation_public_hearings
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.21
+	title = slopx_ireland_focus.armed_pressure_extreme.t
+	desc = slopx_ireland_focus.armed_pressure_extreme.desc
+	picture = GFX_report_ireland_bop_warning_authority
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.armed_pressure_extreme.a
+		ai_chance = { base = 40 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_shift_civilian_republican_front_small = yes
+		set_country_flag = slopx_ireland_armed_pressure_amnesty
+	}
+
+	option = {
+		name = slopx_ireland_focus.armed_pressure_extreme.b
+		ai_chance = { base = 40 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_raise_partition_pressure_small = yes
+		ire_bop_shift_army_council_small = yes
+		set_country_flag = slopx_ireland_armed_pressure_containment
+	}
+
+	option = {
+		name = slopx_ireland_focus.armed_pressure_extreme.c
+		ai_chance = { base = 20 }
+		slopx_ireland_reduce_partition_pressure_small = yes
+		slopx_ireland_lose_authority_small = yes
+		ire_bop_add_armed_pressure_shift_effect = yes
+		set_country_flag = slopx_ireland_armed_pressure_ceasefire
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.22
+	title = slopx_ireland_focus.emergency_apparatus_overreach.t
+	desc = slopx_ireland_focus.emergency_apparatus_overreach.desc
+	picture = GFX_report_ireland_emergency_directorate
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.emergency_apparatus_overreach.a
+		ai_chance = { base = 45 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_reduce_foreign_access_small = yes
+		ire_bop_shift_civilian_cabinet_small = yes
+		set_country_flag = slopx_ireland_emergency_overreach_civilian_review
+	}
+
+	option = {
+		name = slopx_ireland_focus.emergency_apparatus_overreach.b
+		ai_chance = { base = 35 }
+		slopx_ireland_gain_preparedness_medium = yes
+		slopx_ireland_lose_authority_small = yes
+		ire_bop_shift_emergency_apparatus_small = yes
+		set_country_flag = slopx_ireland_emergency_overreach_operational_mandate
+	}
+
+	option = {
+		name = slopx_ireland_focus.emergency_apparatus_overreach.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_emergency_overreach_courts
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.23
+	title = slopx_ireland_focus.liaison_cabinet_dependency.t
+	desc = slopx_ireland_focus.liaison_cabinet_dependency.desc
+	picture = GFX_flavour_report_civic_life
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.liaison_cabinet_dependency.a
+		ai_chance = { base = 45 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_reduce_foreign_access_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_liaison_dependency_anti_basing_vote
+	}
+
+	option = {
+		name = slopx_ireland_focus.liaison_cabinet_dependency.b
+		ai_chance = { base = 35 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_raise_foreign_access_small = yes
+		ire_bop_shift_defence_liaison_cabinet_small = yes
+		set_country_flag = slopx_ireland_liaison_dependency_channel_retained
+	}
+
+	option = {
+		name = slopx_ireland_focus.liaison_cabinet_dependency.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_reduce_foreign_access_small = yes
+		ire_bop_shift_civilian_cabinet_small = yes
+		set_country_flag = slopx_ireland_liaison_dependency_audit
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.24
+	title = slopx_ireland_focus.workers_congress_pushes_past_dail.t
+	desc = slopx_ireland_focus.workers_congress_pushes_past_dail.desc
+	picture = GFX_flavour_report_rural_industry
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.workers_congress_pushes_past_dail.a
+		ai_chance = { base = 40 }
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_dail_labour_cabinet_small = yes
+		set_country_flag = slopx_ireland_workers_congress_cabinet_mandate
+	}
+
+	option = {
+		name = slopx_ireland_focus.workers_congress_pushes_past_dail.b
+		ai_chance = { base = 40 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_shift_workers_congress_small = yes
+		set_country_flag = slopx_ireland_workers_congress_production_truce
+	}
+
+	option = {
+		name = slopx_ireland_focus.workers_congress_pushes_past_dail.c
+		ai_chance = { base = 20 }
+		slopx_ireland_lose_authority_small = yes
+		slopx_ireland_gain_preparedness_small = yes
+		ire_bop_shift_workers_congress_small = yes
+		set_country_flag = slopx_ireland_workers_congress_autonomy
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.25
+	title = slopx_ireland_focus.blueshirt_guard_state_capture.t
+	desc = slopx_ireland_focus.blueshirt_guard_state_capture.desc
+	picture = GFX_report_ireland_bop_warning_authority
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.blueshirt_guard_state_capture.a
+		ai_chance = { base = 40 }
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_parliamentary_right_chambers_small = yes
+		set_country_flag = slopx_ireland_blueshirt_guard_chamber_legality
+	}
+
+	option = {
+		name = slopx_ireland_focus.blueshirt_guard_state_capture.b
+		ai_chance = { base = 40 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_lose_authority_small = yes
+		ire_bop_shift_blueshirt_guard_small = yes
+		set_country_flag = slopx_ireland_blueshirt_guard_discipline
+	}
+
+	option = {
+		name = slopx_ireland_focus.blueshirt_guard_state_capture.c
+		ai_chance = { base = 20 }
+		slopx_ireland_reduce_partition_pressure_small = yes
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_civilian_restoration_small = yes
+		set_country_flag = slopx_ireland_blueshirt_guard_public_ban
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.26
+	title = slopx_ireland_focus.army_council_state_capture.t
+	desc = slopx_ireland_focus.army_council_state_capture.desc
+	picture = GFX_report_ireland_safehouse_network
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.army_council_state_capture.a
+		ai_chance = { base = 40 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_shift_civilian_republican_front_small = yes
+		set_country_flag = slopx_ireland_army_council_civilian_front
+	}
+
+	option = {
+		name = slopx_ireland_focus.army_council_state_capture.b
+		ai_chance = { base = 40 }
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_raise_partition_pressure_small = yes
+		ire_bop_shift_army_council_small = yes
+		set_country_flag = slopx_ireland_army_council_safehouse_audit
+	}
+
+	option = {
+		name = slopx_ireland_focus.army_council_state_capture.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_preparedness_medium = yes
+		slopx_ireland_lose_authority_small = yes
+		ire_bop_shift_army_council_small = yes
+		set_country_flag = slopx_ireland_army_council_direct_rule
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.27
+	title = slopx_ireland_focus.civic_cultural_capture.t
+	desc = slopx_ireland_focus.civic_cultural_capture.desc
+	picture = GFX_report_ireland_civic_cultural_route
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.civic_cultural_capture.a
+		ai_chance = { base = 40 }
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_civic_institutions_small = yes
+		set_country_flag = slopx_ireland_civic_capture_school_boards
+	}
+
+	option = {
+		name = slopx_ireland_focus.civic_cultural_capture.b
+		ai_chance = { base = 40 }
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_shift_civic_compromise_small = yes
+		set_country_flag = slopx_ireland_civic_capture_local_charters
+	}
+
+	option = {
+		name = slopx_ireland_focus.civic_cultural_capture.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_preparedness_small = yes
+		ire_bop_shift_cultural_mobilisation_networks_small = yes
+		set_country_flag = slopx_ireland_civic_capture_mobilisation_networks
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.28
+	title = slopx_ireland_focus.security_directorate_permanent_rule.t
+	desc = slopx_ireland_focus.security_directorate_permanent_rule.desc
+	picture = GFX_report_ireland_emergency_directorate
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.security_directorate_permanent_rule.a
+		ai_chance = { base = 45 }
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_reduce_foreign_access_small = yes
+		ire_bop_shift_civilian_restoration_small = yes
+		set_country_flag = slopx_ireland_directorate_civilian_timetable
+	}
+
+	option = {
+		name = slopx_ireland_focus.security_directorate_permanent_rule.b
+		ai_chance = { base = 35 }
+		slopx_ireland_gain_preparedness_medium = yes
+		slopx_ireland_lose_authority_small = yes
+		ire_bop_shift_security_directorate_small = yes
+		set_country_flag = slopx_ireland_directorate_command_retained
+	}
+
+	option = {
+		name = slopx_ireland_focus.security_directorate_permanent_rule.c
+		ai_chance = { base = 20 }
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_shift_independent_parliamentary_review_small = yes
+		set_country_flag = slopx_ireland_directorate_public_inquiry
+	}
+}
+country_event = {
+	id = slopx_ireland_focus.29
+	title = slopx_ireland_focus.bop_recovery_settlement.t
+	desc = slopx_ireland_focus.bop_recovery_settlement.desc
+	picture = GFX_report_ireland_integration_commission
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = slopx_ireland_focus.bop_recovery_settlement.a
+		ai_chance = { base = 45 }
+		slopx_ireland_cleanup_crisis_flags = yes
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_reduce_foreign_access_small = yes
+		slopx_ireland_reduce_partition_pressure_small = yes
+		ire_bop_recover_to_center_effect = yes
+		set_country_flag = slopx_ireland_bop_recovery_center_settlement
+	}
+
+	option = {
+		name = slopx_ireland_focus.bop_recovery_settlement.b
+		ai_chance = { base = 35 }
+		slopx_ireland_cleanup_crisis_flags = yes
+		slopx_ireland_gain_preparedness_small = yes
+		slopx_ireland_gain_authority_small = yes
+		ire_bop_handle_route_failure_effect = yes
+		set_country_flag = slopx_ireland_bop_recovery_route_settlement
+	}
+
+	option = {
+		name = slopx_ireland_focus.bop_recovery_settlement.c
+		ai_chance = { base = 20 }
+		slopx_ireland_cleanup_crisis_flags = yes
+		slopx_ireland_gain_authority_small = yes
+		slopx_ireland_reduce_foreign_access_small = yes
+		ire_bop_cleanup_invalid_mode_effect = yes
+		set_country_flag = slopx_ireland_bop_recovery_emergency_review
+	}
+}

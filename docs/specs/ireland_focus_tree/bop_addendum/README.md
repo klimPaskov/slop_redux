@@ -1,8 +1,8 @@
-# Ireland Balance of Power addendum package
+# Ireland Balance of Power retained source package
 
-This is a separate post implementation addendum for the Slop Redux Ireland comprehensive focus tree.
+This directory is retained canonical source history for the Slop Redux Ireland Balance of Power material.
 
-The canonical Ireland focus tree package is treated as already implemented. This package does not rewrite that work. It adds a comprehensive Balance of Power layer that improves the existing implementation by making the internal political struggle visible, route aware, and connected to the already planned mechanics.
+The BOP design has been folded into `docs/specs/ireland_focus_tree/` through `specs/ireland_focus_tree_spec_part_12_balance_of_power.md`, the copied `ireland_focus_tree_bop_*` matrices, and the canonical implementation maps. Do not treat this subtree as a separate feature package or implement it independently. It remains here so the accepted design history, research notes, prompts, and matrices can be audited without restoring the deleted standalone BOP package.
 
 Working labels in this package are internal handles only. They are not final focus titles, decision names, event text, GUI labels, achievement titles, slogans, quotes, or audio choices.
 
@@ -14,13 +14,13 @@ The BOP should never become a reward meter that only gives small bonuses. Its ba
 
 ## Package status
 
-This package is implementation ready as a design handoff. It has no temporary continuation prompt.
+This package is retained as supporting source material. The active implementation package is `docs/specs/ireland_focus_tree/`.
 
-The mandatory `hoi4_improvement_loop_planner` pass is recorded as a tooling blocker because this chat environment does not expose the project custom subagent spawning tool. The package includes a ready prompt for an environment that can spawn that subagent with `fork_context=false`.
+The Ireland focus tree closure `hoi4_improvement_loop_planner` pass was run with `fork_context=false` on 2026-07-08; the active closure handoff is `docs/plans/ireland_focus_tree/improvement_loop_closure_readiness_2026-07-08.md`.
 
 ## File structure
 
-- `specs/` contains the canonical BOP addendum design.
+- `specs/` contains the retained BOP addendum design now folded into the canonical Ireland package.
 - `matrices/` contains route, range, decision, AI, asset, and achievement tables.
 - `implementation/` contains file surface and id registry handoffs.
 - `prompts/` contains implementation, asset, decision, achievement, goal, and improvement loop prompts.

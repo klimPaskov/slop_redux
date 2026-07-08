@@ -1,0 +1,62 @@
+slopx_ireland_mechanics = {
+	authority_start = 45
+	preparedness_start = 12
+	partition_pressure_start = 34
+	foreign_access_pressure_start = 18
+	hidden_reveal_start = 0
+	integration_stage_start = 0
+}
+
+slopx_ireland_delta = {
+	small_gain = 4
+	medium_gain = 8
+	large_gain = 12
+	small_loss = -4
+	medium_loss = -8
+	large_loss = -12
+}
+
+slopx_ireland_threshold = {
+	authority_low = 29
+	authority_steady = 49
+	authority_high = 69
+	authority_mastery = 84
+	preparedness_low = 24
+	preparedness_ready = 54
+	preparedness_hardened = 74
+	partition_warning = 54
+	partition_crisis = 74
+	foreign_pressure_warning = 44
+	foreign_pressure_crisis = 64
+	hidden_reveal_step = 20
+	integration_complete = 5
+}
+
+slopx_ireland_costs = {
+	command_small = 15
+	command_medium = 25
+	command_large = 40
+	army_xp_small = 10
+	army_xp_medium = 25
+	navy_xp_small = 10
+	air_xp_small = 10
+	rifles_small = 300
+	rifles_medium = 700
+	rifles_large = 1200
+	support_small = 40
+	support_medium = 100
+	manpower_small = 500
+	manpower_medium = 1500
+	fuel_small = 500
+	fuel_medium = 1200
+	convoys_small = 5
+	trains_small = 2
+}
+
+slopx_ireland_durations = {
+	short_mission = 35
+	medium_mission = 60
+	long_mission = 90
+	integration_mission = 120
+	crisis_mission = 45
+}

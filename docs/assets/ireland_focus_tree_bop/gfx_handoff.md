@@ -32,9 +32,9 @@ gfx/achievements/<achievement_id>_not_eligible.dds
 - `ireland_focus_tree_events_of_the_island`
 - `ireland_focus_tree_balanced_authority`
 
-## Proposed Flavour Achievement IDs
+## Implemented Flavour Achievement IDs
 
-These are proposed stable ids because the prompt gave hook descriptions but no exact registry ids:
+These stable ids were adopted by the parent implementation and are registered in `common/achievements/ireland_focus_tree_achievements.txt` with matching localisation:
 
 - `ireland_focus_tree_flavour_coastwatch_without_scandal`
 - `ireland_focus_tree_flavour_schools_without_corruption`
@@ -42,14 +42,12 @@ These are proposed stable ids because the prompt gave hook descriptions but no e
 - `ireland_focus_tree_flavour_safeguards_without_coercion`
 - `ireland_focus_tree_flavour_merchant_marine_memory`
 
-If implementation chooses different achievement ids, rename all three DDS variants for the affected hook before wiring.
-
 ## Handoff Notes
 
-- Suggested achievement registry surface: parent-owned achievement registry for Ireland/BOP achievements.
-- Suggested localisation surface: parent-owned achievement localisation.
+- Achievement registry surface: `common/achievements/ireland_focus_tree_achievements.txt`.
+- Localisation surface: `localisation/english/slop_redux_l_english.yml`.
 - Suggested `.gfx` file: none; achievement icons are resolved by root achievement DDS filenames.
 - Source PNGs and processed previews live under `docs/assets/ireland_focus_tree_bop/achievements/`.
 - Contact sheet for review: `docs/assets/ireland_focus_tree_bop/achievements/contact_sheets/ireland_bop_achievement_icons_contact_sheet.png`.
 
-No gameplay, localisation, `.gfx`, `.gui`, focus, decision, or spec file was edited by this asset pass.
+No `.gfx` entries are needed for achievement icons. The parent implementation wired all listed achievement ids after this asset pass.

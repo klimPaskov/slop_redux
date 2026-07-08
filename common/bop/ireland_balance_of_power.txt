@@ -1,0 +1,699 @@
+@ire_bop_left_extreme_min = -1.00
+@ire_bop_left_extreme_max = -0.75
+@ire_bop_left_high_min = -0.75
+@ire_bop_left_high_max = -0.45
+@ire_bop_left_moderate_min = -0.45
+@ire_bop_left_moderate_max = -0.15
+@ire_bop_center_min = -0.15
+@ire_bop_center_max = 0.15
+@ire_bop_right_moderate_min = 0.15
+@ire_bop_right_moderate_max = 0.45
+@ire_bop_right_high_min = 0.45
+@ire_bop_right_high_max = 0.75
+@ire_bop_right_extreme_min = 0.75
+@ire_bop_right_extreme_max = 1.00
+
+IRE_state_authority_bop = {
+	initial_value = -0.10
+	left_side = ire_bop_side_constitutional_government
+	right_side = ire_bop_side_armed_political_pressure
+	decision_category = ireland_state_authority_bop_category
+
+	range = {
+		id = ire_bop_left_extreme_range
+		min = @ire_bop_left_extreme_min
+		max = @ire_bop_left_extreme_max
+		modifier = {
+		}
+	}
+
+	range = {
+		id = ire_bop_left_high_range
+		min = @ire_bop_left_high_min
+		max = @ire_bop_left_high_max
+		modifier = {
+		}
+	}
+
+	range = {
+		id = ire_bop_left_moderate_range
+		min = @ire_bop_left_moderate_min
+		max = @ire_bop_left_moderate_max
+		modifier = {
+		}
+	}
+
+	range = {
+		id = ire_bop_contested_center_range
+		min = @ire_bop_center_min
+		max = @ire_bop_center_max
+		modifier = {
+			political_power_factor = -0.02
+			stability_factor = -0.01
+		}
+		on_activate = {
+			if = {
+				limit = { has_country_flag = ireland_bop_initialized }
+				country_event = { id = slopx_ireland_focus.19 days = 1 }
+			}
+		}
+	}
+
+	range = {
+		id = ire_bop_right_moderate_range
+		min = @ire_bop_right_moderate_min
+		max = @ire_bop_right_moderate_max
+		modifier = {
+		}
+	}
+
+	range = {
+		id = ire_bop_right_high_range
+		min = @ire_bop_right_high_min
+		max = @ire_bop_right_high_max
+		modifier = {
+		}
+	}
+
+	range = {
+		id = ire_bop_right_extreme_range
+		min = @ire_bop_right_extreme_min
+		max = @ire_bop_right_extreme_max
+		modifier = {
+		}
+	}
+
+	side = {
+		id = ire_bop_side_constitutional_government
+		icon = GFX_bop_ire_constitutional_government
+
+		range = {
+			id = ire_bop_constitutional_government_moderate_range
+			min = @ire_bop_left_moderate_min
+			max = @ire_bop_left_moderate_max
+			modifier = {
+				political_power_factor = 0.04
+				stability_factor = 0.02
+			}
+		}
+
+		range = {
+			id = ire_bop_constitutional_government_high_range
+			min = @ire_bop_left_high_min
+			max = @ire_bop_left_high_max
+			modifier = {
+				political_power_factor = 0.07
+				stability_factor = 0.04
+			}
+		}
+
+		range = {
+			id = ire_bop_constitutional_government_extreme_range
+			min = @ire_bop_left_extreme_min
+			max = @ire_bop_left_extreme_max
+			modifier = {
+				political_power_factor = 0.10
+				stability_factor = 0.04
+				conscription_factor = -0.05
+			}
+			on_activate = {
+				country_event = { id = slopx_ireland_focus.20 days = 1 }
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_armed_political_pressure
+		icon = GFX_bop_ire_armed_political_pressure
+
+		range = {
+			id = ire_bop_armed_political_pressure_moderate_range
+			min = @ire_bop_right_moderate_min
+			max = @ire_bop_right_moderate_max
+			modifier = {
+				war_support_factor = 0.03
+				stability_factor = -0.03
+			}
+		}
+
+		range = {
+			id = ire_bop_armed_political_pressure_high_range
+			min = @ire_bop_right_high_min
+			max = @ire_bop_right_high_max
+			modifier = {
+				war_support_factor = 0.05
+				stability_factor = -0.06
+				drift_defence_factor = -0.05
+			}
+		}
+
+		range = {
+			id = ire_bop_armed_political_pressure_extreme_range
+			min = @ire_bop_right_extreme_min
+			max = @ire_bop_right_extreme_max
+			modifier = {
+				war_support_factor = 0.08
+				stability_factor = -0.10
+				drift_defence_factor = -0.10
+			}
+			on_activate = {
+				country_event = { id = slopx_ireland_focus.21 days = 1 }
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_civilian_cabinet
+		icon = GFX_bop_ire_civilian_cabinet
+
+		range = {
+			id = ire_bop_civilian_cabinet_moderate_range
+			min = @ire_bop_left_moderate_min
+			max = @ire_bop_left_moderate_max
+			modifier = {
+				political_power_factor = 0.03
+				consumer_goods_factor = -0.01
+			}
+		}
+
+		range = {
+			id = ire_bop_civilian_cabinet_high_range
+			min = @ire_bop_left_high_min
+			max = @ire_bop_left_high_max
+			modifier = {
+				political_power_factor = 0.05
+				consumer_goods_factor = -0.02
+			}
+		}
+
+		range = {
+			id = ire_bop_civilian_cabinet_extreme_range
+			min = @ire_bop_left_extreme_min
+			max = @ire_bop_left_extreme_max
+			modifier = {
+				political_power_factor = 0.07
+				consumer_goods_factor = -0.03
+				mobilization_speed = -0.05
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_emergency_apparatus
+		icon = GFX_bop_ire_emergency_apparatus
+
+		range = {
+			id = ire_bop_emergency_apparatus_moderate_range
+			min = @ire_bop_right_moderate_min
+			max = @ire_bop_right_moderate_max
+			modifier = {
+				mobilization_speed = 0.05
+				stability_factor = -0.02
+			}
+		}
+
+		range = {
+			id = ire_bop_emergency_apparatus_high_range
+			min = @ire_bop_right_high_min
+			max = @ire_bop_right_high_max
+			modifier = {
+				mobilization_speed = 0.08
+				war_support_factor = 0.04
+				stability_factor = -0.05
+			}
+		}
+
+		range = {
+			id = ire_bop_emergency_apparatus_extreme_range
+			min = @ire_bop_right_extreme_min
+			max = @ire_bop_right_extreme_max
+			modifier = {
+				mobilization_speed = 0.12
+				war_support_factor = 0.06
+				stability_factor = -0.08
+			}
+			on_activate = {
+				country_event = { id = slopx_ireland_focus.22 days = 1 }
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_independent_parliamentary_review
+		icon = GFX_bop_ire_independent_parliamentary_review
+
+		range = {
+			id = ire_bop_independent_parliamentary_review_moderate_range
+			min = @ire_bop_left_moderate_min
+			max = @ire_bop_left_moderate_max
+			modifier = {
+				stability_factor = 0.02
+				trade_opinion_factor = 0.04
+			}
+		}
+
+		range = {
+			id = ire_bop_independent_parliamentary_review_high_range
+			min = @ire_bop_left_high_min
+			max = @ire_bop_left_high_max
+			modifier = {
+				stability_factor = 0.04
+				trade_opinion_factor = 0.07
+			}
+		}
+
+		range = {
+			id = ire_bop_independent_parliamentary_review_extreme_range
+			min = @ire_bop_left_extreme_min
+			max = @ire_bop_left_extreme_max
+			modifier = {
+				stability_factor = 0.05
+				trade_opinion_factor = 0.10
+				division_organization_factor = -0.03
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_defence_liaison_cabinet
+		icon = GFX_bop_ire_defence_liaison_cabinet
+
+		range = {
+			id = ire_bop_defence_liaison_cabinet_moderate_range
+			min = @ire_bop_right_moderate_min
+			max = @ire_bop_right_moderate_max
+			modifier = {
+				convoy_defence_factor = 0.04
+				consumer_goods_factor = -0.01
+			}
+		}
+
+		range = {
+			id = ire_bop_defence_liaison_cabinet_high_range
+			min = @ire_bop_right_high_min
+			max = @ire_bop_right_high_max
+			modifier = {
+				convoy_defence_factor = 0.07
+				consumer_goods_factor = -0.02
+				stability_factor = -0.03
+			}
+		}
+
+		range = {
+			id = ire_bop_defence_liaison_cabinet_extreme_range
+			min = @ire_bop_right_extreme_min
+			max = @ire_bop_right_extreme_max
+			modifier = {
+				convoy_defence_factor = 0.10
+				consumer_goods_factor = -0.03
+				stability_factor = -0.06
+			}
+			on_activate = {
+				country_event = { id = slopx_ireland_focus.23 days = 1 }
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_dail_labour_cabinet
+		icon = GFX_bop_ire_dail_labour_cabinet
+
+		range = {
+			id = ire_bop_dail_labour_cabinet_moderate_range
+			min = @ire_bop_left_moderate_min
+			max = @ire_bop_left_moderate_max
+			modifier = {
+				political_power_factor = 0.03
+				production_speed_industrial_complex_factor = 0.04
+			}
+		}
+
+		range = {
+			id = ire_bop_dail_labour_cabinet_high_range
+			min = @ire_bop_left_high_min
+			max = @ire_bop_left_high_max
+			modifier = {
+				political_power_factor = 0.05
+				production_speed_industrial_complex_factor = 0.07
+			}
+		}
+
+		range = {
+			id = ire_bop_dail_labour_cabinet_extreme_range
+			min = @ire_bop_left_extreme_min
+			max = @ire_bop_left_extreme_max
+			modifier = {
+				political_power_factor = 0.07
+				production_speed_industrial_complex_factor = 0.10
+				consumer_goods_factor = 0.02
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_workers_congress
+		icon = GFX_bop_ire_workers_congress
+
+		range = {
+			id = ire_bop_workers_congress_moderate_range
+			min = @ire_bop_right_moderate_min
+			max = @ire_bop_right_moderate_max
+			modifier = {
+				industrial_capacity_factory = 0.03
+				political_power_factor = -0.03
+			}
+		}
+
+		range = {
+			id = ire_bop_workers_congress_high_range
+			min = @ire_bop_right_high_min
+			max = @ire_bop_right_high_max
+			modifier = {
+				industrial_capacity_factory = 0.05
+				political_power_factor = -0.06
+				stability_factor = -0.03
+			}
+		}
+
+		range = {
+			id = ire_bop_workers_congress_extreme_range
+			min = @ire_bop_right_extreme_min
+			max = @ire_bop_right_extreme_max
+			modifier = {
+				industrial_capacity_factory = 0.08
+				political_power_factor = -0.10
+				stability_factor = -0.06
+			}
+			on_activate = {
+				country_event = { id = slopx_ireland_focus.24 days = 1 }
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_parliamentary_right_chambers
+		icon = GFX_bop_ire_parliamentary_right_chambers
+
+		range = {
+			id = ire_bop_parliamentary_right_chambers_moderate_range
+			min = @ire_bop_left_moderate_min
+			max = @ire_bop_left_moderate_max
+			modifier = {
+				consumer_goods_factor = -0.01
+				production_speed_arms_factory_factor = 0.03
+			}
+		}
+
+		range = {
+			id = ire_bop_parliamentary_right_chambers_high_range
+			min = @ire_bop_left_high_min
+			max = @ire_bop_left_high_max
+			modifier = {
+				consumer_goods_factor = -0.02
+				production_speed_arms_factory_factor = 0.05
+			}
+		}
+
+		range = {
+			id = ire_bop_parliamentary_right_chambers_extreme_range
+			min = @ire_bop_left_extreme_min
+			max = @ire_bop_left_extreme_max
+			modifier = {
+				consumer_goods_factor = -0.03
+				production_speed_arms_factory_factor = 0.08
+				stability_factor = -0.03
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_blueshirt_guard
+		icon = GFX_bop_ire_blueshirt_guard
+
+		range = {
+			id = ire_bop_blueshirt_guard_moderate_range
+			min = @ire_bop_right_moderate_min
+			max = @ire_bop_right_moderate_max
+			modifier = {
+				war_support_factor = 0.04
+				political_power_factor = -0.03
+			}
+		}
+
+		range = {
+			id = ire_bop_blueshirt_guard_high_range
+			min = @ire_bop_right_high_min
+			max = @ire_bop_right_high_max
+			modifier = {
+				war_support_factor = 0.07
+				political_power_factor = -0.06
+				stability_factor = -0.04
+			}
+		}
+
+		range = {
+			id = ire_bop_blueshirt_guard_extreme_range
+			min = @ire_bop_right_extreme_min
+			max = @ire_bop_right_extreme_max
+			modifier = {
+				war_support_factor = 0.10
+				political_power_factor = -0.10
+				stability_factor = -0.08
+			}
+			on_activate = {
+				country_event = { id = slopx_ireland_focus.25 days = 1 }
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_civilian_republican_front
+		icon = GFX_bop_ire_civilian_republican_front
+
+		range = {
+			id = ire_bop_civilian_republican_front_moderate_range
+			min = @ire_bop_left_moderate_min
+			max = @ire_bop_left_moderate_max
+			modifier = {
+				political_power_factor = 0.03
+				stability_factor = 0.01
+			}
+		}
+
+		range = {
+			id = ire_bop_civilian_republican_front_high_range
+			min = @ire_bop_left_high_min
+			max = @ire_bop_left_high_max
+			modifier = {
+				political_power_factor = 0.05
+				stability_factor = 0.03
+			}
+		}
+
+		range = {
+			id = ire_bop_civilian_republican_front_extreme_range
+			min = @ire_bop_left_extreme_min
+			max = @ire_bop_left_extreme_max
+			modifier = {
+				political_power_factor = 0.07
+				stability_factor = 0.04
+				war_support_factor = -0.03
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_army_council
+		icon = GFX_bop_ire_army_council
+
+		range = {
+			id = ire_bop_army_council_moderate_range
+			min = @ire_bop_right_moderate_min
+			max = @ire_bop_right_moderate_max
+			modifier = {
+				war_support_factor = 0.04
+				stability_factor = -0.03
+			}
+		}
+
+		range = {
+			id = ire_bop_army_council_high_range
+			min = @ire_bop_right_high_min
+			max = @ire_bop_right_high_max
+			modifier = {
+				war_support_factor = 0.07
+				stability_factor = -0.06
+				trade_opinion_factor = -0.05
+			}
+		}
+
+		range = {
+			id = ire_bop_army_council_extreme_range
+			min = @ire_bop_right_extreme_min
+			max = @ire_bop_right_extreme_max
+			modifier = {
+				war_support_factor = 0.10
+				stability_factor = -0.10
+				trade_opinion_factor = -0.10
+			}
+			on_activate = {
+				country_event = { id = slopx_ireland_focus.26 days = 1 }
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_civic_institutions
+		icon = GFX_bop_ire_civic_institutions
+
+		range = {
+			id = ire_bop_civic_institutions_moderate_range
+			min = @ire_bop_left_moderate_min
+			max = @ire_bop_left_moderate_max
+			modifier = {
+				stability_factor = 0.02
+				production_speed_infrastructure_factor = 0.04
+			}
+		}
+
+		range = {
+			id = ire_bop_civic_institutions_high_range
+			min = @ire_bop_left_high_min
+			max = @ire_bop_left_high_max
+			modifier = {
+				stability_factor = 0.04
+				production_speed_infrastructure_factor = 0.07
+			}
+		}
+
+		range = {
+			id = ire_bop_civic_institutions_extreme_range
+			min = @ire_bop_left_extreme_min
+			max = @ire_bop_left_extreme_max
+			modifier = {
+				stability_factor = 0.06
+				production_speed_infrastructure_factor = 0.10
+				political_power_factor = 0.03
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_cultural_mobilisation_networks
+		icon = GFX_bop_ire_cultural_mobilisation_networks
+
+		range = {
+			id = ire_bop_cultural_mobilisation_networks_moderate_range
+			min = @ire_bop_right_moderate_min
+			max = @ire_bop_right_moderate_max
+			modifier = {
+				political_power_factor = 0.02
+				stability_factor = -0.02
+			}
+		}
+
+		range = {
+			id = ire_bop_cultural_mobilisation_networks_high_range
+			min = @ire_bop_right_high_min
+			max = @ire_bop_right_high_max
+			modifier = {
+				political_power_factor = 0.04
+				stability_factor = -0.05
+				trade_opinion_factor = -0.04
+			}
+		}
+
+		range = {
+			id = ire_bop_cultural_mobilisation_networks_extreme_range
+			min = @ire_bop_right_extreme_min
+			max = @ire_bop_right_extreme_max
+			modifier = {
+				political_power_factor = 0.06
+				stability_factor = -0.08
+				trade_opinion_factor = -0.08
+			}
+			on_activate = {
+				country_event = { id = slopx_ireland_focus.27 days = 1 }
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_civilian_restoration
+		icon = GFX_bop_ire_civilian_restoration
+
+		range = {
+			id = ire_bop_civilian_restoration_moderate_range
+			min = @ire_bop_left_moderate_min
+			max = @ire_bop_left_moderate_max
+			modifier = {
+				political_power_factor = 0.04
+				stability_factor = 0.02
+			}
+		}
+
+		range = {
+			id = ire_bop_civilian_restoration_high_range
+			min = @ire_bop_left_high_min
+			max = @ire_bop_left_high_max
+			modifier = {
+				political_power_factor = 0.07
+				stability_factor = 0.04
+			}
+		}
+
+		range = {
+			id = ire_bop_civilian_restoration_extreme_range
+			min = @ire_bop_left_extreme_min
+			max = @ire_bop_left_extreme_max
+			modifier = {
+				political_power_factor = 0.10
+				stability_factor = 0.06
+				mobilization_speed = -0.05
+			}
+			on_activate = {
+				country_event = { id = slopx_ireland_focus.29 days = 1 }
+			}
+		}
+	}
+
+	side = {
+		id = ire_bop_side_security_directorate
+		icon = GFX_bop_ire_security_directorate
+
+		range = {
+			id = ire_bop_security_directorate_moderate_range
+			min = @ire_bop_right_moderate_min
+			max = @ire_bop_right_moderate_max
+			modifier = {
+				mobilization_speed = 0.06
+				stability_factor = -0.03
+			}
+		}
+
+		range = {
+			id = ire_bop_security_directorate_high_range
+			min = @ire_bop_right_high_min
+			max = @ire_bop_right_high_max
+			modifier = {
+				mobilization_speed = 0.10
+				war_support_factor = 0.05
+				stability_factor = -0.06
+			}
+		}
+
+		range = {
+			id = ire_bop_security_directorate_extreme_range
+			min = @ire_bop_right_extreme_min
+			max = @ire_bop_right_extreme_max
+			modifier = {
+				mobilization_speed = 0.15
+				war_support_factor = 0.08
+				stability_factor = -0.10
+			}
+			on_activate = {
+				country_event = { id = slopx_ireland_focus.28 days = 1 }
+			}
+		}
+	}
+}

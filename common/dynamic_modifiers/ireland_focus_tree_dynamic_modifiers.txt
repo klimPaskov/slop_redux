@@ -1,0 +1,15 @@
+slopx_ireland_mechanics_dynamic_modifier = {
+	enable = { original_tag = IRE }
+	remove_trigger = {
+		NOT = { original_tag = IRE }
+	}
+
+	icon = GFX_idea_ireland_mechanics
+
+	political_power_factor = ireland_dynamic_political_power_factor
+	stability_factor = ireland_dynamic_stability_factor
+	war_support_factor = ireland_dynamic_war_support_factor
+	army_defence_factor = ireland_dynamic_army_defence_factor
+	industrial_capacity_factory = ireland_dynamic_factory_output_factor
+	consumer_goods_factor = ireland_dynamic_consumer_goods_factor
+}

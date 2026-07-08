@@ -78,6 +78,7 @@ ire_bop_preserve_value_conservatively_effect = {
 
 ire_bop_initialize_opening_effect = {
 	ire_bop_clear_mode_flags_effect = yes
+	set_country_flag = ireland_bop_initialized
 	set_country_flag = ire_bop_mode_opening_state
 	set_power_balance = {
 		id = IRE_state_authority_bop
@@ -848,4 +849,43 @@ ire_bop_cleanup_invalid_mode_effect = {
 
 ire_bop_cleanup_invalid_mode = {
 	ire_bop_cleanup_invalid_mode_effect = yes
+}
+
+ire_bop_shift_civic_compromise_small = {
+	ire_bop_add_civilian_shift_effect = yes
+	ire_bop_shift_to_center_small = yes
+}
+
+ire_bop_shift_independent_parliamentary_review_small = {
+	ire_bop_shift_parliamentary_review_small = yes
+}
+
+ire_bop_shift_defence_liaison_cabinet_small = {
+	ire_bop_shift_defence_liaison_small = yes
+}
+
+ire_bop_shift_dail_labour_cabinet_small = {
+	ire_bop_shift_dail_labour_small = yes
+}
+
+ire_bop_shift_civilian_republican_front_small = {
+	ire_bop_shift_republican_front_small = yes
+}
+
+ire_bop_shift_parliamentary_right_chambers_small = {
+	ire_bop_shift_chambers_small = yes
+}
+
+ire_bop_shift_cultural_mobilisation_networks_small = {
+	ire_bop_shift_cultural_mobilisation_small = yes
+}
+
+ire_bop_recover_to_center_effect = {
+	ire_bop_shift_to_center_medium = yes
+	ire_bop_clear_crisis_flags_effect = yes
+}
+
+ire_bop_handle_route_failure_effect = {
+	set_country_flag = ire_bop_crisis_active
+	ire_bop_add_strong_right_shift_effect = yes
 }

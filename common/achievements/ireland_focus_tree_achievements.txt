@@ -1,0 +1,586 @@
+unique_id = slop_redux_ireland_focus_tree
+
+ireland_focus_tree_constitutional_neutrality_mastery = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_route_historical_neutrality
+		has_country_flag = ireland_historical_neutrality_capstone
+		has_country_flag = ireland_achievement_constitutional_neutrality_mastery_ready
+	}
+}
+
+ireland_focus_tree_ports_without_bases = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_ports_without_bases_ready
+		NOT = { is_in_faction = yes }
+		check_variable = { ireland_foreign_access_pressure < 55 }
+	}
+}
+
+ireland_focus_tree_ports_without_patrons = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_ports_without_patrons_ready
+		has_country_flag = ireland_trade_balanced_capstone_ready
+		check_variable = { ireland_foreign_access_pressure < 45 }
+	}
+}
+
+ireland_focus_tree_emergency_watch_complete = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_emergency_watch_complete_ready
+		check_variable = { ireland_emergency_preparedness > 74 }
+	}
+}
+
+ireland_focus_tree_small_army_long_coast = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_small_army_long_coast_ready
+		check_variable = { ireland_port_readiness > 2 }
+		check_variable = { ireland_emergency_preparedness > 54 }
+	}
+}
+
+ireland_focus_tree_watch_the_west = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_watch_the_west_ready
+		check_variable = { ireland_emergency_preparedness > 74 }
+		check_variable = { ireland_foreign_access_pressure < 65 }
+	}
+}
+
+ireland_focus_tree_no_one_gets_the_ports = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_no_one_gets_the_ports_ready
+		NOT = { is_in_faction = yes }
+		check_variable = { ireland_foreign_access_pressure < 45 }
+	}
+}
+
+ireland_focus_tree_ballot_to_belfast = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_ballot_to_belfast_ready
+		has_country_flag = ireland_all_island_settlement_proclaimed
+		has_country_flag = ireland_northern_integration_complete
+		slopx_ireland_has_northern_regional_control = yes
+		NOT = { has_country_flag = ireland_partition_settlement_failed }
+		NOT = { has_war_with = ENG }
+	}
+}
+
+ireland_focus_tree_guarded_link = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_guarded_link_ready
+		has_country_flag = ireland_route_constitutional_opposition
+		has_country_flag = ireland_constitutional_liaison_caps_enforced
+		check_variable = { ireland_foreign_access_pressure < 65 }
+	}
+}
+
+ireland_focus_tree_cosgrave_settlement = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_cosgrave_settlement_ready
+		has_country_flag = ireland_route_constitutional_opposition
+		has_country_flag = ireland_all_island_settlement_proclaimed
+		slopx_ireland_has_northern_agreement = yes
+		NOT = { has_country_flag = ireland_partition_settlement_failed }
+	}
+}
+
+ireland_focus_tree_backchannel_without_bases = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		OR = {
+			has_country_flag = ireland_constitutional_backchannel_without_bases_ready
+			has_country_flag = ireland_achievement_backchannel_without_bases_ready
+		}
+		has_country_flag = ireland_constitutional_liaison_caps_enforced
+		check_variable = { ireland_foreign_access_pressure < 55 }
+	}
+}
+
+ireland_focus_tree_labour_without_dependency = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_labour_without_dependency_ready
+		has_country_flag = ireland_route_labour_social_republic
+		check_variable = { ireland_foreign_access_pressure < 55 }
+	}
+}
+
+ireland_focus_tree_red_shannon = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_red_shannon_ready
+		has_country_flag = ireland_route_labour_social_republic
+		has_country_flag = ireland_labour_cooperative_supply_front_ready
+		check_variable = { ireland_foreign_access_pressure < 55 }
+	}
+}
+
+ireland_focus_tree_workers_cross_the_border = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_workers_cross_the_border_ready
+		has_country_flag = ireland_cross_border_labour_council_visible
+		check_variable = { ireland_partition_pressure < 75 }
+	}
+}
+
+ireland_focus_tree_front_without_masters = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_front_without_masters_ready
+		has_country_flag = ireland_labour_democratic_return_verified
+		check_variable = { ireland_foreign_access_pressure < 55 }
+	}
+}
+
+ireland_focus_tree_corporate_march = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_corporate_march_ready
+		has_country_flag = ireland_route_blueshirt_corporatist
+		has_country_flag = ireland_chamber_state_consolidated
+	}
+}
+
+ireland_focus_tree_oduffy_against_the_reds = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_oduffy_against_the_reds_ready
+		has_country_flag = ireland_route_blueshirt_corporatist
+		has_country_flag = ireland_oduffy_returned
+	}
+}
+
+ireland_focus_tree_chambers_after_the_chief = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_chambers_after_the_chief_ready
+		has_country_flag = ireland_corporate_chambers_created
+		NOT = { has_country_flag = ireland_oduffy_returned }
+	}
+}
+
+ireland_focus_tree_blueshirt_brittle_victory = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_blueshirt_brittle_victory_ready
+		has_country_flag = ireland_route_blueshirt_corporatist
+		OR = {
+			has_country_flag = ireland_partition_settlement_failed
+			check_variable = { ireland_partition_pressure > 74 }
+		}
+	}
+}
+
+ireland_focus_tree_ira_absorbed_not_broken = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_ira_absorbed_not_broken_ready
+		has_country_flag = ireland_route_ira_republic
+		check_variable = { ireland_constitutional_authority > 29 }
+	}
+}
+
+ireland_focus_tree_plan_kathleen_exposed = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_plan_kathleen_exposed_ready
+		OR = {
+			has_country_flag = ireland_courier_exposure_documented
+			NOT = { has_country_flag = ireland_compromised_republican_network }
+		}
+	}
+}
+
+ireland_focus_tree_burn_the_contact = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_burn_the_contact_ready
+		NOT = { has_country_flag = ireland_compromised_republican_network }
+		check_variable = { ireland_foreign_access_pressure < 65 }
+	}
+}
+
+ireland_focus_tree_revolutionary_all_island = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_revolutionary_all_island_ready
+		has_country_flag = ireland_route_ira_republic
+		has_country_flag = ireland_revolutionary_republic_declared
+		slopx_ireland_has_northern_regional_control = yes
+		NOT = { has_country_flag = ireland_compromised_republican_network }
+	}
+}
+
+ireland_focus_tree_compact_of_small_nations = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_compact_of_small_nations_ready
+		has_country_flag = ireland_hidden_atlantic_compact_revealed
+		NOT = { is_in_faction = yes }
+		check_variable = { ireland_foreign_access_pressure < 55 }
+	}
+}
+
+ireland_focus_tree_atlantic_compact = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_atlantic_compact_ready
+		has_country_flag = ireland_atlantic_neutral_compact_conference
+		NOT = { is_in_faction = yes }
+	}
+}
+
+ireland_focus_tree_conference_of_neutrals = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_conference_of_neutrals_ready
+		NOT = { is_in_faction = yes }
+		check_variable = { ireland_foreign_access_pressure < 45 }
+	}
+}
+
+ireland_focus_tree_common_platform = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_common_platform_ready
+		has_country_flag = ireland_common_platform_minority_charter_signed
+		check_variable = { ireland_partition_pressure < 65 }
+	}
+}
+
+ireland_focus_tree_restoration_without_a_crown = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_restoration_without_a_crown_ready
+		has_country_flag = ireland_hidden_civic_revealed
+		NOT = { has_country_flag = ireland_hidden_corrupted_restoration_failure }
+		NOT = { has_cosmetic_tag = IRE_ALL_ISLAND }
+	}
+}
+
+ireland_focus_tree_cultural_epilogue = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_cultural_epilogue_ready
+		has_country_flag = ireland_hidden_civic_revealed
+		check_variable = { ireland_foreign_access_pressure < 55 }
+	}
+}
+
+ireland_focus_tree_watchmen_of_the_west = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_watchmen_of_the_west_ready
+		has_country_flag = ireland_restored_civilian_rule
+		NOT = { has_country_flag = ireland_permanent_security_state }
+		check_variable = { ireland_emergency_preparedness > 64 }
+	}
+}
+
+ireland_focus_tree_no_crown_no_courier = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_no_crown_no_courier_ready
+		NOT = { has_country_flag = ireland_hidden_corrupted_restoration_failure }
+		NOT = { has_country_flag = ireland_compromised_republican_network }
+	}
+}
+
+ireland_focus_tree_amnesty_before_uprising = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_amnesty_before_uprising_ready
+		has_country_flag = ireland_border_cells_stood_down
+		NOT = { has_country_flag = ireland_army_council_reconciliation_failed }
+	}
+}
+
+ireland_focus_tree_every_county_accounted = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_every_county_accounted_ready
+		has_country_flag = ireland_all_island_settlement_proclaimed
+		has_country_flag = ireland_northern_integration_complete
+		slopx_ireland_has_northern_regional_control = yes
+		owns_state = 119
+	}
+}
+
+ireland_focus_tree_reconciled_island = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_reconciled_island_ready
+		has_country_flag = ireland_northern_integration_complete
+		check_variable = { ireland_partition_pressure < 65 }
+	}
+}
+
+ireland_focus_tree_no_claim_ladder = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_no_claim_ladder_ready
+		has_country_flag = ireland_northern_settlement_prepared
+		has_country_flag = ireland_all_island_settlement_proclaimed
+		has_country_flag = ireland_northern_integration_complete
+		check_variable = { ireland_northern_integration_stage > 4 }
+	}
+}
+
+ireland_focus_tree_no_fairy_dust = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_achievement_no_fairy_dust_ready
+		has_country_flag = ireland_northern_integration_complete
+		has_country_flag = ireland_atlantic_neutral_compact_conference
+		NOT = { has_country_flag = ireland_partition_settlement_failed }
+	}
+}
+
+ireland_bop_constitutional_mastery = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		ire_bop_has_state_authority = yes
+		ire_bop_is_stable_institutional = yes
+		OR = {
+			has_country_flag = ireland_route_historical_neutrality
+			has_country_flag = ireland_route_constitutional_opposition
+		}
+		check_variable = { ireland_constitutional_authority > 69 }
+		check_variable = { ireland_foreign_access_pressure < 55 }
+		NOT = { has_country_flag = ireland_permanent_security_state }
+		NOT = { has_country_flag = ireland_hidden_corrupted_restoration_failure }
+	}
+}
+
+ireland_bop_thread_the_emergency = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_route_historical_neutrality
+		ire_bop_is_mode_historical_emergency = yes
+		ire_bop_is_stable_institutional = yes
+		check_variable = { ireland_emergency_preparedness > 74 }
+		check_variable = { ireland_foreign_access_pressure < 65 }
+		NOT = { ire_bop_is_pressure_dominant = yes }
+		NOT = { has_country_flag = ireland_permanent_security_state }
+	}
+}
+
+ireland_bop_bargain_without_bases = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_route_constitutional_opposition
+		has_country_flag = ireland_anti_basing_vote_recorded
+		ire_bop_is_mode_commonwealth_cooperation = yes
+		ire_bop_is_stable_institutional = yes
+		check_variable = { ireland_constitutional_authority > 49 }
+		check_variable = { ireland_foreign_access_pressure < 45 }
+		NOT = { is_in_faction = yes }
+		NOT = { ire_bop_is_pressure_dominant = yes }
+	}
+}
+
+ireland_bop_congress_without_clientage = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_route_labour_social_republic
+		ire_bop_is_mode_labour_republic = yes
+		OR = {
+			ire_bop_is_center_contested = yes
+			ire_bop_is_stable_institutional = yes
+		}
+		check_variable = { ireland_constitutional_authority > 39 }
+		check_variable = { ireland_foreign_access_pressure < 45 }
+		NOT = { is_in_faction = yes }
+		NOT = { ire_bop_is_pressure_dominant = yes }
+	}
+}
+
+ireland_bop_guard_on_a_leash = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_route_blueshirt_corporatist
+		has_country_flag = ireland_guard_discipline_recorded
+		ire_bop_is_mode_blueshirt_corporate = yes
+		ire_bop_is_stable_institutional = yes
+		check_variable = { ireland_constitutional_authority > 49 }
+		check_variable = { ireland_emergency_preparedness > 54 }
+		NOT = { ire_bop_is_pressure_dominant = yes }
+	}
+}
+
+ireland_bop_front_over_council = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_route_ira_republic
+		has_country_flag = ireland_republican_front_conference_recorded
+		ire_bop_is_mode_republican_underground = yes
+		ire_bop_is_stable_institutional = yes
+		check_variable = { ireland_constitutional_authority > 39 }
+		check_variable = { ireland_partition_pressure < 65 }
+		NOT = { has_country_flag = ireland_compromised_republican_network }
+		NOT = { ire_bop_is_pressure_dominant = yes }
+	}
+}
+
+ireland_bop_restore_civilian_rule = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_hidden_directorate_revealed
+		has_country_flag = ireland_restored_civilian_rule
+		OR = {
+			ire_bop_is_mode_emergency_directorate = yes
+			ire_bop_is_mode_historical_emergency = yes
+		}
+		ire_bop_is_stable_institutional = yes
+		check_variable = { ireland_constitutional_authority > 54 }
+		check_variable = { ireland_emergency_preparedness > 54 }
+		NOT = { has_country_flag = ireland_permanent_security_state }
+		NOT = { has_country_flag = ireland_hidden_corrupted_restoration_failure }
+	}
+}
+
+ireland_focus_tree_cabinet_over_emergency = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_route_historical_neutrality
+		has_country_flag = ireland_major_seen_emergency_powers_sunset_review
+		check_variable = { ireland_emergency_preparedness > 74 }
+		check_variable = { ireland_foreign_access_pressure < 65 }
+		OR = {
+			ire_bop_is_mode_historical_emergency = yes
+			has_country_flag = ireland_restored_civilian_rule
+		}
+		NOT = { has_country_flag = ireland_permanent_security_state }
+		NOT = { ire_bop_is_pressure_dominant = yes }
+	}
+}
+
+ireland_focus_tree_no_one_commands_the_council = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_route_ira_republic
+		has_country_flag = ireland_republican_front_conference_recorded
+		has_country_flag = ireland_achievement_ira_absorbed_not_broken_ready
+		check_variable = { ireland_constitutional_authority > 39 }
+		check_variable = { ireland_partition_pressure < 65 }
+		NOT = { has_country_flag = ireland_compromised_republican_network }
+		NOT = { ire_bop_is_pressure_dominant = yes }
+	}
+}
+
+ireland_focus_tree_events_of_the_island = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		slopx_ireland_is_route_locked = yes
+		ire_bop_has_state_authority = yes
+		has_country_flag = ireland_major_seen_late_game_route_epilogue
+		has_country_flag = ireland_achievement_no_fairy_dust_ready
+		check_variable = { ireland_major_events_seen > 24 }
+		check_variable = { ireland_flavour_events_seen > 24 }
+		NOT = { has_country_flag = ireland_partition_settlement_failed }
+	}
+}
+
+ireland_focus_tree_balanced_authority = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_all_island_settlement_proclaimed
+		has_country_flag = ireland_northern_integration_complete
+		slopx_ireland_has_northern_regional_control = yes
+		ire_bop_is_stable_institutional = yes
+		slopx_ireland_has_observer_legitimacy = yes
+		check_variable = { ireland_constitutional_authority > 49 }
+		check_variable = { ireland_partition_pressure < 55 }
+		NOT = { has_country_flag = ireland_partition_settlement_failed }
+		NOT = { ire_bop_is_pressure_dominant = yes }
+	}
+}
+
+ireland_focus_tree_flavour_coastwatch_without_scandal = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_flavour_seen_coastal_post_rotation
+		check_variable = { ireland_flavour_ports_tasks_completed > 2 }
+		check_variable = { ireland_coastwatch_readiness > 3 }
+		check_variable = { ireland_foreign_access_pressure < 55 }
+		NOT = { has_country_flag = ireland_flavour_sponsor_exposure_memory }
+		NOT = { slopx_ireland_has_foreign_access_crisis = yes }
+	}
+}
+
+ireland_focus_tree_flavour_schools_without_corruption = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_hidden_civic_revealed
+		has_country_flag = ireland_flavour_seen_civic_restoration_school_prize
+		has_country_flag = ireland_flavour_seen_schoolbook_settlement_chapter
+		check_variable = { ireland_flavour_culture_tasks_completed > 1 }
+		check_variable = { ireland_constitutional_authority > 49 }
+		NOT = { has_country_flag = ireland_hidden_corrupted_restoration_failure }
+		NOT = { has_country_flag = ireland_permanent_security_state }
+	}
+}
+
+ireland_focus_tree_flavour_winter_fuel_limited_powers = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_flavour_seen_winter_heating_emergency
+		check_variable = { ireland_flavour_supply_tasks_completed > 1 }
+		check_variable = { ireland_store_readiness > 2 }
+		check_variable = { ireland_constitutional_authority > 39 }
+		NOT = { has_country_flag = ireland_permanent_security_state }
+		NOT = { ire_bop_is_pressure_dominant = yes }
+	}
+}
+
+ireland_focus_tree_flavour_safeguards_without_coercion = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_common_platform_minority_charter_signed
+		has_country_flag = ireland_flavour_seen_civic_restoration_minority_guarantee_meeting
+		check_variable = { ireland_flavour_northern_tasks_completed > 1 }
+		check_variable = { ireland_partition_pressure < 65 }
+		NOT = { has_country_flag = ireland_partition_settlement_failed }
+		NOT = { has_country_flag = ireland_route_blueshirt_corporatist }
+		NOT = { has_country_flag = ireland_route_ira_republic }
+	}
+}
+
+ireland_focus_tree_flavour_merchant_marine_memory = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_route_historical_neutrality
+		has_country_flag = ireland_flavour_seen_merchant_marine_memorial_vote
+		has_country_flag = ireland_achievement_no_one_gets_the_ports_ready
+		NOT = { is_in_faction = yes }
+		check_variable = { ireland_foreign_access_pressure < 45 }
+		check_variable = { ireland_emergency_preparedness > 64 }
+	}
+}
+
+ireland_bop_civic_revival_no_capture = {
+	possible = { game_rules_allow_achievements = yes original_tag = IRE has_start_date < 1936.01.02 }
+	happened = {
+		has_country_flag = ireland_hidden_civic_revealed
+		ire_bop_is_mode_civic_cultural = yes
+		ire_bop_is_stable_institutional = yes
+		check_variable = { ireland_constitutional_authority > 49 }
+		check_variable = { ireland_foreign_access_pressure < 55 }
+		check_variable = { ireland_partition_pressure < 65 }
+		NOT = { has_country_flag = ireland_hidden_corrupted_restoration_failure }
+		NOT = { has_country_flag = ireland_compromised_republican_network }
+		NOT = { has_country_flag = ireland_permanent_security_state }
+	}
+}

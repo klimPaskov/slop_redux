@@ -1,18 +1,20 @@
 # Ireland BOP planning state
 
-Feature slug: `ireland_focus_tree_bop`
+Feature slug: `ireland_focus_tree`
+
+Retained source label: `ireland_focus_tree_bop`
 
 Parent feature slug: `ireland_focus_tree`
 
 Feature name: Ireland Balance of Power addendum for the comprehensive national focus tree
 
-Canonical package status: treated as already implemented by the user.
+Canonical package status: BOP is folded into `docs/specs/ireland_focus_tree/`.
 
-Planning status: complete design package, ready for implementation against the existing Ireland implementation.
+Planning status: retained source-history package. Use the canonical top-level package for implementation.
 
 ## Source of truth
 
-This package is a separate addendum. Its spec files should either be copied under `docs/specs/ireland_focus_tree_bop/` or merged into the existing Ireland spec folder under a clearly named BOP addendum file. Do not overwrite the canonical Ireland package. Do not remove the four existing mechanics.
+This subtree is not a separate addendum package for implementation. Its accepted facts have been copied into the canonical Ireland BOP spec, matrices, and implementation handoffs. Keep it only as audit trail and source history inside `docs/specs/ireland_focus_tree/`.
 
 ## Core ruling
 
@@ -20,6 +22,6 @@ The BOP is the visible internal authority struggle. It should sit above Constitu
 
 Use one Ireland BOP object with route specific active side pairs. Do not create several simultaneous BOP objects for Ireland unless a later implementation test proves the UI handles that cleanly.
 
-## Mandatory open blocker
+## Improvement loop status
 
-`hoi4_improvement_loop_planner` could not be spawned in this environment. The blocker is documented under `plans/ireland_bop_improvement_loop_blocker.md`.
+The Ireland focus tree closure `hoi4_improvement_loop_planner` pass was run with `fork_context=false` on 2026-07-08. Current closure work is tracked in `docs/plans/ireland_focus_tree/improvement_loop_closure_readiness_2026-07-08.md` and its parent resolution notes.
