@@ -289,7 +289,6 @@ Do not claim completion when:
 - localisation is missing
 - AI behavior is missing
 - assets are missing, unwired, or undocumented
-- event logs, docs, spreadsheet rows, tracking files, or manifests are stale
 - any requested route, country, decision, mission, achievement, event chain, focus path, custom progression milestone, researched text or audio package, or asset is missing
 - a fallback or simplification was used without explicit approval
 
@@ -317,22 +316,13 @@ Subagent plans, improvement addenda, audit follow-up notes, blocked reports, and
 
 The plans folder is a working area. The specs folder is the source-of-truth design area. If an accepted plan changes the feature design, the main agent should merge it into the relevant spec or report that it remains queued.
 
-## 6. Event Integration
-
-For event implementation, use the repo skill `hoi4-events`.
-
-1. Keep event IDs, namespaces, entry event root format, file placement, and trigger patterns consistent with the existing mod.
-2. Wire event script, category registration or trigger hooks, auto-firing where used, localisation/name mappings, images, event log actor mapping, and event details window content together when the feature requires them.
-3. If the event has custom progression or milestone tracking, terminal branches, or text and audio packages, wire the related log or tracking entries, source-researched text or audio integration, gameplay files, and localisation in the same change.
-4. Keep gameplay files, docs, spreadsheets, presentations, UI assets, and any other details aligned.
-
-## 7. Focus Trees and Large Content
+## 6. Focus Trees and Large Content
 
 For national focus work, use `hoi4-focus-trees` before editing. That skill is the detailed source of truth for focus-tree depth, reward variety, route logic, AI, localisation, icons, ideas, country identity changes, focus-decision integration, route coverage proof, and completion standards.
 
 Before claiming focus-tree completion, use the appropriate audit route from `hoi4-subagents` if this repo uses audit subagents. If a tree works but feels shallow, duplicated, generic, or disconnected from gameplay, use `hoi4-improvement-loop` and consider a plan-mode pass from `hoi4_improvement_loop_planner` if this repo uses one.
 
-## 8. Agent-generated Visual Assets
+## 7. Agent-generated Visual Assets
 
 For final visual assets, use `hoi4-feature-assets`. That skill is the detailed source of truth for image generation rules.
 
@@ -340,7 +330,7 @@ For animated visual assets, use `hoi4-frame-animation` in addition to `hoi4-feat
 
 Use `hoi4-subagents` for detailed asset subagent routing. Asset subagents create source files, processed PNGs, DDS files, manifests, and handoff notes. The main agent owns `.gfx` edits, gameplay references, localisation references, documentation alignment, and final validation.
 
-## 9. Skill Maintenance
+## 8. Skill Maintenance
 
 Use skills actively. Skills are not only for cleanup at the end of a task. They are the agent's memory for repeated workflows, project-specific patterns, hard-won fixes, and instructions that should not be rediscovered every time.
 
@@ -363,7 +353,7 @@ Rules:
 9. During large multi-feature runs, review skill gaps after each completed feature or shared system. Update or create skills before starting the next feature if something reusable was learned.
 10. Report which skills were used, created, or updated at the end of each task.
 
-## 10. Git
+## 9. Git
 
 After completing each meaningful plan, create a Git commit.
 
