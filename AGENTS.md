@@ -2,25 +2,6 @@
 
 This file describes how you should read, edit and extend the `Slop Redux` codebase.
 
-## Project Identity
-
-Project identity values for Slop Redux agents:
-
-Use these values consistently in project files:
-
-- Mod name: `Slop Redux`
-- Script prefix / namespace: `slopx`
-
-### Fixed shared paths and package references
-
-These values are already filled in this guide and should normally be left as-is:
-
-- Offline Paradox wiki snapshot: `paradox_wiki/`
-- Local vanilla Hearts of Iron IV install: `C:/Program Files (x86)/Steam/steamapps/common/Hearts of Iron IV`
-- Default documentation folder: `docs/`
-- Generic HOI4 skills from `.agents/skills/`: `hoi4-events`, `hoi4-feature-planning`, `hoi4-feature-assets`, `hoi4-frame-animation`, `hoi4-text-audio-research`, `hoi4-subagents`, `hoi4-improvement-loop`, `hoi4-focus-trees`, and `hoi4-decisions-missions`
-- Generic HOI4 subagents from `.codex/agents/`: `hoi4_repo_explorer`, `hoi4_feature_completion_auditor`, `hoi4_scripted_system_architect`, `hoi4_localisation_auditor`, `hoi4_focus_tree_auditor`, `hoi4_decision_mission_auditor`, `hoi4_country_package_auditor`, `hoi4_improvement_loop_planner`, `hoi4_asset_source_researcher`, `hoi4_generated_feature_art`, `hoi4_icon_artist`, `hoi4_quote_remark_researcher`, `hoi4_audio_researcher`, `hoi4_documentation_curator`, `hoi4_spreadsheet_doc_worker`, and `hoi4_skill_maintainer`
-
 ---
 
 ## 0. Required Reading Before Any Change
