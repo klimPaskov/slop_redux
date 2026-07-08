@@ -1,0 +1,6 @@
+# HOI4 / local generated clutter
+*.log
+.DS_Store
+Thumbs.db
+/tmp/
+/.cwtools-cache/
