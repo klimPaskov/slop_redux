@@ -5,7 +5,7 @@ ideas = {
 			allowed = { original_tag = IRE }
 			modifier = {
 				stability_factor = -0.04
-				division_organization_factor = -0.03
+				army_org_factor = -0.03
 			}
 		}
 
@@ -22,8 +22,8 @@ ideas = {
 			picture = ireland_treaty_ports
 			allowed = { original_tag = IRE }
 			modifier = {
-				navy_speed_factor = -0.05
-				convoy_defence_factor = -0.08
+				naval_speed_factor = -0.05
+				convoy_escort_efficiency = -0.08
 				enemy_army_bonus_air_superiority_factor = 0.05
 			}
 		}

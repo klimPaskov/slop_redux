@@ -1,4 +1,9 @@
 slopx_ireland_mechanics = {
+	schema = {
+		any_key = yes
+		data = fixed_point
+	}
+
 	authority_start = 45
 	preparedness_start = 12
 	partition_pressure_start = 34
@@ -8,6 +13,11 @@ slopx_ireland_mechanics = {
 }
 
 slopx_ireland_delta = {
+	schema = {
+		any_key = yes
+		data = fixed_point
+	}
+
 	small_gain = 4
 	medium_gain = 8
 	large_gain = 12
@@ -17,6 +27,11 @@ slopx_ireland_delta = {
 }
 
 slopx_ireland_threshold = {
+	schema = {
+		any_key = yes
+		data = fixed_point
+	}
+
 	authority_low = 29
 	authority_steady = 49
 	authority_high = 69
@@ -33,6 +48,11 @@ slopx_ireland_threshold = {
 }
 
 slopx_ireland_costs = {
+	schema = {
+		any_key = yes
+		data = fixed_point
+	}
+
 	command_small = 15
 	command_medium = 25
 	command_large = 40
@@ -54,6 +74,11 @@ slopx_ireland_costs = {
 }
 
 slopx_ireland_durations = {
+	schema = {
+		any_key = yes
+		data = fixed_point
+	}
+
 	short_mission = 35
 	medium_mission = 60
 	long_mission = 90

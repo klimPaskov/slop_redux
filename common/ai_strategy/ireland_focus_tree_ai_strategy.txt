@@ -12,8 +12,16 @@ ireland_ai_historical_sovereign_neutrality = {
 	ai_strategy = { type = alliance id = "GER" value = @ireland_ai_weight_block }
 	ai_strategy = { type = alliance id = "SOV" value = @ireland_ai_weight_block }
 	ai_strategy = { type = alliance id = "ITA" value = @ireland_ai_weight_block }
-	ai_strategy = { type = equipment_production_factor id = infantry_equipment value = @ireland_ai_weight_medium }
-	ai_strategy = { type = equipment_production_factor id = support_equipment value = @ireland_ai_weight_light }
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry_equipment
+		value = @ireland_ai_weight_medium
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = support_equipment
+		value = @ireland_ai_weight_light
+	}
 	ai_strategy = { type = fuel_buffer value = @ireland_ai_weight_medium }
 }
 
@@ -26,7 +34,11 @@ ireland_ai_constitutional_guarded_britain = {
 	ai_strategy = { type = befriend id = ENG value = @ireland_ai_weight_medium }
 	ai_strategy = { type = alliance id = "GER" value = @ireland_ai_weight_block }
 	ai_strategy = { type = alliance id = "SOV" value = @ireland_ai_weight_block }
-	ai_strategy = { type = equipment_production_factor id = infantry_equipment value = @ireland_ai_weight_light }
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry_equipment
+		value = @ireland_ai_weight_light
+	}
 }
 
 ireland_ai_labour_democratic_cooperative = {
@@ -49,8 +61,16 @@ ireland_ai_blueshirt_corporatist_pressure = {
 	ai_strategy = { type = antagonize id = SOV value = @ireland_ai_weight_heavy }
 	ai_strategy = { type = diplo_action_desire id = ITA target = improve_relation value = @ireland_ai_weight_medium }
 	ai_strategy = { type = prepare_for_war id = ENG value = @ireland_ai_weight_light }
-	ai_strategy = { type = equipment_production_factor id = infantry_equipment value = @ireland_ai_weight_heavy }
-	ai_strategy = { type = equipment_production_factor id = artillery_equipment value = @ireland_ai_weight_light }
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry_equipment
+		value = @ireland_ai_weight_heavy
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = artillery_equipment
+		value = @ireland_ai_weight_light
+	}
 }
 
 ireland_ai_ira_underground_crisis = {
@@ -60,8 +80,16 @@ ireland_ai_ira_underground_crisis = {
 
 	ai_strategy = { type = antagonize id = ENG value = @ireland_ai_weight_medium }
 	ai_strategy = { type = prepare_for_war id = ENG value = @ireland_ai_weight_medium }
-	ai_strategy = { type = equipment_production_factor id = infantry_equipment value = @ireland_ai_weight_heavy }
-	ai_strategy = { type = equipment_production_factor id = support_equipment value = @ireland_ai_weight_light }
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry_equipment
+		value = @ireland_ai_weight_heavy
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = support_equipment
+		value = @ireland_ai_weight_light
+	}
 }
 
 ireland_ai_ira_wartime_german_contact = {
@@ -98,7 +126,11 @@ ireland_ai_emergency_preparedness = {
 
 	ai_strategy = { type = build_building id = anti_air_building value = @ireland_ai_weight_light }
 	ai_strategy = { type = build_building id = coastal_bunker value = @ireland_ai_weight_light }
-	ai_strategy = { type = equipment_production_factor id = infantry_equipment value = @ireland_ai_weight_medium }
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry_equipment
+		value = @ireland_ai_weight_medium
+	}
 	ai_strategy = { type = fuel_buffer value = @ireland_ai_weight_medium }
 }
 
@@ -349,7 +381,11 @@ ireland_ai_bop_pressure_recovery = {
 	abort_when_not_enabled = yes
 
 	ai_strategy = { type = avoid_starting_wars value = @ireland_ai_weight_heavy }
-	ai_strategy = { type = equipment_production_factor id = support_equipment value = @ireland_ai_weight_medium }
+	ai_strategy = {
+		type = equipment_production_factor
+		id = support_equipment
+		value = @ireland_ai_weight_medium
+	}
 	ai_strategy = { type = fuel_buffer value = @ireland_ai_weight_light }
 	ai_strategy = { type = alliance id = "GER" value = @ireland_ai_weight_block }
 	ai_strategy = { type = alliance id = "ITA" value = @ireland_ai_weight_block }
@@ -368,7 +404,11 @@ ireland_ai_bop_stable_institutions = {
 
 	ai_strategy = { type = avoid_starting_wars value = @ireland_ai_weight_medium }
 	ai_strategy = { type = build_building id = infrastructure value = @ireland_ai_weight_light }
-	ai_strategy = { type = equipment_production_factor id = infantry_equipment value = @ireland_ai_weight_light }
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry_equipment
+		value = @ireland_ai_weight_light
+	}
 }
 
 ireland_ai_bop_commonwealth_dependency_alarm = {
@@ -394,7 +434,11 @@ ireland_ai_bop_directorate_restoration = {
 	abort_when_not_enabled = yes
 
 	ai_strategy = { type = avoid_starting_wars value = @ireland_ai_weight_heavy }
-	ai_strategy = { type = equipment_production_factor id = support_equipment value = @ireland_ai_weight_medium }
+	ai_strategy = {
+		type = equipment_production_factor
+		id = support_equipment
+		value = @ireland_ai_weight_medium
+	}
 	ai_strategy = { type = build_building id = anti_air_building value = @ireland_ai_weight_light }
 }
 

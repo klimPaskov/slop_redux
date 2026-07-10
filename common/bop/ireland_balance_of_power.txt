@@ -269,7 +269,7 @@ IRE_state_authority_bop = {
 			modifier = {
 				stability_factor = 0.05
 				trade_opinion_factor = 0.10
-				division_organization_factor = -0.03
+				army_org_factor = -0.03
 			}
 		}
 	}
@@ -283,7 +283,7 @@ IRE_state_authority_bop = {
 			min = @ire_bop_right_moderate_min
 			max = @ire_bop_right_moderate_max
 			modifier = {
-				convoy_defence_factor = 0.04
+				convoy_escort_efficiency = 0.04
 				consumer_goods_factor = -0.01
 			}
 		}
@@ -293,7 +293,7 @@ IRE_state_authority_bop = {
 			min = @ire_bop_right_high_min
 			max = @ire_bop_right_high_max
 			modifier = {
-				convoy_defence_factor = 0.07
+				convoy_escort_efficiency = 0.07
 				consumer_goods_factor = -0.02
 				stability_factor = -0.03
 			}
@@ -304,7 +304,7 @@ IRE_state_authority_bop = {
 			min = @ire_bop_right_extreme_min
 			max = @ire_bop_right_extreme_max
 			modifier = {
-				convoy_defence_factor = 0.10
+				convoy_escort_efficiency = 0.10
 				consumer_goods_factor = -0.03
 				stability_factor = -0.06
 			}

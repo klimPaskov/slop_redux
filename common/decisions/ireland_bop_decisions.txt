@@ -27,12 +27,6 @@
 @ire_bop_northern_timeout = 150
 
 ireland_state_authority_bop_category = {
-	icon = GFX_decision_category_ireland_bop_authority
-	allowed = { original_tag = IRE }
-	visible = { ire_bop_has_state_authority = yes }
-	priority = 11
-	visible_when_empty = yes
-
 	ire_bop_public_confidence_drive = {
 		icon = GFX_decision_ireland_dail_confidence
 		allowed = { original_tag = IRE }
