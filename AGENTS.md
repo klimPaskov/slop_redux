@@ -74,6 +74,37 @@ Use repo skills as required implementation guidance, not as optional notes.
 - If this repository installs an additional MTTH or weighted-timing skill, use it when MTTH logic or weighted timing would reduce clutter or make AI and release logic clearer. Otherwise centralize weighted timing logic in the relevant event, decision, or scripted-system helpers.
 - Use `hoi4-subagents` when coordinating custom Codex subagents, routing bounded work, or defining parent/subagent ownership boundaries.
 - Use `hoi4-improvement-loop` when an implemented or planned mechanic needs recursive depth expansion, spec addenda, improvement handoffs, or checks for shallow, duplicated, generic, disconnected, or low-impact content.
+- Use `hoi4-mcp-workbench` when focus-tree, event-chain, scripted-GUI, or map work benefits from shared inspection, rendering, comparison, or rewriting.
+
+### HOI4 MCP workflow
+
+Install and configure the server once per machine:
+
+```powershell
+npm install --global hoi4-agent-tools@1.2.0
+hoi4-agent-tools-setup --init `
+  --mod-root "C:\Users\<you>\OneDrive\Documents\Paradox Interactive\Hearts of Iron IV\mod" `
+  --game-root "C:\Program Files (x86)\Steam\steamapps\common\Hearts of Iron IV"
+hoi4-agent-tools-setup --print-client-config
+```
+
+Add the printed client entry to the coding agent, reload it, call `hoi4.mods`,
+and use the returned workspace ID. Agents choose MCP calls as part of the normal
+repository workflow.
+
+- Focus trees: `hoi4.focus_inspect`, `hoi4.focus_render`, and
+  `hoi4.focus_rewrite`.
+- Event chains: begin with `hoi4.event_inspect` in `scan` or `roots` mode,
+  record its revision, narrow with `trace`, `explain_path`, `state_flow`, or
+  `impact`, edit normal source files, then run `hoi4.event_compare` using that
+  revision as `before`, `lint`, and a focused `hoi4.event_render` view. Event
+  tools are read-only.
+- Scripted GUI: `hoi4.gui_inspect`, `hoi4.gui_render`, and `hoi4.gui_rewrite`.
+- Maps: `hoi4.map_inspect`, `hoi4.map_render`, and `hoi4.map_rewrite`.
+
+Use bounded selectors, depth, and node limits. Read linked JSON only when the
+compact result lacks enough evidence. MCP complements the wiki, vanilla
+references, repo skills, and subagent handoffs without replacing them.
 
 ### Subagents
 

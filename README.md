@@ -55,17 +55,27 @@ Then enable the mod in the Paradox Launcher.
 
 ## Development setup
 
-This mod is developed with an agentic HOI4 modding workflow.
+This mod uses the repo instructions and skills together with HOI4 Agent Tools.
+Start the coding agent from this repository root.
 
-Recommended tools:
+1. Install Node.js 22 or 24.
+2. Install and configure the MCP server:
 
-* Git
-* Codex or another coding agent
-* Hearts of Iron IV in debug mode
-* A structured `AGENTS.md` file
-* Project-specific skills and planning documents
+   ```powershell
+   npm install --global hoi4-agent-tools@1.2.0
+   hoi4-agent-tools-setup --init `
+     --mod-root "C:\Users\<you>\OneDrive\Documents\Paradox Interactive\Hearts of Iron IV\mod" `
+     --game-root "C:\Program Files (x86)\Steam\steamapps\common\Hearts of Iron IV"
+   hoi4-agent-tools-setup --print-client-config
+   ```
 
-The goal is to keep the project organized enough that AI agents can work on it without constantly rediscovering the same patterns.
+3. Add the printed client entry to the coding agent and reload it.
+4. Call `hoi4.mods` and use the returned Slop Redux workspace ID.
+
+Agents can inspect, render, create, and clean focus trees, scripted GUIs, and
+maps through MCP. For event chains they inspect a bounded route, edit normal
+mod files, then compare, lint, and render the result. Large artifacts stay in
+linked MCP resources so the rest of the skills and subagents keep their context.
 
 ## Contributing
 
