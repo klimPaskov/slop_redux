@@ -1,85 +1,49 @@
-# Ireland decision and mission implementation prompt
+# Ireland Focus Tree Decision and Mission Implementation Prompt
 
 Feature slug: `ireland_focus_tree`
 
-Use this prompt with `hoi4-decisions-missions` after the focus path implementation is ready to wire decisions. Working labels are not final localisation.
+Use this prompt after the Part 7 source-of-truth cleanup. Read the canonical index, Parts 1 through 6, the decision and mission map, event family map, lifecycle matrix, AI matrix and project rules before implementation.
 
-## Required sources
+## Objective
 
-Read the full Ireland spec package, especially:
+Implement the full Ireland decision and mission package without reducing it to a political-power store. Preserve the thirteen categories, 140 decision actions, 54 mission families, named map regions, dynamic costs, active caps, reserved critical slots, partial success, failure, recovery and cleanup.
 
-- `specs/ireland_focus_tree_spec_part_5_decisions_missions.md`
-- `specs/ireland_focus_tree_spec_part_6_reunification_formables.md`
-- `specs/ireland_focus_tree_spec_part_7_mechanics_presentation.md`
-- `matrices/ireland_focus_tree_decision_mission_matrix.md`
+## Fixed category caps
 
-Follow `AGENTS.md`, `hoi4-decisions-missions`, `hoi4-focus-trees`, and `hoi4-events`. Events are required for mission outcomes, crisis chains, BOP thresholds, and cleanup.
+- National Settlement and Government: 2
+- Elections and Coalition Formation: 2
+- Organised Society: 2
+- Cultural and Archival Work: 2
+- Radical and Underground Transition: 2
+- National Provision: 3 routine, 4 in national emergency
+- National Readiness: 3 routine, 4 during invasion danger or war
+- Neutrality and Incidents: 2 routine, 3 during direct incident
+- Foreign Leverage and Agreements: 2
+- Northern Settlement: 3
+- Occupation and Integration: 3
+- Regional Orders and External Ambitions: 2
+- Postwar Settlement: 3
 
-## Must implement
+Global active caps remain 8, 10 and conditional 12. Critical component, invasion, constitutional, occupation and route-review objectives reserve slots.
 
-- Constitutional Authority category with public order, reconciliation, constitutional campaign, emergency powers review, and route authority maintenance.
-- Emergency Preparedness category with LOP, reserve, stockpile, port garrison, air warning, and G2 mission families.
-- Ports and Coast category with transfer, port fortification, access rules, naval stores, and patrol decisions.
-- Economic Recovery category with rural relief, native factory, Shannon grid, sugar beet, turf, port economy, and emergency stores projects.
-- Foreign Access category with sponsor recognition, aid corridor, foreign liaison, anti dependency, and expose rival patronage decisions.
-- Partition Settlement category with survey, committees, observer plebiscite, boundary commission, border incident, uprising, ultimatum, and occupation stabilization missions.
-- Post Settlement Integration category with police transition, local administration, minority rights, frontier security, infrastructure integration, and constitutional integration.
+## Costs and objectives
 
-## Cost and mission rules
+Use Action Burden 1 to 10. Use political power only for genuinely political or administrative work. Use equipment, manpower, XP, fuel, trains, trucks, convoys, aircraft, ships, factories, leverage, exposure, legitimacy, consent, access, tied units and time where the action requires them. Command power never exceeds 60.
 
-Do not make the categories political power stores. Use dynamic costs and requirements based on equipment, manpower, trains, trucks, convoys, fuel, XP, command power, civilian factory burden, local support, legitimacy, state control, supplied divisions, foreign access, sponsor availability, and war state.
-
-Use timed missions for state objectives. The player should place divisions, hold ports, build infrastructure, staff coastal posts, guard borders, run observer conditions, and complete integration work. Avoid passive checklist missions.
-
-## Clutter and cleanup
-
-Use phases, caps, route locks, target pools, and replacement decisions. Do not show every possible target at once. Cancel obsolete missions and clear temporary flags, variables, and event targets when route, war, sponsor, state owner, formation, or tag status changes.
+Every place-based requirement names a state or a canonical region. Goal missions auto-complete. Full success, partial success, failure, cancellation and bypass remain separate. Cancellation returns at most 70 percent of recoverable physical inputs.
 
 ## AI
 
-Implement route aware AI. Historical AI balances preparedness. Opposition AI cooperates with Britain only when concessions or defence needs exist. Labour AI avoids Soviet dependency unless conditions justify it. Blueshirt and IRA AI choose violent Northern tools only under rare valid states.
+Use the 30-profile AI matrix. Start from the inherited priority score, then apply profile priorities, route dependency, deadline, feasibility, burden, dependency, consent, exposure, repetition and regional collision. Invalid targets have zero weight. Historical AI has zero concealed-route commitment weight.
 
-## Localisation direction
+## Tooltips and text
 
-Write final text during implementation from the design direction. Do not copy working labels as final text. Use icon first cost localisation. Use custom trigger tooltips for long requirements and readable names for state groups.
+Use short icon-first cost lines. Complex requirements use a short met or not-met summary and a detailed tooltip with current values and named places. Do not expose raw trigger blocks, internal IDs or hidden route variables.
 
-## Completion evidence
+## Cleanup
 
-Return a matrix of implemented categories, decision families, mission families, costs, durations, state targets, success effects, failure effects, cleanup, and AI behavior. Report simplifications, missing localisation, missing assets, invalid routes, and any fallback.
+Implement every government, election, coalition, leader, route, war, peace, sponsor, Northern, occupation, core, false-lead, hidden-route, compact, regional-order and postwar cleanup family. Preserve historical records, debts, exposure, damage, offices and achievement disqualifiers.
 
-## Canonical hidden path decision and mission addendum
+## Validation
 
-Implement hidden path decision families from `specs/ireland_focus_tree_spec_part_10_hidden_paths.md` and `matrices/ireland_focus_tree_hidden_path_decision_matrix.md`.
-
-Required families:
-
-- civic cultural restoration: bilingual civil service, Gaeltacht service routes, rural school expansion, cross community contacts, minority guarantee charter, diaspora education links
-- Emergency directorate: authority review, clean foreign cells, intercept couriers, centralise LDF, guard ports, civilian rule timetable
-- Atlantic compact: sound out neutral observers, arbitrate shipping incident, host arbitration, deny permanent basing, invite small state observers, guarantee neutral port rights
-- common platform settlement: minority guarantees, observer backed plebiscite, local service continuity, nonsectarian committee
-- corrupted restoration failure: recovery and cleanup decisions that block the hidden capstone
-
-Use concrete costs and requirements. Avoid political power stores. Hide invalid target decisions. Use cleanup when a route closes, a target no longer exists, Ireland joins a major faction, ports are lost, or a violent Northern route begins.
-
-## Route-specific hidden overlay decision families
-
-| Overlay | Required family | Cost direction | Success | Failure |
-| --- | --- | --- | --- | --- |
-| `hidden_constitutional_backchannel` | boundary document and liaison cap missions | trust, political capital, limited access pressure, no armed pressure | concession chance and compact reveal | nationalist patience loss and British hardening |
-| `hidden_labour_independent_front` | worker guard, veteran integration, cooperative supply missions | equipment, union support, convoys, trains, authority | readiness and supply without client capture | militia capture, church backlash, employer pressure |
-| `hidden_corporate_chambers_without_oduffy` | Guard discipline, chamber production, sponsor audit missions | equipment, command, legitimacy, worker backlash risk | institutional route survives leader crisis | coup scare, movement fracture, sponsor capture |
-| `hidden_republican_reconciliation_backchannel` | amnesty, safehouse audit, arms surrender, border cell stand down missions | local support, authority, exposure risk, British reaction | underground pressure falls and civic route may reopen | martyr pressure, sabotage crisis, Army Council state |
-
-
-## BOP and event integration addendum
-
-The decision and mission implementation must support the Ireland BOP from part 12 and the event suite from part 13.
-
-Every major decision family should define which BOP mode or range it can move, which events can fire on success, failure, or partial success, and which hidden cleanup event clears stale missions. Northern settlement decisions must fire British, unionist, observer, integration, and backlash events as appropriate.
-
-Decision categories should not replace events. Events should report major mission outcomes, expose crises, create route choices, and call cleanup logic where needed.
-
-
-Flavour event integration is mandatory
-
-Many flavour rows create or modify small but meaningful decisions and timed missions, especially ration books, turf cutting, customs checks, coast posts, school inspections, radio monitoring, port throughput, LDF drill, Red Cross relief, and Northern local safeguards. Each linked decision or mission needs costs, requirements, success, failure, AI, and cleanup. Do not turn flavour outcomes into political power stores.
+Test normal peace, Emergency, simultaneous emergency and occupation, route change, leader death, coalition collapse, sponsor defeat, partial success, invalid target, hidden prohibition, Northern stage transition and conclusion cleanup. Do not report completion while any mapped family is missing, shortened or replaced by a fallback.

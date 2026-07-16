@@ -1,249 +1,56 @@
-# Ireland focus tree asset prompt for hoi4-feature-assets
+# Ireland Focus Tree Asset Production Prompt
 
 Feature slug: `ireland_focus_tree`
-Feature name: Ireland comprehensive national focus tree
-
-This prompt is for the visual asset workflow. It is not a localisation file. Do not create final focus names, decision names, slogans, quotes, event prose, or achievement titles from these working labels.
-
-Follow `hoi4-feature-assets` and `hoi4-frame-animation` where animation is requested. Inspect the relevant reference folders before creating assets:
-
-- `.agents/skills/hoi4-feature-assets/assets/focuses`
-- `.agents/skills/hoi4-feature-assets/assets/ideas`
-- `.agents/skills/hoi4-feature-assets/assets/decisions`
-- `.agents/skills/hoi4-feature-assets/assets/achievements`
-- `.agents/skills/hoi4-feature-assets/assets/flags`
-- `.agents/skills/hoi4-feature-assets/assets/news_event_images`
-- `.agents/skills/hoi4-feature-assets/assets/report_event_images`
-
-## Source mode rules
-
-Use sourced asset work for real people, real historical flags, real party or movement symbols, real documents, and real photographed or archival scenes. Use generated art for focus icons, idea icons, decision icons, achievement icons, fictional flags, fictional route emblems, symbolic councils, UI panels, and alternate history scenes that do not depict a real event.
-
-Do not generate real leader portraits. Do not invent historical flag status. Do not use historical symbols without source notes. Do not derive idea or decision icons by resizing focus icons.
-
-## Required leader and advisor portraits
-
-Sourced portraits are required if any of these figures appear as leaders, advisors, high command, or visible event figures:
-
-| Working asset | Person | Use | Source mode | Notes |
-| --- | --- | --- | --- | --- |
-| `leader_eamon_de_valera` | Éamon de Valera | historical leader | sourced | Use contemporary or period suitable portrait. |
-| `leader_douglas_hyde` | Douglas Hyde | president or cultural figure | sourced | Use if presidency is visible. |
-| `advisor_sean_lemass` | Seán Lemass | industry and supplies | sourced | Industry branch. |
-| `leader_wt_cosgrave` | W. T. Cosgrave | opposition route | sourced | Democratic opposition. |
-| `advisor_sean_mac_eoin` | Seán Mac Eoin | opposition or military | sourced | Verify role before final implementation. |
-| `leader_william_norton` | William Norton | Labour route | sourced | Labour democratic route. |
-| `advisor_frank_ryan` | Frank Ryan | anti fascist advisor | sourced | Context sensitive. Use only if route includes him. |
-| `leader_eoin_oduffy` | Eoin O'Duffy | Blueshirt route | sourced | Authoritarian route. |
-| `advisor_daniel_mckenna` | Daniel McKenna | military and Emergency | sourced | Chief of Staff era. |
-| `advisor_hugo_macneill` | Hugo MacNeill | military | sourced | Verify use. |
-| `leader_sean_russell` | Seán Russell | IRA route | sourced | Dangerous route, context sensitive. |
-| `leader_stephen_hayes` | Stephen Hayes | IRA route | sourced | Plan Kathleen context requires care. |
-
-Generated or symbolic portraits are allowed for these collective bodies:
-
-| Working asset | Body | Use | Source mode | Notes |
-| --- | --- | --- | --- | --- |
-| `leader_army_council_body` | Army Council | IRA hard route collective leader | generated | Institutional portrait, no personal random name. |
-| `leader_corporate_chambers_body` | Corporate chambers | Blueshirt collective alternative | generated | Symbolic council or chamber, not a crowd. |
-| `leader_labour_executive_body` | Labour executive council | Labour collective alternative | generated | Institutional portrait. |
-
-## Flag and emblem assets
-
-Final flag files must use HOI4 flag sizes and paths. Preserve the base Irish tricolour unless the implementation explicitly creates route cosmetic tags.
-
-| Working asset | Use | Source mode | Notes |
-| --- | --- | --- | --- |
-| `flag_ireland_base` | base country | existing or sourced | Do not replace if already valid. |
-| `flag_ireland_social_republic` | Labour capstone cosmetic | generated or sourced motif review | Must stay readable at 82x52, 41x26, 10x7. |
-| `flag_ireland_corporate_state` | Blueshirt capstone cosmetic | sourced or generated synthesis | Historical symbols need source notes. |
-| `flag_ireland_revolutionary_republic` | IRA capstone cosmetic | sourced or generated synthesis | Republican symbols need source review. |
-| `flag_ireland_unified_constitutional` | all island formable if distinct | sourced or generated civic variant | Only if distinct from base. |
-| `flag_ireland_cultural_epilogue` | rare ceremonial epilogue | generated or sourced cultural motif | No monarchy or occult theme. |
-| `emblem_atlantic_compact` | rare neutral compact faction | generated | Faction emblem, not country flag. |
-
-## Focus icon families
-
-Every implemented focus needs an icon. Large families can share motifs, but final icons must be selected per focus and should not be left generic.
 
-| Family | Target size | Source mode | Motifs |
-| --- | --- | --- | --- |
-| opening constitutional trunk | 94x86 | generated | Dáil chamber, constitution, ballot, public order, old ledgers, army review |
-| historical neutrality | 94x86 | generated | constitution, port transfer, coast watch, neutral shipping, Emergency cabinet |
-| opposition route | 94x86 | generated | parliament, legal restraint, London channel, defensive liaison, boundary office |
-| Labour route | 94x86 | generated | union hall, cooperative factories, worker defence, anti fascist veterans, rural works |
-| Blueshirt route | 94x86 | generated with historical symbol caution | paramilitary order, corporate chambers, anti communist cadres, frontier pressure |
-| IRA route | 94x86 | generated with historical symbol caution | safehouses, border cells, sabotage files, courier risk, revolutionary council |
-| industry branch | 94x86 | generated | Shannon power, sugar beet, turf, ports, native manufactures, emergency stores |
-| military branch | 94x86 | generated | regular battalions, LDF, LOPs, port batteries, Air Corps, naval patrols, G2 |
-| diplomacy branch | 94x86 | generated | League voice, London, Washington, Vatican, Berlin risk, Rome and Spain, Moscow |
-| Northern settlement | 94x86 | generated | border survey, committees, observer ballots, frontier defence, integration office |
-| late game | 94x86 | generated | all island settlement, Atlantic role, social republic, corporate state, revolutionary republic, cultural epilogue |
+Read the canonical Part 6 asset ledger and the repository asset, animation and subagent skills before production. This prompt creates asset packages. It does not edit gameplay, localisation, GUI or GFX files unless the parent explicitly grants that narrow scope.
 
-## Idea and national spirit icons
+## Source routing
 
-Target size: 64x64. Use generated icon art unless a specific historical symbol is required and sourced. Do not resize focus icons.
+Use `hoi4_asset_source_researcher` for every real person, historical flag, attested symbol, document, site and real photographed event. Use `hoi4_icon_artist` for focus, idea, decision, category, mission, achievement, law and mechanic icons. Use `hoi4_generated_feature_art` for alternate flags, fictional councils, generated event scenes, hidden interfaces and impossible actors. Use `hoi4-frame-animation` for the seven approved animations.
 
-Required idea icon families:
+Never generate a real leader portrait. Never present generated art as archival. Record source, date, archive, author, licence confidence, era fit and uncertainty for sourced assets.
 
-- `idea_shadow_of_civil_war`
-- `idea_economic_war_strain`
-- `idea_treaty_ports_foreign_hands`
-- `idea_small_army_long_coast`
-- `idea_divided_island`
-- `idea_trade_dependence`
-- `idea_weak_air_naval_services`
-- `idea_underground_republican_pressure`
-- `idea_blueshirt_legacy`
-- `idea_labour_discontent`
-- `idea_emergency_powers`
-- `idea_constitutional_authority`
-- `idea_emergency_preparedness`
-- `idea_foreign_access_pressure`
-- `idea_integration_progress`
 
-Each staged idea can use one base icon plus route variant overlays only if the final implementation confirms the game can cleanly reference variants. Otherwise produce distinct icons for major final forms.
+## Source clearance workflow
 
-## Decision icons and decision category icons
+Every sourced item uses one of exactly five clearance states from the canonical asset ledger: `C0 discovered only`, `C1 provenance identified`, `C2 restricted or review pending`, `C3 cleared with conditions`, or `C4 cleared for unrestricted project use`. Catalogue discovery never counts as permission. No final DDS may be produced from `C0`, `C1`, or `C2` material. `C3` material must carry every attribution and distribution condition into the package.
 
-Decision icons target 32x32 unless repository pattern says otherwise. Decision category icons must match existing category size.
+Search in the ledger's exact eleven-tier source hierarchy. Prefer the highest-confidence holding source that has usable rights. An open-web mirror can identify an item but cannot establish provenance, date, authenticity, ownership, or licence. Trace it to the holding archive before selection.
 
-Required decision families:
+Every per-item source manifest must record the holding source, catalogue or object identifier, creator, date or date range, source URL, rights holder, licence or permission, clearance state, required credit, intended crop and use, uncertainty, rejected alternatives, source path, processed path, final DDS path, intended sprite name, and whether controlled reuse is approved.
 
-- Constitutional Authority category icon.
-- Emergency Preparedness category icon.
-- Ports and Coast category icon.
-- Economic Recovery category icon.
-- Foreign Access category icon.
-- Partition Settlement category icon.
-- Post Settlement Integration category icon.
-- Public order decisions.
-- Reconciliation board decisions.
-- Port transfer and port defence decisions.
-- LOP and coast watch missions.
-- LDF and reserve training decisions.
-- Shannon grid, sugar beet, turf, and port economy projects.
-- Sponsor aid, recognition, liaison, and anti dependency decisions.
-- Border survey, plebiscite, observer, uprising, ultimatum, and integration decisions.
+## Exact budget
 
-## Scripted GUI and animation assets
+- 60 sourced real-person portraits
+- 14 institutional or collective portraits
+- 1 historical base flag set
+- 18 alternate flag sets
+- 8 faction or regional-order emblems
+- at least 216 focus icons
+- 13 category icons
+- 70 decision icons
+- 54 mission icons
+- 63 persistent spirit state icons
+- 27 temporary state icons
+- 51 law icons
+- 45 mechanic and value icons
+- 32 achievement concepts with normal, grey and not-eligible states
+- 120 unique event and news images, 69 sourced and 51 generated
+- 3 scripted GUI asset families
+- 7 animated assets with static fallbacks
 
-The Emergency Preparedness board is the main scripted GUI candidate.
+## Reference folders
 
-| Working asset | Surface | Size | Source mode | Animation rules |
-| --- | --- | --- | --- | --- |
-| `ireland_emergency_board_background` | scripted GUI board | implementation defined | generated UI art | static |
-| `ireland_emergency_component_card` | scripted GUI card | implementation defined | generated UI art | static variants for normal, selected, warning, complete |
-| `ireland_emergency_meter_frame` | scripted GUI meter | implementation defined | generated UI art | static variants |
-| `ireland_emergency_readiness_seal` | board header or category | likely 64x64 or category size | generated icon style | animated with real source frames, 6 to 8 frames, subtle signal lamp or coast watch glow |
-| `ireland_emergency_warning_frame` | board warning overlay | implementation defined | generated UI art | animated only if useful, 6 to 8 frames, subtle pulse, static fallback required |
-| `ireland_formation_seal` | all island formation decision or GUI | 64x64 or category size | generated seal | optional static only unless formation UI uses animation |
+Inspect the matching repositories under `.agents/skills/hoi4-feature-assets/assets/` for ideas, focuses, decisions, achievements, flags, report images and news images. Match framing, scale, contrast, texture and readability. Do not use a uniform recolour batch as a complete icon family.
 
-Every animated asset must follow `hoi4-frame-animation`. It needs source frames, processed frames, horizontal sheet PNG, sheet DDS, static fallback DDS, GIF preview for review only, manifest, and `gfx_handoff.md`. Do not create final motion from a transformed still.
+## Placement
 
-## Report or news image needs
+Use feature-scoped folders under the correct category where engine conventions allow. Keep achievement DDS files in `gfx/achievements/` with filenames matching full achievement IDs. Keep flags in the large, medium and small flag roots with valid tag or cosmetic-tag filenames.
 
-Create report or news images for major public event moments. Use direction only until the implementation selects the exact event surfaces.
+## Animation briefs
 
-Possible presentation moments:
+Produce independent source frames for the hidden evidence seal, Ailtirí takeover seal, High Kingship crown selection, Five Provinces compact, verified Otherworld entry, compact breach warning and convergence conclusion seal. Local scripts may align, crop, resize, sheet and convert frames. They may not create final motion from transforms or filters. Produce source frames, processed frames, horizontal sheet PNG, final DDS, static fallback, contact sheet, GIF preview and GFX handoff.
 
-- Treaty Ports returned.
-- Emergency coast watching network begins.
-- All island settlement proclaimed.
-- Violent Northern crisis or uprising if implemented as news.
-- Atlantic compact conference if accepted.
+## Manifests and QA
 
-Use sourced archival images for real historical events or real people. Use generated period documentary imagery for alternate history scenes or composite route outcomes.
-
-## Achievement icons
-
-Achievement icons target 64x64. Create completed icon first. Grey and not eligible variants follow achievement workflow.
-
-The achievement prompt lists working achievement ids and icon direction. Use those ids for final achievement DDS names only after implementation confirms registry ids.
-
-## Manifest and handoff requirements
-
-For every asset, provide source PNG, processed PNG, final DDS or TGA where appropriate, status, source mode, prompt or source URL, license or uncertainty note for sourced assets, target size, intended use, sprite name proposal, and target `.gfx` handoff.
-
-Write or update:
-
-- `docs/assets/ireland_focus_tree/manifest.md`
-- `docs/assets/ireland_focus_tree/gfx_handoff.md`
-- contact sheets for large icon batches
-
-Do not edit gameplay, localisation, GUI, or `.gfx` files unless the parent implementation prompt explicitly expands scope.
-
-## Canonical hidden path asset addendum
-
-`specs/ireland_focus_tree_spec_part_10_hidden_paths.md` makes hidden paths mandatory planned content. Older prompt lines that treat cultural restoration as only queued are superseded.
-
-Required hidden path asset families:
-
-| Hidden route | Asset needs | Source mode | Animation note |
-| --- | --- | --- | --- |
-| civic cultural restoration | focus icons for cultural threshold, presidential patronage, language administration, Gaeltacht development, common platform outreach, cultural diplomacy, capstone, plus idea and decision icons | generated gameplay icons, sourced review for real harp, presidential, constitutional, or Hyde material | capstone route seal can use a subtle animated glow with static fallback |
-| Emergency directorate | warning seal, G2 files, LDF command, public order, directorate council, civilian restoration, permanent security fork, decision icons | generated unless real offices, real people, or real unit symbols are depicted | warning pulse optional with static fallback |
-| Atlantic neutral compact | compact emblem, compass, convoy observer, arbitration office, no basing principle, member rules, decision icons | generated symbolic art | compact seal optional with static fallback |
-| common platform settlement | minority guarantees, observer plebiscite, local service continuity, nonsectarian committee icons | generated symbolic icons | static preferred |
-| hidden path achievements | icons for hidden route achievements added in Canonical | generated symbolic icons, source caution for historical motifs | static |
-
-Do not put Gaelic text in generated images. Do not generate Douglas Hyde or other real people. Do not invent historical flag or symbol status.
-
-## Route-specific hidden overlay assets
-
-Add assets for the hidden overlays in part 10:
-
-| Overlay | Required asset families | Source mode |
-| --- | --- | --- |
-| `hidden_constitutional_backchannel` | focus icons, decision icons, achievement icon, legal boundary motif | generated icons, sourced treaty or real document image only if used directly |
-| `hidden_labour_independent_front` | focus icons, decision icons, idea icon, achievement icon, anti-fascist service motifs | generated icons, sourced portraits for real figures |
-| `hidden_corporate_chambers_without_oduffy` | focus icons, decision icons, idea icon, chamber body portrait, achievement icon | generated symbolic chamber, sourced O'Duffy and real symbols if visible |
-| `hidden_republican_reconciliation_backchannel` | focus icons, decision icons, idea icon, achievement icon, amnesty and arms surrender motifs | generated icons, source review for real IRA symbols or actors |
-
-## Canonical consolidated hidden path asset addendum
-
-The hidden paths in Part 10 are required asset surfaces. Add icon, idea, decision, achievement, emblem, and optional animation coverage for civic cultural restoration, Emergency directorate, Atlantic neutral compact, common platform Northern settlement, corrupted restoration failure, compromised republican network, cross border Labour Council, constitutional backchannel, corporate chambers without O'Duffy, republican reconciliation backchannel, neutral aftershock recovery, and Northern emergency protectorate.
-
-Source mode rules remain strict. Real leaders, real flags, real unit symbols, real offices, real movement symbols, real cultural institutions, and attested emblems require sourced asset work. Generated assets are allowed for symbolic icons, fictional councils, alternate route emblems, compact seals, warning frames, and abstract UI states. Do not generate Douglas Hyde, O'Duffy, real IRA figures, real Aiséirghe figures, or historical symbols.
-
-Animation candidates are the Emergency warning seal, compact seal, civic cultural capstone seal, and repaired beacon aftershock recovery. Every animation requires real source frames, a static fallback, sheet DDS, manifest, and handoff under the frame animation rules.
-
-
-## BOP asset addendum
-
-Create or hand off BOP visual support for the integrated Ireland BOP layer.
-
-| Working asset | Surface | Type | Source mode | Direction |
-| --- | --- | --- | --- | --- |
-| `idea_ire_bop_state_authority` | BOP or national spirit tooltip | idea icon | generated | constitutional seal split with contested public order motif |
-| `decision_category_ireland_bop_authority` | decision category or mechanic summary | category icon | generated | Dáil chamber and public order pressure |
-| `ire_bop_warning_authority_static` | BOP warning | UI sprite | generated | static fallback for danger state |
-| `ire_bop_warning_authority_animated` | BOP high or extreme band | animated UI sprite | generated frames | follow frame animation rules, subtle warning pulse, static fallback required |
-
-Do not use real party or movement symbols in BOP assets without source review.
-
-## Mandatory event suite asset addendum
-
-Events are required content. Create event image assets for public and documentary milestones that implementation uses.
-
-Use news image target `397x153` in black and white. Use report image target `210x176` with the report card treatment. Use sourced assets for real people, real documents, real historical photographs, and historically attested symbols. Use generated period documentary art for alternate history scenes, fictional route moments, and symbolic report scenes.
-
-Required event asset families:
-
-- ports return and port defence news or report images
-- coastwatch, Look Out Posts, G2, and LDF Emergency report images
-- constitutional opposition and guarded liaison news image
-- Labour congress, cooperative industry, and cross border Labour mediation news or report images
-- corporate chamber, Blueshirt guard crisis, and anti communist route news or report images with symbol caution
-- safehouse network, courier exposure, Plan Kathleen style crisis, and compromised network report images
-- Northern offer, unionist alarm, observer mission, integration commission, backlash, and verified all island settlement images
-- BOP threshold and overreach event icons or report images for each major mode family
-- civic cultural restoration, Emergency Directorate, Atlantic compact, common platform, corrupted restoration, and protectorate hidden path images
-- unified Ireland, Atlantic compact, Labour all island, corporate state, revolutionary republic, and neutral postwar public news images
-
-The event asset matrix lists recommended working assets. Do not use generated readable text in event images.
-
-
-Add flavour event asset families
-
-Do not create one unique image per ordinary event. Create shared source backed or generated asset families for civic school and folklore, radio and press, rationing and turf, coasts and merchant marine, rural industry and sugar beet, Ardnacrusha and electrification, LDF and civil defence, border markets and safeguards, Red Cross and humanitarian relief, and postwar memory. Report images tied to real historical institutions, real places, real leaders, or historical photographs require sourced asset work. Symbolic icons and UI category art can be generated through the correct asset workflow.
+Every asset records source mode, intended use, dimensions, final path, sprite name, related route or event, licence or generation prompt, uncertainty, and controlled-reuse status. Every sourced asset also records the complete clearance and per-item source manifest fields above. Reject modern reenactments, film stills, wrong-era material, fake historical documents, white-halo transparency and unreadable icons. Placeholder art does not satisfy the ledger.

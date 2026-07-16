@@ -9,15 +9,7 @@ Use this skill when a HOI4 modding task should be split across custom Codex suba
 
 The parent Codex agent remains responsible for final integration, validation, and completion claims. Subagents can inspect, patch, create assets, write addenda, or produce reports. The parent must review their outputs, wire final cross-surface behavior, and carry blockers into the final report.
 
-Use `hoi4-mcp-workbench` as the shared MCP surface when a routed task touches
-focus trees, event chains, scripted GUI, or maps. A
-subagent may return a workspace ID, selector, revision, MCP artifact URI,
-layout report, comparison, or diagnostics in its handoff. The parent owns final
-source writes, review, and validation. Pass only the bounded MCP evidence the
-subagent needs instead of copying a whole graph into its prompt.
-
-Capture an event baseline before patch-capable subagents begin. Assign disjoint
-files and serialize any work that would touch the same source.
+Capture a task baseline before patch-capable subagents begin. Assign disjoint files and serialize any work that would touch the same source.
 
 Do not use subagents to hide uncertainty or pass off responsibility. A subagent handoff is evidence for the parent, not a replacement for parent review.
 
@@ -53,7 +45,7 @@ Use `hoi4_asset_source_researcher` for real or archival image sourcing, real lea
 
 Use `hoi4_generated_feature_art` for generated non-icon art, including fictional or alternate-history report images, news images, custom feature images, fictional portraits, fictional flags, faction emblems, UI panels, dossier art, progression-state base art, and animated non-icon presentation pieces.
 
-Use `hoi4_icon_artist` for focus icons, idea icons, national spirit icons, officer corps icons, decision icons, decision category icons, achievement icons, tech icons, formable seals, scripted GUI icons, and small animated icon or button sprites.
+Use `hoi4_icon_artist` for generated gameplay icon families, formable seals, scripted GUI icons, and small animated icon or button sprites. Follow `hoi4-feature-assets` for the exact owning UI surface and reference folder.
 
 Use `hoi4_quote_remark_researcher` for main quotes, exact wording checks, attribution confidence, source comparison, button text, cultural remarks, slogans, allusions, and short references.
 
@@ -199,6 +191,10 @@ The handoff should include:
 
 Do not fill handoffs with passing boilerplate checks that only restate AGENTS.md rules. Basic syntax hygiene can be done internally unless it found a problem or materially changed the patch.
 
+## MCP evidence in handoffs
+
+When a routed task touches focus trees, event chains, scripted GUI, or maps, use MCP as the shared surface. A handoff may include bounded diagnostics, layout reports, comparisons, revisions, or linked MCP artifact URIs. Pass only the evidence the parent needs; do not copy an entire graph into the prompt.
+
 If a patch touches localisation, list the keys changed. If it touches decisions or focuses, list affected ids. If it touches scripted helpers, list helper names and call sites. If it touches country setup, list tags and state ids or state groups.
 
 ## Plan and spec paths
@@ -227,7 +223,7 @@ Use:
 
 - `hoi4_asset_source_researcher` for real, archival, historical, documentary, or public-source images when the asset must show real historical material
 - `hoi4_generated_feature_art` for generated non-icon fictional, alternate-history, symbolic, extreme-route, or unique event art
-- `hoi4_icon_artist` for generated gameplay icons, formable seals, decision category icons, and small animated icon or button sprites
+- `hoi4_icon_artist` for generated gameplay icon families, formable seals, decision category icons, and small animated icon or button sprites; follow `hoi4-feature-assets` for exact asset-family routing
 
 The parent agent must give each asset subagent a bounded prompt with exact asset names, target sizes, source mode, final folders, sprite names when already registered, reference folders, and constraints.
 

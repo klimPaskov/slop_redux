@@ -1,7 +1,0 @@
-on_daily_IRE = {
-	effect = {
-		slopx_ireland_initialize_mechanics = yes
-		slopx_ireland_major_event_pulse = yes
-		slopx_ireland_flavour_pulse = yes
-	}
-}
